@@ -9,7 +9,7 @@ I've tested and found that Narga WordPress Framework works well with [bbPress 2.
 ###Links of Narga WordPress Framework###
 * Homepage:         [http://www.narga.net/narga-core][6]
 * Forum:            [http://www.narga.net/forum/][9]
-* GitHub:        [git@github.com:Narga/narga-core.git][8]
+* GitHub:           [https://github.com/Narga/narga-core][8]
 
 ###Learn more about Foundation & One% CSS Grid ###
 * [Foundation Homepage](http://foundation.zurb.com)
@@ -51,10 +51,10 @@ Download Narga WordPress Framework then install it on your local WordPress or re
 This is meant to be a base theme for WordPress custom theme development. A knowledge of WordPress theme development practices as well as understanding of HTML, CSS/LESS, jQuery and PHP are required.
 
 Always get update by clone this repository:
-    :::bash
-    git clone git@github.com:Narga/narga-core.git
-    git pull
-
+```bash
+git clone git@github.com:Narga/narga-core.git
+git pull
+```
 License
 =======
 [![Creative Commons License][4]][1] 
@@ -69,7 +69,7 @@ Ownership
 =========
 You may not claim intellectual or exclusive ownership of any of our products, modified or unmodified. All products are property of [Narga][2] and their respective designers. Our products are provided “as is” without warranty of any kind, either expressed or implied. In no event shall we be liable for any damages including, but not limited to, direct, indirect, special, incidental or consequential damages or other losses arising out of the use of or inability to use our products.
 
-Also if you intend to use the Narga WordPress Framework in a commercial project, or a template you intend to redistribute in any form, please retain a "Powered by Narga" logo and link in the backend administrative interface.
+Also if you intend to use the **Narga WordPress Framework** in a commercial project, or a template you intend to redistribute in any form, please retain a "[Powered by Narga][2]" logo and link in the backend administrative interface.
 
 Branding Removal License
 ========================
