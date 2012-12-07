@@ -1,0 +1,104 @@
+/* -----------------------------------------------------------------------------------------------------
+Theme Name:         Narga
+Theme URI:          http://www.narga.net/narga-framework/
+Description:        Narga is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation.
+Version:            1.0
+Author:             Nguyễn Đình Quân
+Author URI:         http://www.narga.net/
+License:            Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+License URI:        http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
+----------------------------------------------------------------------------------------------------- */
+
+/* -------------------------------------------------- 
+Table of Contents
+-----------------------------------------------------
+:: Customized Adjustments of Foundation for WordPress
+:: Orbit Navigation appear when hover mouse
+:: Styling Basic WordPress Outputs
+:: Adjust Foundation 3 Pagination Style for WordPress
+
+
+/* ---------------------------------------------------
+:: Customized Adjustments of Foundation for WordPress
+--------------------------------------------------- */
+
+/* Foundation-specific presentation CSS by ZURB */
+div.narga-header { margin: 20px 0; }
+
+/* -----------------------------------------
+:: Orbit Navigation appear when hover mouse
+----------------------------------------- */
+.orbit-wrapper .slider-nav span { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0; -webkit-transition: opacity 400ms; -moz-transition: opacity 400ms; -o-transition: opacity 400ms; transition: opacity 400ms; }
+.orbit-wrapper:hover .slider-nav span { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1; }
+
+/* -----------------------------------------
+:: Styling Basic WordPress Outputs
+----------------------------------------- */
+body {font-family: 'Open Sans', "Helvetica Neue", "Helvetica", Ubuntu, Droid Sans, Verdana, Arial, Tahoma, Sans-Serif;line-height:1.6;}
+
+/* Global */
+h1, h2, h3, h4, h5, h6 { font-family: 'Kreon', "Helvetica Neue", "Helvetica", Arial, Verdana, cursive; font-weight: 700;letter-spacing: -1px;}
+ul li {list-style-position: inside;}
+aside#sidebar ul li, footer#content-info ul li {list-style-image: url(images/bullet.png);}
+code {padding: 1px 2px;color: #c60f13;}
+pre {padding: 1px 4px;}
+code, pre {font-family: Monaco,Menlo,Consolas,"Courier New",monospace;font-size: 12px;border-radius: 3px 3px 3px 3px;background-color: rgb(247, 247, 249);border: 1px solid rgb(225, 225, 232);
+}
+
+/*  Top Bar Search Form */
+nav #searchform .assistive-text{display: none;}
+nav #searchform #s {width: 100%;padding: 0 10px 0 30px;font-size: 92%;line-height: 14px;white-space: nowrap;background: url('images/ico-search.png') no-repeat 15px center #fff;box-shadow: none;text-overflow: ellipsis;-webkit-transition: width 0.7s;-moz-transition: width 0.7s;-o-transition:width 0.7s;transition:width 0.7s;}
+nav #searchform #s {z-index: 9999;position: absolute;right: 0;height: 45px;border: none;border-left: 1px solid #252525;text-indent: -9999px;background-color: #6F6F68;}
+nav .ie #searchform #s {width: 180px;background-position: 9px center;}
+nav #searchform #s:focus {background-position: 9px center;text-indent: 0;width: 180px;color: #fff;}
+
+/* Header */
+
+/* Main Content */
+section.entry-content {text-align:justify;}
+div#content {float:left;position:relative;}
+
+/* Alternate posts css classes */
+article.odd {clear:left;}
+
+/* Add Align position for images and figures */
+.alignright { float: right; margin: 0 0 18px 18px; }
+.alignleft { float: left; margin: 0 18px 18px 0; }
+.aligncenter { display: block; margin: 18px auto; }
+
+/* Add HTML5 Class for Images */
+figcaption { padding: 8px 10px; font-size: 13px; font-size: 1.3rem; line-height: 18px; color: #555; }
+.wp-caption {background-color:#e9e9e9;display: block;padding: 4px;line-height: 20px;border: 1px solid rgb(221, 221, 221);border-radius: 4px 4px 4px 4px;box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.055);transition: all 0.2s ease-in-out 0s;}
+.wp-caption:hover {background-color:#fff;border-color: rgb(0, 136, 204);box-shadow: 0px 1px 4px rgba(0, 105, 214, 0.25);}
+
+/* Label Adjustment */
+.tags a {color:#fff;font-weight:normal;}
+
+/* Sidebar Adjustment */
+.sidebar-section {font-size: 13px; font-size: 1.3rem; font-weight: normal; }
+
+/* Comment Adjustment */
+.commentlist li {position:relative;clear:both;overflow:hidden;list-style-type:none;margin-bottom:1.5em;padding:0.7335em 10px;}
+ul.children {margin: 0 0 0 70px;list-style-type:none;}
+.commentlist li:last-child{margin-bottom:0}
+.commentlist cite.fn {font-size:23px;display:block;}
+.commentlist time {font-style:italic;font-size:11px;}
+img.avatar {float:right;border: 1px solid #ddd;background-color: #f3f3f3; padding:2px;}
+a.comment-del-link, a.comment-spam-link, a.comment-edit-link, a.comment-reply-link{float:right;background:#4598bb;padding:3px 5px;color:#fff;opacity:0.65;margin:0 3px 5px 0;}
+a.comment-del-link:hover, a.comment-reply-link:hover, a.comment-spam-link:hover, a.comment-edit-link:hover {opacity:1}
+.commentlist .odd{background:#F7F7F9}
+.commentlist .even{background:#e9e9e9}
+.commentlist .bypostauthor {background:#ffff99}
+section.comment div.notice {float:right; color: red;}
+#respond textarea { height: 150px; }	
+
+/* Recent comments style */
+.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;} 
+
+/*  -------------------------------------------------------
+:: Adjust Foundation 3 Pagination Style for WordPress
+---------------------------------------------------- */ 
+#post-nav {clear:both;margin-left:10px;}
+ul.pagination li span.current { background: #2ba6cb; color: #fff; font-weight: bold; cursor: default; display: block; padding: 1px 7px 1px; }    
+
+

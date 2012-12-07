@@ -1,0 +1,19 @@
+# Introdution
+
+    Narga WordPress Framework was made by Nguyễn Đình Quân a.k.a Narga, an extremely versatile HTML5 & CSS3 WordPress Framework based on ZURB Foundation, HTML5 Boilerplate, One% CSS Grid, hNews microformat
+    Because it's a percentage based grid system, it means that it will perfectly adapt to all screen resolutions (mobile, tablets and big screens).
+
+# TEAM
+
+    Nguyễn Đình Quân - @narga
+    Narga - http://www.narga.net/
+
+# TECHNOLOGY COLOPHON
+
+    Standards: HTML5, CSS3
+    Components: Normalize.css, jQuery, HTML5 Boilerplate, hNews microformat
+    Software: VIM, Sublime Text, LAMP, Git, Arch Linux
+
+# License
+
+   Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License  
