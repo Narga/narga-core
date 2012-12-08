@@ -3,18 +3,18 @@
 :: Narga WordPress Framework Basic Setup
 ------------------------------------- */
 function narga_setup() {
-    // Add language supports. By default, this framework not include language files.
+    # Add language supports. By default, this framework not include language files.
     load_theme_textdomain('narga', get_template_directory() . '/languages');
 
-    // Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
+    # Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
     add_theme_support('post-thumbnails');
     set_post_thumbnail_size(785, 360, true);
     add_image_size( 'grid-post-thumbnails', 360, 140, true);
 
-    // Add post formarts supports. http://codex.wordpress.org/Post_Formats
+    # Add post formarts supports. http://codex.wordpress.org/Post_Formats
     add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));
 
-    // Add menu supports. http://codex.wordpress.org/Function_Reference/register_nav_menus
+    # Add menu supports. http://codex.wordpress.org/Function_Reference/register_nav_menus
     add_theme_support('menus');
     register_nav_menus(array(
         'top-bar-l' => __('Left Top Bar', 'narga'),
@@ -29,7 +29,6 @@ add_action('after_setup_theme', 'narga_setup');
 :: Enqueue Scripts and Styles for Front-End
 ---------------------------------------- */
 function narga_assets() {
-    global $is_IE;
     if ( !is_admin() ) {
         wp_register_style( 'foundation',get_template_directory_uri() . '/stylesheets/foundation.min.css', false );
         wp_enqueue_style( 'foundation' );
@@ -37,35 +36,47 @@ function narga_assets() {
         wp_register_style( 'app',get_template_directory_uri() . '/stylesheets/app.css', false );
         wp_enqueue_style( 'app' );
 
-        // Load style.css to allow contents overwrite foundation & app css
+        # Load style.css to allow contents overwrite foundation & app css
         wp_register_style( 'style',get_template_directory_uri() . '/style.css', false );
         wp_enqueue_style( 'style' );
 
-        // Load Google Fonts API
+        # Load Google Fonts API
         wp_register_style( 'google-font',"http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic|Kreon:700", false );
         wp_enqueue_style( 'google-font' );
 
-        // Enqueue to header
+        # Enqueue to header
         wp_deregister_script( 'jquery' );
         wp_register_script( 'jquery', get_template_directory_uri() . '/javascripts/jquery.min.js' );
         wp_enqueue_script( 'jquery' );
 
-        // Load JavaScripts
+        # Load JavaScripts
         wp_enqueue_script( 'narga', get_template_directory_uri() . '/javascripts/narga.js', array(), '1.0', false );
         wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array(), '1.0', true );
         wp_enqueue_script( 'app', get_template_directory_uri().'/javascripts/app.js', array('foundation'), '1.0', true );
 
-        if ($is_IE) {
-            wp_register_script ( 'html5shiv', "http://html5shiv.googlecode.com/svn/trunk/html5.js" , false, true);
-            wp_enqueue_script ( 'html5shiv' );
-        } 
-
-        // Enable threaded comments 
+        # Enable threaded comments 
         if ( (!is_admin()) && is_singular() && comments_open() && get_option('thread_comments') )
             wp_enqueue_script('comment-reply');
     }
 }  
 add_action( 'init', 'narga_assets' );
+
+# add ie conditional html5  to header
+function ie_conditional_html5 () {
+	global $is_IE;
+        if ($is_IE) {
+        echo '<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+	     chromium.org/developers/how-tos/chrome-frame-getting-started -->';
+        echo '<!--[if lt IE 7]>';
+        echo '<script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>';
+        echo '<script defer>window.attachEvent(\'onload\',function(){CFInstall.check({mode:\'overlay\'})})</script>';
+        echo '<![endif]-->';
+   	echo '<!--[if lt IE 9]>';
+    	echo '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>';
+    	echo '<![endif]-->';
+        }
+}
+add_action('wp_head', 'ie_conditional_html5');
 
 /*  -----------------------------------
 :: Narga WordPress Framework Assets
@@ -181,7 +192,7 @@ if (!function_exists('addition_actions_comment_link')) :
 add_filter('edit_comment_link', 'addition_actions_comment_link');
 endif;
 
-// function to render orbit slide based on featured category and number of slide in Customize.
+# function to render orbit slide based on featured category and number of slide in Customize.
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
         echo "<div id=\"narga_orbit_slider\">\n";
@@ -192,11 +203,11 @@ if (!function_exists('narga_orbit_slider')) :
         } 
 endwhile;
 echo "\n\t\t\t</div>";
-// Print the captions   
+# Print the captions   
 while ( $query_posts->have_posts() ) : $query_posts->the_post();
 echo "<span class=\"orbit-caption\" id=\"htmlCaption-".$query_posts->current_post."\">";
 echo '<h3><a href=' . get_permalink(). ' ' . 'title=' . get_the_title() . '>' . get_the_title(). '</a></h3>';
-echo get_post(get_post_thumbnail_id())->post_content; // Get image descriptions
+echo get_post(get_post_thumbnail_id())->post_content; # Get image descriptions
 echo "</span>";
 endwhile;
     }
@@ -228,7 +239,7 @@ function img_caption_shortcode_filter($val, $attr, $content = null) {
 if (!function_exists('narga_pagination')) :  
     function narga_pagination() {
         global $wp_query;
-        $big = 999999999; // This needs to be an unlikely integer
+        $big = 999999999; # This needs to be an unlikely integer
         $paginate_links = paginate_links( array(
             'base' => str_replace( $big, '%#%', get_pagenum_link($big) ),
             'current' => max( 1, get_query_var('paged') ),
@@ -239,7 +250,7 @@ if (!function_exists('narga_pagination')) :
             'next_text' => __('&raquo;'),
             'type' => 'list'
         ) );
-        // Display the pagination if more than one page is found
+        # Display the pagination if more than one page is found
         if ( $paginate_links ) {
             echo '<nav id="post-nav">' . str_replace('page-numbers', 'pagination', $paginate_links) . '</nav>';
         }
