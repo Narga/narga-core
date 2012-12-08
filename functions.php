@@ -61,20 +61,52 @@ function narga_assets() {
 }  
 add_action( 'init', 'narga_assets' );
 
+/* ---------------------------------------------------------------
+::  Includes the pro functions if it exists
+:: Brought from PressWork - http://presswork.me
+--------------------------------------------------------------- */
+if(!defined('PRO_FUNCTIONS'))
+    define('PRO_FUNCTIONS', get_template_directory().'/assets/pro-functions.php');
+if(file_exists(PRO_FUNCTIONS))
+    include(PRO_FUNCTIONS);
+
+/* ---------------------------------------------------------------
+:: Load custom-actions.php file if it exists in the uploads folder
+:: Brought from PressWork - http://presswork.me
+--------------------------------------------------------------- */
+$upload_dir = wp_upload_dir();
+if(!defined('ACTION_FILE'))
+    define('ACTION_FILE', $upload_dir['basedir'].'/custom-functions.php');
+if(file_exists(ACTION_FILE))
+    include(ACTION_FILE);
+
+/* ---------------------------------------------------------------
+:: Load custom.css file if it exists in the uploads folder
+:: Brought from PressWork - http://presswork.me
+--------------------------------------------------------------- */
+define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
+define('CSS_DISPLAY', $upload_dir['baseurl'].'/custom.css');
+if(file_exists(CSS_FILE))
+    add_action("wp_print_styles", "add_custom_css_file", 99);
+function pw_add_custom_css_file() {
+    wp_register_style('narga_custom_css', CSS_DISPLAY);
+    wp_enqueue_style( 'narga_custom_css');
+}
+
 # add ie conditional html5  to header
 function ie_conditional_html5 () {
-	global $is_IE;
-        if ($is_IE) {
+    global $is_IE;
+    if ($is_IE) {
         echo '<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
-	     chromium.org/developers/how-tos/chrome-frame-getting-started -->';
+            chromium.org/developers/how-tos/chrome-frame-getting-started -->';
         echo '<!--[if lt IE 7]>';
         echo '<script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>';
         echo '<script defer>window.attachEvent(\'onload\',function(){CFInstall.check({mode:\'overlay\'})})</script>';
         echo '<![endif]-->';
-   	echo '<!--[if lt IE 9]>';
-    	echo '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>';
-    	echo '<![endif]-->';
-        }
+        echo '<!--[if lt IE 9]>';
+        echo '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>';
+        echo '<![endif]-->';
+    }
 }
 add_action('wp_head', 'ie_conditional_html5');
 
