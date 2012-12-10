@@ -8,7 +8,7 @@ function narga_setup() {
 
     # Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
     add_theme_support('post-thumbnails');
-    set_post_thumbnail_size(785, 360, true);
+    set_post_thumbnail_size(805, 360, true);
     add_image_size( 'grid-post-thumbnails', 360, 140, true);
 
     # Add post formarts supports. http://codex.wordpress.org/Post_Formats
@@ -227,8 +227,8 @@ endif;
 # function to render orbit slide based on featured category and number of slide in Customize.
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
-        echo "<div id=\"narga_orbit_slider\">\n";
-        $query_posts = new WP_Query('category_in= '.get_theme_mod( 'featured_category').'&showposts='.get_theme_mod('number_slide' ).'');
+        echo "<div id=\"narga-orbit-slider\">\n";
+        $query_posts = new WP_Query('category__in= '.get_theme_mod( 'featured_category').'&showposts='.get_theme_mod('number_slide' ).'');
         while ($query_posts->have_posts()) : $query_posts->the_post(); $do_not_duplicate = $post->ID;
         if(has_post_thumbnail()) {
             the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$query_posts->current_post,));
@@ -238,7 +238,7 @@ echo "\n\t\t\t</div>";
 # Print the captions   
 while ( $query_posts->have_posts() ) : $query_posts->the_post();
 echo "<span class=\"orbit-caption\" id=\"htmlCaption-".$query_posts->current_post."\">";
-echo '<h3><a href=' . get_permalink(). ' ' . 'title=' . get_the_title() . '>' . get_the_title(). '</a></h3>';
+echo '<h3><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></h3>';
 echo get_post(get_post_thumbnail_id())->post_content; # Get image descriptions
 echo "</span>";
 endwhile;

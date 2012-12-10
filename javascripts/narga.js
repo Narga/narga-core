@@ -12,7 +12,7 @@
  */
 /* <![CDATA[ */
 jQuery(window).load(function() {
-  jQuery('#narga_orbit_slider').orbit({
+  jQuery('#narga-orbit-slider').orbit({
   animation: 'fade',                  // fade, horizontal-slide, vertical-slide, horizontal-push
   animationSpeed: 800,                // how fast animtions are
   timer: true,                        // true or false to have the timer
