@@ -19,7 +19,7 @@ function narga_setup() {
     register_nav_menus(array(
         'top-bar-l' => __('Left Top Bar', 'narga'),
         'top-bar-r' => __('Right Top Bar', 'narga'),
-        'primary_navigation' => __('Primary Navigation', 'narga'),
+#        'primary_navigation' => __('Primary Navigation', 'narga'),
         'secondary_navigation' => __('Secondary Navigation', 'narga')
     ));
 }
@@ -130,6 +130,16 @@ endif;
 edit_post_link(' | Edit', '', '');
 echo '</p>';
     }
+endif;
+
+# function to generate blog name and subheader for custom as users want without copy the header.php file in child theme
+if (!function_exists('narga_blog_head')) :  
+    function narga_blog_head() {
+        echo '<div class="narga-header">';
+        echo '<h1><a href="' . get_bloginfo('url') . '" title="' . get_bloginfo('name') . '">' . get_bloginfo('name') . '</a></h1>';
+        echo '<h2 class="subheader">' . get_bloginfo('description') . '</h2>';
+        echo '</div>';
+    }  
 endif;
 
 # Remove somethings not used or include in others functions

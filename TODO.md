@@ -10,3 +10,4 @@ Legend:[+] new feature, [x] bug fix, [-] removed feature, [=] repackaging or cos
 + Sticky post as more important appearing
 = Rewrite loop posts
 x Fix portable devices menu
++ Primary Navigation as Drop-Down Menu

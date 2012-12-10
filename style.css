@@ -2,7 +2,7 @@
 Theme Name:         Narga
 Theme URI:          http://www.narga.net/narga-framework/
 Description:        Narga is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation.
-Version:            1.0.1
+Version:            1.0.2
 Author:             Nguyễn Đình Quân
 Author URI:         http://www.narga.net/
 License:            Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
@@ -75,6 +75,7 @@ figcaption { padding: 8px 10px; font-size: 13px; font-size: 1.3rem; line-height:
 .tags a {color:#fff;font-weight:normal;}
 
 /* Sidebar Adjustment */
+aside#sidebar {padding: 20px 18px;}
 .sidebar-section {font-size: 13px; font-size: 1.3rem; font-weight: normal; }
 
 /* Comment Adjustment */

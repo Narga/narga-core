@@ -44,14 +44,11 @@
 <!-- Row for blog navigation -->
 <div class="row top-header">
     <header class="twelve columns" role="banner">
-        <div class="narga-header">
-            <h1><a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a></h1>
-            <h2 class="subheader"><?php bloginfo('description'); ?></h2>
-        </div>
+        <?php narga_blog_head(); ?>
     </header>
 </div>
 
 <!-- Row for main content area -->
-<div class="row">
+<div class="row main">
 
 <section id="main" role="main">
