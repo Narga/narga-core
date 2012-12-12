@@ -121,7 +121,7 @@ require( get_template_directory() . '/assets/theme-customizer.php' );
 if (!function_exists('narga_entry_meta')) :  
     function narga_entry_meta() {
         echo '<p class="post-meta-data">';
-        echo '<time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time> in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author vcard">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn" />'. get_the_author() .'</a></span>';
+        echo '<time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time> in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author vcard">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';
         if (comments_open()) :
             echo ' <span class="entry-comments">';
         comments_popup_link( 'Be the first to comment', '1 comment', '% comments', 'comments-link', 'Comments are off for this post');

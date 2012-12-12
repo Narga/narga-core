@@ -8,6 +8,8 @@ The content of this file will be list all the tasks has done. I will update it a
 * Fix position of sidebar.
 * Remove Primary Navigation and plan to add it late with ZURB Drop-Down Menu
 * Add function to generate blog name and subheader for custom as users want without copy the header.php file in child theme. User can upload their own logo in the future.
+* Add GitHub Gist, Video5, Audio5 shortcodes
+* Add theme's image: screenshot.png
 
 ### v1.0.1 - December 6th, 2012
 * Add function to load jQuery library if Google CND not reachable

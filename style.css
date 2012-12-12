@@ -56,10 +56,10 @@ nav #searchform #s:focus {background-position: 9px center;text-indent: 0;width: 
 
 /* Main Content */
 section.entry-content {text-align:justify;}
-div#content {float:left;position:relative;}
 
 /* Alternate posts css classes */
 article.odd {clear:left;}
+article.even {clear:right;}
 
 /* Add Align position for images and figures */
 .alignright { float: right; margin: 0 0 18px 18px; }
