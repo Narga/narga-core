@@ -1,4 +1,5 @@
-Changes Logged
+### Changes Logged
+
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
 ### v1.0.2 - December 10th, 2012

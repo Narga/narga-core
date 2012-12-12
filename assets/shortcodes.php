@@ -167,4 +167,32 @@ function foundation_shortcode_reveal( $atts, $content = null ) {
 
 add_shortcode( 'reveal', 'foundation_shortcode_reveal' );
 
+# GitHub Gist shortcode [gist id="ID" file="FILE"]
+function gist_shortcode($atts) {
+    return sprintf(
+        '<script src="https://gist.github.com/%s.js%s"></script>', 
+        $atts['id'], 
+        $atts['file'] ? '?file=' . $atts['file'] : ''
+    );
+} add_shortcode('gist','gist_shortcode');
+
+# Converts audio5 shortcode to HTML5 audio tag
+function narga_html5_audio($atts, $content = null) {
+    extract(shortcode_atts(array(
+        "src" => ''
+    ), $atts));
+    return '<audio src="'.$src.'" controls autobuffer>';
+}
+add_shortcode('audio5', 'narga_html5_audio');
+
+# Converts video5 shortcode to HTML5 video tag
+function narga_html5_video($atts, $content = null) {
+    extract(shortcode_atts(array(
+        "src" => '',
+        "width" => '',
+        "height" => ''
+    ), $atts));
+    return '<video src="'.$src.'" width="'.$width.'" height="'.$height.'" controls autobuffer>';
+}
+add_shortcode('video5', 'narga_html5_video');
 ?>
