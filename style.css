@@ -52,7 +52,8 @@ nav #searchform #s {z-index: 9999;position: absolute;right: 0;height: 45px;borde
 nav .ie #searchform #s {width: 180px;background-position: 9px center;}
 nav #searchform #s:focus {background-position: 9px center;text-indent: 0;width: 180px;color: #fff;}
 
-/* Header */
+/* Orbit Slider */
+.slider-title {font-size:23px;}
 
 /* Main Content */
 section.entry-content {text-align:justify;}

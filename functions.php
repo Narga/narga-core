@@ -234,7 +234,7 @@ if (!function_exists('narga_orbit_slider')) :
     function narga_orbit_slider() {
         echo '<div id="narga-orbit-slider">';
         $query_posts = new WP_Query('category__in= '.get_theme_mod( 'featured_category').'&showposts='.get_theme_mod('number_slide' ).'');
-        while ($query_posts->have_posts()) : $query_posts->the_post(); $do_not_duplicate = $post->ID;
+        while ($query_posts->have_posts()) : $query_posts->the_post();
         if(has_post_thumbnail()) {
             the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$query_posts->current_post,));
         } 
@@ -243,8 +243,8 @@ echo '</div>';
 # Print the captions   
 while ( $query_posts->have_posts() ) : $query_posts->the_post();
 echo '<span class="orbit-caption" id="htmlCaption-' . $query_posts->current_post . '">';
-echo '<h3><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></h3>';
-echo get_post(get_post_thumbnail_id())->post_content; # Get image descriptions
+echo '<span class="slider-title"><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></span><br />';
+echo '<span class="slider-description">' . get_post(get_post_thumbnail_id())->post_content . '</span>'; # Get image descriptions
 echo '</span>';
 endwhile;
     }

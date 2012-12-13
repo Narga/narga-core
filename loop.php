@@ -8,10 +8,10 @@
 
 <?php /* Start loop */ ?>
 <?php while (have_posts()) : the_post(); ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
                 <header>
                         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-    <?php if (has_post_thumbnail()) {?><div class="post-thumb"><a href="<?php the_permalink() ?>" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_post_thumbnail('grid-post-thumbnails'); ?></a></div><?php } else { echo "<img src=\"http://placehold.it/360x140&text=No%20Image\" alt=\"No Image\" title=\"No Image\" />"; } ?>
+    <?php if (has_post_thumbnail()) {?><div class="post-thumb"><a href="<?php the_permalink() ?>" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_post_thumbnail('grid-post-thumbnails'); ?></a></div><?php } else { echo "<img src=\"http://placehold.it/360x140&amp;text=No%20Image\" alt=\"No Image\" title=\"No Image\" />"; } ?>
                         <?php narga_entry_meta(); ?>
                 </header>
                 <section class="entry-content">

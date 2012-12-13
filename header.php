@@ -49,6 +49,6 @@
 </div>
 
 <!-- Row for main content area -->
-<div class="row">
+<div class="row main">
 
-<section id="main" role="main">
+<section id="main" role="grid">
