@@ -2,6 +2,14 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.0.3 - December 13rd, 2012
+* Optimize layout for compatible with HTML5, fix Orbit layout and position
+* Fix typo bugs of orbit function
+* Rewrite Textare Control Class for theme customization
+* Change the way to load pro and custom functions in assets folder
+* Fix wrapper problem on small screen devices
+* Clean some unused codes
+
 ### v1.0.2 - December 10th, 2012
 * Fix fatal bugs in orbit slide function can not generate images list by category. Re-position of orbit slider. Change default slide images to 805x360 to fit the default layout.
 * Fix figure border when hover the mouse, make images with figure responsive

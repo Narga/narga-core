@@ -51,4 +51,4 @@
 <!-- Row for main content area -->
 <div class="row main">
 
-<section id="main" role="grid">
+<section id="main" class="row" role="grid">
