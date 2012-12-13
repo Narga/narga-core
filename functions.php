@@ -66,7 +66,7 @@ add_action( 'init', 'narga_assets' );
 :: Brought from PressWork - http://presswork.me
 --------------------------------------------------------------- */
 if(!defined('PRO_FUNCTIONS'))
-    define('PRO_FUNCTIONS', get_template_directory().'/assets/pro-functions.php');
+    define('PRO_FUNCTIONS', get_stylesheet_directory().'/assets/pro-functions.php');
 if(file_exists(PRO_FUNCTIONS))
     include(PRO_FUNCTIONS);
 
@@ -237,20 +237,20 @@ endif;
 # function to render orbit slide based on featured category and number of slide in Customize.
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
-        echo "<div id=\"narga-orbit-slider\">\n";
+        echo '<div id="narga-orbit-slider">\n';
         $query_posts = new WP_Query('category__in= '.get_theme_mod( 'featured_category').'&showposts='.get_theme_mod('number_slide' ).'');
         while ($query_posts->have_posts()) : $query_posts->the_post(); $do_not_duplicate = $post->ID;
         if(has_post_thumbnail()) {
             the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$query_posts->current_post,));
         } 
 endwhile;
-echo "\n\t\t\t</div>";
+echo '\n\t\t\t</div>';
 # Print the captions   
 while ( $query_posts->have_posts() ) : $query_posts->the_post();
-echo "<span class=\"orbit-caption\" id=\"htmlCaption-".$query_posts->current_post."\">";
+echo '<span class="orbit-caption" id="htmlCaption-"' . $query_posts->current_post . '">';
 echo '<h3><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></h3>';
 echo get_post(get_post_thumbnail_id())->post_content; # Get image descriptions
-echo "</span>";
+echo '</span>';
 endwhile;
     }
 endif;

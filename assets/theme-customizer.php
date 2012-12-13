@@ -8,11 +8,17 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
     # Adds textarea support to the theme customizer
     class WP_Customize_Textarea_Control extends WP_Customize_Control {
         public $type = 'textarea';
+		public function __construct( $manager, $id, $args = array() ) {
+			$this->statuses = array( '' => __( 'Default', 'narga' ) );
+			parent::__construct( $manager, $id, $args );
+		}
 
         public function render_content() {
             echo '<label>';
             echo '<span class="customize-control-title">' . esc_html( $this->label ) . '</span>';
-            echo '<textarea rows="5" style="width:100%;"' . $this->link() . '>' . esc_textarea( $this->value() ) . '</textarea>';
+            echo '<textarea rows="5" style="width:100%;" ';
+            $this->link();
+            echo '>' . esc_textarea( $this->value() ) . '</textarea>';
             echo '</label>';
         }
     }
@@ -56,8 +62,7 @@ function narga_customizer($wp_customize){
     ));
     $wp_customize->add_setting('slide_toggle', array(
         'default' => 'disable',
-    )
-);
+    ) );
     $wp_customize->add_control('slide_toggle', array(
         'type' => 'select',
         'label' => 'Enable Slide',
@@ -66,17 +71,17 @@ function narga_customizer($wp_customize){
             'enable' => 'Enable',
             'disable' => 'Disable',
         ),
-    )
-);
+    ) );
     $wp_customize->add_setting('featured_category', array(
         'default' => get_option('default_category', ''),
-    ));
+    ) );
 
     $wp_customize->add_control( new Taxonomy_Dropdown_Customize_Control($wp_customize, 'featured_category', array(
         'label' => __('Choose Featured Category'),
         'section' => 'narga_featured_categories',
         'settings' => 'featured_category',
-    )));
+    )
+    ) );
     $wp_customize->add_setting( 'number_slide', array(
         'default'        => '5',
     ) );
