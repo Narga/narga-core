@@ -3,7 +3,7 @@
         <div class="notice">
                 <p class="bottom"><?php _e('Sorry, no results were found.', 'narga'); ?></p>
         </div>
-        <?php get_search_form(); ?>	
+        <?php get_search_form(); ?>
 <?php endif; ?>
 
 <?php /* Start loop */ ?>

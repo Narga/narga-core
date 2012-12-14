@@ -29,7 +29,7 @@
 
 <body <?php body_class(); ?>>
 <!-- Start the main container -->
-<div id="container" class="container" role="document">
+<div id="container" class="container row" role="document">
 
 <!-- start top bar -->
 <div class="top-bar-container fixed contain-to-grid">
@@ -42,13 +42,11 @@
 </div>
 
 <!-- Row for blog navigation -->
-<div class="row top-header">
+<div class="top-header">
     <header class="twelve columns" role="banner">
         <?php narga_blog_head(); ?>
     </header>
 </div>
 
 <!-- Row for main content area -->
-<div class="row main">
-
-<section id="main" class="row" role="grid">
+<section id="main" role="grid">

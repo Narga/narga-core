@@ -1,6 +1,5 @@
-                </section>		
 <!-- End row for main content area -->
-                </div>		
+                </section>		
 <!-- Footer content area -->
                 <footer id="content-info" role="contentinfo">
                         <div class="row">
