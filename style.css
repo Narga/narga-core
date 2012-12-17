@@ -22,6 +22,9 @@ Table of Contents
 :: Customized Adjustments of Foundation for WordPress
 --------------------------------------------------- */
 
+/* Foundation-specific presentation CSS by ZURB */
+div.narga-header { margin: 20px 0; }
+
 /* -----------------------------------------
 :: Orbit Navigation appear when hover mouse
 ----------------------------------------- */
@@ -48,9 +51,6 @@ nav #searchform #s {width: 100%;padding: 0 10px 0 30px;font-size: 92%;line-heigh
 nav #searchform #s {z-index: 9999;position: absolute;right: 0;height: 45px;border: none;border-left: 1px solid #252525;text-indent: -9999px;background-color: #6F6F68;}
 nav .ie #searchform #s {width: 180px;background-position: 9px center;}
 nav #searchform #s:focus {background-position: 9px center;text-indent: 0;width: 180px;color: #fff;}
-
-/* Top Header */
-.top-header {padding:0 18px;}
 
 /* Orbit Slider */
 .slider-title {font-size:23px;}
