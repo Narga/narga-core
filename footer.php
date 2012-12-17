@@ -1,5 +1,7 @@
 <!-- End row for main content area -->
                 </section>		
+       </div>
+<!-- End of the main container -->
 <!-- Footer content area -->
                 <footer id="content-info" role="contentinfo">
                         <div class="row">
@@ -12,7 +14,6 @@
                         </div>
                 </footer>
 
-        </div><!-- Container End -->
-<?php wp_footer(); ?>
+ <?php wp_footer(); ?>
 </body>
 </html>

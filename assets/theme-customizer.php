@@ -269,7 +269,7 @@ function widget_secondary_navigation() {
     echo "<article id=\"secondary_navigation\" class=\"row widget widget_secondary_navigation\"><div class=\"sidebar-section twelve columns\">";
     $menu = wp_nav_menu(array(
         'echo' => false,
-        'items_wrap' => '<dl id="%1$s" class="%2$s">%3$s</dl>','theme_location' => 'secondary_navigation', 'container' => false, 'menu_class' => 'sub-nav'
+        'items_wrap' => '<dl class="%2$s">%3$s</dl>','theme_location' => 'secondary_navigation', 'container' => false, 'menu_class' => 'sub-nav'
     )); 
 
     $search  = array('<ul', '</ul>', '<li', '</li>', 'current-menu-item');
