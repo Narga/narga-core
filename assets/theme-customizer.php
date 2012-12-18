@@ -8,10 +8,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
     # Adds textarea support to the theme customizer
     class WP_Customize_Textarea_Control extends WP_Customize_Control {
         public $type = 'textarea';
-		public function __construct( $manager, $id, $args = array() ) {
-			$this->statuses = array( '' => __( 'Default', 'narga' ) );
-			parent::__construct( $manager, $id, $args );
-		}
+        public function __construct( $manager, $id, $args = array() ) {
+            $this->statuses = array( '' => __( 'Default', 'narga' ) );
+            parent::__construct( $manager, $id, $args );
+        }
 
         public function render_content() {
             echo '<label>';
@@ -29,7 +29,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
         var $defaults = array();
         public $args = array();
         public function render_content(){
-        # Call wp_dropdown_cats to ad data-customize-setting-link to select tag
+            # Call wp_dropdown_cats to ad data-customize-setting-link to select tag
             add_action('wp_dropdown_cats', array($this, 'wp_dropdown_cats'));
             # Set some defaults for our control
             $this->defaults = array(
@@ -46,7 +46,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
             wp_dropdown_categories($r);
         }
         function wp_dropdown_cats($output){
-        # Search for <select and replace it with <select data-customize=setting-link="my_control_id"
+            # Search for <select and replace it with <select data-customize=setting-link="my_control_id"
             $output = str_replace('<select', '<select ' . $this->get_link(), $output);
             return $output;
         }
@@ -81,7 +81,7 @@ function narga_customizer($wp_customize){
         'section' => 'narga_featured_categories',
         'settings' => 'featured_category',
     )
-    ) );
+) );
     $wp_customize->add_setting( 'number_slide', array(
         'default'        => '5',
     ) );
@@ -277,14 +277,14 @@ function widget_secondary_navigation() {
     echo str_replace($search, $replace, $menu);
     echo "</div></article>";
 }
-    wp_register_sidebar_widget(
-        '1',        // your unique widget id
-        'Secondary Navigation',          // widget name
-        'widget_secondary_navigation',  // callback function
-        array(                  // options
-            'description' => 'Display Secondary Navigation in sidebar'
-        )
-    );
+wp_register_sidebar_widget(
+    '1',        // your unique widget id
+    'Secondary Navigation',          // widget name
+    'widget_secondary_navigation',  // callback function
+    array(                  // options
+        'description' => 'Display Secondary Navigation in sidebar'
+    )
+);
 
 /*  -----------------------
 :: PressTrends Theme API ::
@@ -293,7 +293,7 @@ function presstrends_theme() {
 
     // PressTrends Account API Key
     $api_key = 'ns30etv6huadcsdnq3dvwxi10g6krsm04za2';
-    $auth = 'w2pzbtb9itygdhznk5000npf900cfr7yt';
+    $auth = '198smtqj8tn6q9rhcmn68j8o8c9xrf0lv';
 
     // Start of Metrics
     global $wpdb;
@@ -350,5 +350,6 @@ function presstrends_theme() {
 
 // PressTrends WordPress Action
 add_action('admin_init', 'presstrends_theme');
+
 
 ?>

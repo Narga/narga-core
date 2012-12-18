@@ -56,7 +56,7 @@ nav #searchform #s:focus {background-position: 9px center;text-indent: 0;width: 
 .slider-title {font-size:23px;}
 
 /* Main Content */
-section.entry-content {text-align:justify;}
+.entry-content {text-align:justify;}
 
 /* Alternate posts css classes */
 article.odd {clear:left;}
