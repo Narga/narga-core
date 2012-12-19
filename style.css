@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------------------------------------
 Theme Name:         Narga
-Theme URI:          http://www.narga.net/narga-framework/
+Theme URI:          http://www.narga.net/narga-core/
 Description:        Narga is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation.
-Version:            1.0.3
+Version:            1.0.5
 Author:             Nguyễn Đình Quân
 Author URI:         http://www.narga.net/
 License:            Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
@@ -61,10 +61,11 @@ nav #searchform #s:focus {background-position: 9px center;text-indent: 0;width: 
 /* Alternate posts css classes */
 article.odd {clear:left;}
 article.even {clear:right;}
+.no-grid {max-width:100%;}
 
 /* Add Align position for images and figures */
 .alignright { float: right; margin: 0 0 18px 18px; }
-.alignleft { float: left; margin: 0 18px 18px 0; }
+.alignleft, .no-grid { float: left; margin: 0 18px 18px 0; }
 .aligncenter { display: block; margin: 18px auto; }
 
 /* Add HTML5 Class for Images */

@@ -138,6 +138,19 @@ function narga_customizer($wp_customize){
             'disable' => 'Disable',
         ),
     ));
+    $wp_customize->add_setting( 'posts_thumbnail', array(
+        'default' => 'enable',
+    ) );
+
+    $wp_customize->add_control( 'posts_thumbnail', array(
+        'label'   => 'Use Post Thumbnail',
+        'section' => 'front_page_layout',
+        'type'    => 'select',
+        'choices'    => array(
+            'enable' => 'Enable',
+            'disable' => 'Disable',
+        ),
+    ));
     return $wp_customize;
 }
 // create widget areas: sidebar, footer

@@ -8,8 +8,9 @@ I've tested and found that Narga WordPress Framework works well with [bbPress 2.
 
 ###Links of Narga WordPress Framework###
 * Homepage:         [http://www.narga.net/narga-core][6]
+* Demo:             [http://www.narga.net/narga-core-demo][3]
 * Forum:            [http://www.narga.net/forum/][9]
-* GitHub:           [https://github.com/Narga/narga-core][8]
+* BitBucket:        [https://bitbucket.org/narga/narga-core][8]
 
 ###Learn more about Foundation & One% CSS Grid ###
 * [Foundation Homepage](http://foundation.zurb.com)
@@ -51,15 +52,15 @@ Download Narga WordPress Framework then install it on your local WordPress or re
 This is meant to be a base theme for WordPress custom theme development. A knowledge of WordPress theme development practices as well as understanding of HTML, CSS/LESS, jQuery and PHP are required.
 
 Always get update by clone this repository:
-```bash
+`bash
 git clone git@github.com:Narga/narga-core.git
 git pull
-```
+`
 License
 =======
 [![Creative Commons License][4]][1] 
 
-Narga WordPress Framework by [Nguyễn Đình Quân][2] is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License][3].
+Narga WordPress Framework by [Nguyễn Đình Quân][2] is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License][1].
 
 Based on a work at [Narga WordPress Framework][6].
 
@@ -80,10 +81,10 @@ The price of the Branding Removal license is **$99**. You can purchase it by [co
 
  [1]: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
  [2]: http://www.narga.net/
- [3]: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
+ [3]: http://www.narga.net/narga-core-demo
  [4]: http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png
  [5]: http://www.narga.net/contact/
  [6]: http://www.narga.net/narga-core
- [7]: http://www.narga.net/license
- [8]: https://github.com/Narga/narga-core
+ [7]: http://www.narga.net/terms
+ [8]: https://bitbucket.org/narga/narga-core
  [9]: http://www.narga.net/forum/

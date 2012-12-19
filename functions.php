@@ -19,7 +19,7 @@ function narga_setup() {
     register_nav_menus(array(
         'top-bar-l' => __('Left Top Bar', 'narga'),
         'top-bar-r' => __('Right Top Bar', 'narga'),
-#        'primary_navigation' => __('Primary Navigation', 'narga'),
+        #        'primary_navigation' => __('Primary Navigation', 'narga'),
         'secondary_navigation' => __('Secondary Navigation', 'narga')
     ));
 }
@@ -195,6 +195,24 @@ if (!function_exists('narga_addition_classes')) :
 if (get_theme_mod( 'posts_grid_layout') == 'enable') {
     add_filter ( 'post_class' , 'narga_addition_classes' );
 }
+endif;
+
+/*  --------------------------------
+:: Post Thumbnail Control
+--------------------------------- */
+if (!function_exists('narga_post_thumbnail')) :  
+    function narga_post_thumbnail() {
+        if (get_theme_mod( 'posts_thumbnail') == 'enable') {
+            echo '<div class="post-thumb';
+            if (get_theme_mod( 'posts_grid_layout') == 'disable') { echo ' no-grid'; } else echo ''; echo '">';
+            if (has_post_thumbnail()) {
+                echo '<a href="' . get_permalink() . '" title="Permanent Link to ' . get_the_title() . '">' . the_post_thumbnail('grid-post-thumbnails') . '</a>';
+            } else {
+                echo '<img src="http://placehold.it/360x140&amp;text=No%20Image" alt="No Image" title="No Image" />';
+            }
+            echo '</div>';
+        } else { echo (''); }
+    }
 endif;
 
 /*  --------------------------------
