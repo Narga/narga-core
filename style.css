@@ -37,7 +37,7 @@ div.narga-header { margin: 20px 0; }
 body {font-family: 'Open Sans', "Helvetica Neue", "Helvetica", Ubuntu, Droid Sans, Verdana, Arial, Tahoma, Sans-Serif;line-height:1.6;}
 
 /* Global */
-h1, h2, h3, h4, h5, h6 { font-family: 'Kreon', "Helvetica Neue", "Helvetica", Arial, Verdana, cursive; font-weight: 700;letter-spacing: -1px;}
+h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', "Helvetica Neue", "Helvetica", Arial, Verdana, cursive; font-weight: 700;letter-spacing: -1px;}
 ul li {list-style-position: inside;}
 aside#sidebar ul li, footer#content-info ul li {list-style-image: url(images/bullet.png);}
 code {padding: 1px 2px;color: #c60f13;}

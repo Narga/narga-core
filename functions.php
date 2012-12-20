@@ -41,7 +41,7 @@ function narga_assets() {
         wp_enqueue_style( 'style' );
 
         # Load Google Fonts API
-        wp_register_style( 'google-font',"http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic|Kreon:700", false );
+        wp_register_style( 'google-font',"http://fonts.googleapis.com/css?family=Oswald:700|Open+Sans:400,400italic,700,700italic", false );
         wp_enqueue_style( 'google-font' );
 
         # Enqueue to header
