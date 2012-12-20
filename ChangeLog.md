@@ -2,6 +2,16 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.0.5 - December 20th, 2012
+* Change CSS style to justify all text in content section
+* Change to new brand icon
+* Add more CSS selectors to help users control the layout easier
+* Optimize the post loop on the homepage
+* Temporate remove post formats to fix the layout, it'll re-add late
+* Update Readme file, move all source codes to BitBucket repository, re-write HTML codes for valid with HTML5 Validator
+* Fix strange layout errors, clean unused codes
+* The first released
+
 ### v1.0.3 - December 13rd, 2012
 * Optimize layout for compatible with HTML5, fix Orbit layout and position
 * Fix typo bugs of orbit function

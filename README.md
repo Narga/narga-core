@@ -1,12 +1,12 @@
 Introduction
 ====================
-Narga WordPress Framework is an extremely versatile HTML5 & CSS3 WordPress framework based on ZURB's [Foundation](http://foundation.zurb.com), a powerful tool for building prototypes on any kind of devices. This Framework follows [HTML5 Boilerplate](http://html5boilerplate.com) standard with the layout grid inspired by [One% CSS Grid](http://onepcssgrid.mattimling.com) and is [hNews microformat](https://www.readability.com/publishers/guidelines) ready. It is optimized for Search Engine while at the same time improves readability.
+NARGA Framework is an extremely versatile HTML5 & CSS3 WordPress framework based on ZURB's [Foundation](http://foundation.zurb.com), a powerful tool for building prototypes on any kind of devices. This Framework follows [HTML5 Boilerplate](http://html5boilerplate.com) standard with the layout grid inspired by [One% CSS Grid](http://onepcssgrid.mattimling.com) and is [hNews microformat](https://www.readability.com/publishers/guidelines) ready. It is optimized for Search Engine while at the same time improves readability.
 
-Because it's a percentage based grid system, it means that it will perfectly adapt to all screen resolutions (mobile, tablets and big screens). It is extremely easy to create your blog, CMS, brochure and any other kind of sites with Narga WordPress Framework.
+Because it's a percentage based grid system, it means that it will perfectly adapt to all screen resolutions (mobile, tablets and big screens). It is extremely easy to create your blog, CMS, brochure and any other kind of sites with NARGA Framework.
 
-I've tested and found that Narga WordPress Framework works well with [bbPress 2.0](http://bbpress.org/) and [BuddyPress 1.5](http://buddypress.org/) but this time it's not official compatible with them.
+I've tested and found that NARGA Framework works well with [bbPress 2.0](http://bbpress.org/) and [BuddyPress 1.5](http://buddypress.org/) but this time it's not official compatible with them.
 
-###Links of Narga WordPress Framework###
+###Links of NARGA Framework###
 * Homepage:         [http://www.narga.net/narga-core][6]
 * Demo:             [http://www.narga.net/narga-core-demo][3]
 * Forum:            [http://www.narga.net/forum/][9]
@@ -20,7 +20,7 @@ I've tested and found that Narga WordPress Framework works well with [bbPress 2.
 
 What are the Features?
 ======================
-Narga WordPress Framework inherits all the cool features from Foundation, and packs with several other interesting features to optimize the experience for WordPress and HTML5. 
+NARGA Framework inherits all the cool features from Foundation, and packs with several other interesting features to optimize the experience for WordPress and HTML5. 
 
 ###Support Features###
 * HTML5 Boilerplate standard and is hNews microformat ready.
@@ -31,7 +31,7 @@ Narga WordPress Framework inherits all the cool features from Foundation, and pa
 * Support child themes, all parent functions can replace in functions.php.
 
 ###WordPress Features###
-* Fully compatible with WordPress v3.4+ Theme Customizer features. It's also named as Narga WordPress Framework Options Panel
+* Fully compatible with WordPress v3.4+ Theme Customizer features. It's also named as NARGA Framework Options Panel
 * Clean image HTML output for TinyMCE, only class and alt are returned. Post title will be automatically used for alt.
 * Custom menu output for ZURB's
 * Custom caption output for HTML5 figure and figcaption tags.
@@ -43,17 +43,18 @@ Narga WordPress Framework inherits all the cool features from Foundation, and pa
 * Looks good but what if you don't need these features? Sure, you can turn them off.
 
 ###PressTrends###
-Narga WordPress Framework is using the service to track the usage of the framework and help us to improve it. Of course, you can always disable it by removing it from functions.php.
+NARGA Framework is using the service to track the usage of the framework and help us to improve it. Of course, you can always disable it by removing it from functions.php.
 
 Usage
 =====
-Download Narga WordPress Framework then install it on your local WordPress or real website.
+Download NARGA Framework then install it on your local WordPress or real website.
 
 This is meant to be a base theme for WordPress custom theme development. A knowledge of WordPress theme development practices as well as understanding of HTML, CSS/LESS, jQuery and PHP are required.
 
 Always get update by clone this repository:
 
 ``git clone git@github.com:Narga/narga-core.git
+
 git pull``
 
 License
@@ -61,9 +62,9 @@ License
 
 [![Creative Commons License][4]][1] 
 
-Narga WordPress Framework by [Nguyễn Đình Quân][2] is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License][1].
+NARGA Framework by [Nguyễn Đình Quân][2] is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License][1].
 
-Based on a work at [Narga WordPress Framework][6].
+Based on a work at [NARGA Framework][6].
 
 Permissions beyond the scope of this license may be available at [NARGA Proprietary Use License][7].
 
@@ -71,7 +72,7 @@ Ownership
 =========
 You may not claim intellectual or exclusive ownership of any of our products, modified or unmodified. All products are property of [Narga][2] and their respective designers. Our products are provided “as is” without warranty of any kind, either expressed or implied. In no event shall we be liable for any damages including, but not limited to, direct, indirect, special, incidental or consequential damages or other losses arising out of the use of or inability to use our products.
 
-Also if you intend to use the **Narga WordPress Framework** in a commercial project, or a template you intend to redistribute in any form, please retain a "[Powered by Narga][2]" logo and link in the backend administrative interface.
+Also if you intend to use the **NARGA Framework** in a commercial project, or a template you intend to redistribute in any form, please retain a "[Powered by Narga][2]" logo and link in the backend administrative interface.
 
 Branding Removal License
 ========================
