@@ -53,6 +53,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
     }
 
 }
+
+# Customizer
 add_action( 'customize_register', 'narga_customizer' );
 function narga_customizer($wp_customize){
     $wp_customize->add_section('narga_featured_categories', array(

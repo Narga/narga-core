@@ -52,12 +52,13 @@ Download Narga WordPress Framework then install it on your local WordPress or re
 This is meant to be a base theme for WordPress custom theme development. A knowledge of WordPress theme development practices as well as understanding of HTML, CSS/LESS, jQuery and PHP are required.
 
 Always get update by clone this repository:
-`bash
-git clone git@github.com:Narga/narga-core.git
-git pull
-`
+
+``git clone git@github.com:Narga/narga-core.git
+git pull``
+
 License
 =======
+
 [![Creative Commons License][4]][1] 
 
 Narga WordPress Framework by [Nguyễn Đình Quân][2] is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License][1].
