@@ -2,7 +2,11 @@
 /*  ------------------------------------
 :: Narga WordPress Framework Basic Setup
 ------------------------------------- */
+if (!isset( $content_width))
+    $content_width = 805;
+
 function narga_setup() {
+
     # Add language supports. By default, this framework not include language files.
     load_theme_textdomain('narga', get_template_directory() . '/languages');
 
@@ -41,7 +45,7 @@ function narga_assets() {
         wp_enqueue_style( 'style' );
 
         # Load Google Fonts API
-        wp_register_style( 'google-font',"http://fonts.googleapis.com/css?family=Oswald:700|Open+Sans:400,400italic,700,700italic", false );
+        wp_register_style( 'google-font',"http://fonts.googleapis.com/css?family=Oswald|Open+Sans:400,400italic,700,700italic", false );
         wp_enqueue_style( 'google-font' );
 
         # Enqueue to header
@@ -134,6 +138,7 @@ if (!function_exists('narga_blog_head')) :
         echo '<h1><a href="' . get_bloginfo('url') . '" title="' . get_bloginfo('name') . '">' . get_bloginfo('name') . '</a></h1>';
         echo '<h2 class="subheader">' . get_bloginfo('description') . '</h2>';
         echo '</div>';
+        
     }  
 endif;
 
@@ -233,10 +238,10 @@ if (!function_exists('addition_actions_comment_link')) :
         $id = $comment->comment_ID;
 
         if ( null === $link )
-            $link = __('Edit');
+            $link = 'Edit';
 
 
-        $link = '<a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '" title="' . __( 'Edit comment' ) . '">' . $link . '</a>';
+        $link = '<a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '" title="' . 'Edit comment' . '">' . $link . '</a>';
         $link = $link . ' <a class="comment-del-link" href="'.admin_url("comment.php?action=cdc&c=$id").'">Del</a> ';
         $link = $link . ' <a class="comment-spam-link" href="'.admin_url("comment.php?action=cdc&dt=spam&c=$id").'">Spam</a>';
         $link = $before . $link . $after;
@@ -301,8 +306,8 @@ if (!function_exists('narga_pagination')) :
             'total' => $wp_query->max_num_pages,
             'mid_size' => 5,
             'prev_next' => True,
-            'prev_text' => __('&laquo;'),
-            'next_text' => __('&raquo;'),
+            'prev_text' => '&laquo;',
+            'next_text' => '&raquo;',
             'type' => 'list'
         ) );
         # Display the pagination if more than one page is found

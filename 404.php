@@ -4,7 +4,7 @@
 		<div id="content" class="eight columns">
 	
 			<div class="post-box">
-				<h1><?php _e('Sorry, the page you were looking for doesn’t exist.', 'narga'); ?></h1>
+				<h1><?php _e('Sorry, the page you were looking for doesn\'t exist.', 'narga'); ?></h1>
 				<div class="error">
 					<p class="bottom"><?php _e('The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.', 'narga'); ?></p>
 				</div>

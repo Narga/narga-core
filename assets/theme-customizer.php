@@ -33,7 +33,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
             add_action('wp_dropdown_cats', array($this, 'wp_dropdown_cats'));
             # Set some defaults for our control
             $this->defaults = array(
-                'show_option_none' => __('None'),
+                'show_option_none' => 'None',
                 'orderby' => 'name',
                 'hide_empty' => 0,
                 'id' => $this->id,
@@ -58,7 +58,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 add_action( 'customize_register', 'narga_customizer' );
 function narga_customizer($wp_customize){
     $wp_customize->add_section('narga_featured_categories', array(
-        'title' => __('Orbit Slider'),
+        'title' => 'Orbit Slider',
         'priority' => 36,
         'args' => array(), // arguments for wp_dropdown_categories function...optional
     ));
@@ -79,7 +79,7 @@ function narga_customizer($wp_customize){
     ) );
 
     $wp_customize->add_control( new Taxonomy_Dropdown_Customize_Control($wp_customize, 'featured_category', array(
-        'label' => __('Choose Featured Category'),
+        'label' => 'Choose Featured Category',
         'section' => 'narga_featured_categories',
         'settings' => 'featured_category',
     )
@@ -109,9 +109,9 @@ function narga_customizer($wp_customize){
 );
 
     $wp_customize->add_section( 'front_page_layout', array(
-        'title'          => __( 'Front Page Layout' ),
+        'title'          => 'Front Page Layout',
         'priority'       => 125,
-        'description'    => __( 'Change settings for your front page layout.' ),
+        'description'    => 'Change settings for your front page layout.',
         'transport' => 'postMessage',
     ) );
 

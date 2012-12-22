@@ -195,4 +195,57 @@ function narga_html5_video($atts, $content = null) {
     return '<video src="'.$src.'" width="'.$width.'" height="'.$height.'" controls autobuffer>';
 }
 add_shortcode('video5', 'narga_html5_video');
+
+/* Social Media */
+
+# Twitter button shortcode
+# [t related='NARGA Framework - A rock solid starting WordPress HTML5 theme for developers' countbox='horizontal/vertical' via='narga' ]
+# Based on http://www.ilertech.com/2011/07/add-twitter-share-button-to-wordpress-3-0-with-a-simple-shortcode/
+function twitter( $atts, $content=null ){
+    extract(shortcode_atts(array(
+        'url' => null,
+        'counturl' => null,
+        'via' => '',
+        'hashtags' => '',
+        'text' => '',
+        'related' => '',
+        'countbox' => 'none', # none, horizontal, vertical
+ 
+    ), $atts));
+ 
+    # Check for count url and set to $url if not provided
+    if($counturl == null) $counturl = $url;
+ 
+    $twitter_code = <<<HTML
+    <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script><a href='http://twitter.com/share' class="twitter-share-button" data-url="$url" data-counturl="$counturl" data-via="$via" data-hashtags="$hashtags" data-text="$text" data-related="$related" data-count="$countbox"></a>
+HTML;
+    return $twitter_code;
+}
+add_shortcode('t', 'twitter');
+
+# Facebook Like button shortcode
+# [fb  send='true' action='recommend' layout='button_count/box_count']
+# Based on http://www.ilertech.com/2011/06/add-facebook-like-button-to-wordpress-3-0-with-a-simple-shortcode/
+function fb_like( $atts, $content=null ){
+    extract(shortcode_atts(array(
+            'send' => 'false',
+            'layout' => 'standard', # standard, button_count, box_count
+            'show_faces' => 'true',
+            'width' => '400px',
+            'action' => 'like',
+            'font' => '',
+            'colorscheme' => 'light',
+            'ref' => '',
+            'locale' => 'en_US',
+            'appId' => '429051310480411'
+    ), $atts));
+ 
+    $fb_like_code = <<<HTML
+        <div id="fb-root"></div><script src="http://connect.facebook.net/$locale/all.js#appId=$appId&amp;xfbml=1"></script>
+<div class="fb-like" data-send="$send" data-width="$width" data-show-faces="$show_faces" data-colorscheme="$colorscheme" data-action="$action" data-font="$font"></div>
+HTML;
+ 
+    return $fb_like_code;
+}
+add_shortcode('fb', 'fb_like');
 ?>
