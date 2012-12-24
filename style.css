@@ -1,7 +1,7 @@
 /* -----------------------------------------------------------------------------------------------------
-Theme Name:         Narga
+Theme Name:         NARGA
 Theme URI:          http://www.narga.net/narga-core/
-Description:        Narga is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation.
+Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">Narga</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a>
 Version:            1.1.0
 Tags:              two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, microformats, theme-options, threaded-comments, translation-ready 
 Author:             Nguyễn Đình Quân
@@ -11,12 +11,13 @@ License URI:        http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
 ----------------------------------------------------------------------------------------------------- */
 
 /* -------------------------------------------------- 
-Table of Contents
+:: IMPORTANT NOTE ON CUSTOMIZATION
 -----------------------------------------------------
-:: Customized Adjustments of Foundation for WordPress
-:: Orbit Navigation appear when hover mouse
-:: Styling Basic WordPress Outputs
-:: Adjust Foundation 3 Pagination Style for WordPress
+* Don't add customizations to this file!
+* Make your own child theme to build your functions and styles
+* Custom, Pro functions and styles can be apply by custom.css and custom-functions.php
+* Don't add it here; as it will either get overwritten by updates, and will prevent you from updating at all!
+
 
 
 /* ---------------------------------------------------
@@ -73,8 +74,45 @@ article.even {clear:right;}
 figure.wp-caption {background-color:#e9e9e9;padding: 4px;line-height: 20px;border: 1px solid rgb(221, 221, 221);border-radius: 4px 4px 4px 4px;box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.055);transition: all 0.2s ease-in-out 0s;max-width:100%;}
 figure.wp-caption:hover {background-color:rgba(255,255,255,0.6);box-shadow:0px 1px 0px rgba(0,0,0,0.15);}
 figcaption.wp-caption-text { padding: 8px 10px; font-size: 13px; font-size: 1.3rem; line-height: 18px; color: #555;}
-.gallery-caption {}
-
+.gallery-caption {
+	font-style: italic;
+	font-size: 12px;
+	font-size: 0.857142857rem;
+	line-height: 2;
+	color: #757575;
+}
+.gallery-item a,
+.gallery-caption {
+	width: 90%;
+}
+.gallery-item a {
+	display: block;
+}
+.gallery-caption a {
+	display: inline;
+}
+.gallery-columns-1 .gallery-item a {
+	max-width: 100%;
+	width: auto;
+}
+.gallery .gallery-icon img {
+	height: auto;
+	max-width: 90%;
+	padding: 5%;
+}
+.gallery-columns-1 .gallery-icon img {
+	padding: 3%;
+}
+.entry-content img,
+.comment-content img,
+.widget img,
+img.header-image,
+.author-avatar img,
+img.wp-post-image {
+	/* Add fancy borders to all WordPress-added images but not things like badges and icons and the like */
+	border-radius: 3px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
 /* Label Adjustment */
 .tags a {color:#fff;font-weight:normal;}
 

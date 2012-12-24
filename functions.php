@@ -15,6 +15,12 @@ function narga_setup() {
     set_post_thumbnail_size(805, 360, true);
     add_image_size( 'grid-post-thumbnails', 360, 140, true);
 
+    # Support Custom Background
+    add_theme_support( 'custom-background', array('default-color' => 'FFF','default-image' => get_template_directory_uri() . '' ));
+
+    # Allows theme developers to add custom stylesheets to WordPress's TinyMCE visual editor. 
+    add_editor_style( 'stylesheets/custom.css' );
+
     # Add post formarts supports. http://codex.wordpress.org/Post_Formats
     # add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));
 
@@ -182,9 +188,7 @@ endif;
 return $content;
     }
 # Replace content with excerpt
-if (get_theme_mod( 'posts_excerpt') == 'enable') {
     add_filter('the_content', 'narga_excerpts');
-}
 endif;
 
 /*  --------------------------------
@@ -216,7 +220,7 @@ if (!function_exists('narga_post_thumbnail')) :
             if (has_post_thumbnail()) {
                 echo '<a href="' . get_permalink() . '" title="Permanent Link to ' . get_the_title() . '">' . the_post_thumbnail('grid-post-thumbnails') . '</a>';
             } else {
-                echo '<img src="http://placehold.it/360x140&amp;text=No%20Image" alt="No Image" title="No Image" />';
+                echo '';
             }
             echo '</div>';
         } else { echo (''); }
