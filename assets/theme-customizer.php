@@ -22,35 +22,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
             echo '</label>';
         }
     }
-    # Custom Taxonomy Control for the Theme Customizer
-    # http://ericjuden.com/2012/08/custom-taxonomy-control-for-the-theme-customizer/
-    class Taxonomy_Dropdown_Customize_Control extends WP_Customize_Control {
-        public $type = 'taxonomy_dropdown';
-        var $defaults = array();
-        public $args = array();
-        public function render_content(){
-            # Call wp_dropdown_cats to ad data-customize-setting-link to select tag
-            add_action('wp_dropdown_cats', array($this, 'wp_dropdown_cats'));
-            # Set some defaults for our control
-            $this->defaults = array(
-                'show_option_none' => 'None',
-                'orderby' => 'name',
-                'hide_empty' => 0,
-                'id' => $this->id,
-                'selected' => $this->value(),
-            );
-            # Parse defaults against what the user submitted
-            $r = wp_parse_args($this->args, $this->defaults);
-            echo "<label><span class=\"customize-control-title\">" . esc_html($this->label) . "</span></label>";
-            # Generate our select box
-            wp_dropdown_categories($r);
-        }
-        function wp_dropdown_cats($output){
-            # Search for <select and replace it with <select data-customize=setting-link="my_control_id"
-            $output = str_replace('<select', '<select ' . $this->get_link(), $output);
-            return $output;
-        }
-    }
 
 }
 
@@ -60,7 +31,8 @@ function narga_customizer($wp_customize){
     $wp_customize->add_section('narga_featured_categories', array(
         'title' => 'Orbit Slider',
         'priority' => 36,
-        'args' => array(), // arguments for wp_dropdown_categories function...optional
+        'description'    => 'Orbit Slider Configuration',
+        'transport' => 'postMessage',
     ));
     $wp_customize->add_setting('slide_toggle', array(
         'default' => 'disable',
@@ -74,16 +46,31 @@ function narga_customizer($wp_customize){
             'disable' => 'Disable',
         ),
     ) );
-    $wp_customize->add_setting('featured_category', array(
-        'default' => get_option('default_category', ''),
-    ) );
+    $categories = get_categories();
+    $cats = array();
+    $i = 0;
+    foreach($categories as $category){
+        if($i==0){
+            $default = $category->slug;
+            $i++;
+        }
+        $cats[$category->slug] = $category->name;
+    }
 
-    $wp_customize->add_control( new Taxonomy_Dropdown_Customize_Control($wp_customize, 'featured_category', array(
-        'label' => 'Choose Featured Category',
-        'section' => 'narga_featured_categories',
+    $wp_customize->add_setting('featured_category', array(
+        'default'        => $default,
+        'capability'     => 'edit_theme_options',
+        'type'           => 'option',
+
+    ));
+    $wp_customize->add_control( 'featured_category', array(
         'settings' => 'featured_category',
-    )
-) );
+        'label'   => 'Select Featured Category:',
+        'section' => 'narga_featured_categories',
+        'type'    => 'select',
+        'choices' => $cats,
+    ));
+
     $wp_customize->add_setting( 'number_slide', array(
         'default'        => '5',
     ) );
@@ -327,7 +314,7 @@ function presstrends_theme() {
             $theme_name    = urlencode( $theme_data->Name );
             $theme_version = $theme_data->Version;
         } else {
-            $theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+            $theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );//for compatibility with older versions.
             $theme_name = $theme_data['Name'];
             $theme_versino = $theme_data['Version'];
         }

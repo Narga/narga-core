@@ -1,6 +1,15 @@
-### Changes Logged
+### NARGA Framework ChangeLog
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
+
+### v1.1.0 - December 24th, 2012
+* Remove Custom Taxonomy Control for the Theme Customizer Class then write new function to list featured category.
+* Clean, remove unused codes to compatible with WordPress Theme Standard
+* Use default comment form function, move custom comments list function to functions.php, define new style for submit button.
+* Enables post and comment RSS feed links to head
+* Set theme tags in style.css
+* Increase screenshot.png size to 600x450
+* Alias README.md as readme.txt
 
 ### v1.0.5 - December 20th, 2012
 * Change CSS style to justify all text in content section

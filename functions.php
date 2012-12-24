@@ -26,6 +26,9 @@ function narga_setup() {
         #        'primary_navigation' => __('Primary Navigation', 'narga'),
         'secondary_navigation' => __('Secondary Navigation', 'narga')
     ));
+    
+    # Enables post and comment RSS feed links to head
+    add_theme_support( 'automatic-feed-links' );
 }
 add_action('after_setup_theme', 'narga_setup');
 
@@ -135,7 +138,7 @@ endif;
 if (!function_exists('narga_blog_head')) :  
     function narga_blog_head() {
         echo '<div class="narga-header">';
-        echo '<h1><a href="' . get_bloginfo('url') . '" title="' . get_bloginfo('name') . '">' . get_bloginfo('name') . '</a></h1>';
+        echo '<h1><a href="' . esc_url( home_url( '/' ) ) . '" title="' . get_bloginfo('name') . '">' . get_bloginfo('name') . '</a></h1>';
         echo '<h2 class="subheader">' . get_bloginfo('description') . '</h2>';
         echo '</div>';
         
@@ -219,6 +222,35 @@ if (!function_exists('narga_post_thumbnail')) :
         } else { echo (''); }
     }
 endif;
+
+if (!function_exists('narga_comments')) :  
+function narga_comments($comment, $args, $depth) {
+    $GLOBALS['comment'] = $comment;
+    echo '<li ';
+    comment_class();
+    echo '>
+    <article id="comment-' . get_comment_ID() . '">
+        <header class="comment-author vcard">';
+    echo get_avatar($comment,$size='64');
+    printf(__('<cite class="fn">%s</cite>', 'narga'), get_comment_author_link());
+    echo '<time datetime="' . get_comment_date('c') . '"  itemprop="commentTime"><a itemprop="url" href="' . htmlspecialchars( get_comment_link( $comment->comment_ID ) ) . '">';
+    printf(__('%1$s', 'narga'), get_comment_date(),  get_comment_time());
+    echo '</a></time>
+            </header>
+            <section itemprop="commentText" class="comment">';
+            comment_text();
+    if ($comment->comment_approved == '0') : 
+        echo '<div class=" alert label">';
+        _e('Your comment is awaiting moderation.', 'narga');
+        echo '</div>';
+    endif;
+    echo '</section>';
+    edit_comment_link(__('Edit', 'narga'), '', '');
+    comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth'])));
+    echo '</article>';
+}
+endif;
+
 
 /*  --------------------------------
 :: Addition actions to comments

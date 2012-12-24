@@ -2,7 +2,8 @@
 Theme Name:         Narga
 Theme URI:          http://www.narga.net/narga-core/
 Description:        Narga is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation.
-Version:            1.0.5
+Version:            1.1.0
+Tags:              two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, microformats, theme-options, threaded-comments, translation-ready 
 Author:             Nguyễn Đình Quân
 Author URI:         http://www.narga.net/
 License:            Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
@@ -95,6 +96,12 @@ a.comment-del-link:hover, a.comment-reply-link:hover, a.comment-spam-link:hover,
 .commentlist .bypostauthor {background:#ffff99}
 section.comment div.notice {float:right; color: red;}
 #respond textarea { height: 150px; }	
+#submit { width: auto; background: #2ba6cb; border: 1px solid #1e728c; -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset; color: white; cursor: pointer; display: inline-block; font-family: inherit; font-size: 14px; font-weight: bold; line-height: 1; margin: 0; outline: none; padding: 10px 20px 11px; position: relative; text-align: center; text-decoration: none; -webkit-transition: background-color 0.15s ease-in-out; -moz-transition: background-color 0.15s ease-in-out; -o-transition: background-color 0.15s ease-in-out; transition: background-color 0.15s ease-in-out; /* Hovers */ /* Sizes */ /* Colors */ /* Radii */ /* Layout */ /* Disabled ---------- */ }
+#submit:hover { color: white; background-color: #2284a1; }
+#submit:active { -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset; -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset; }
+#submit:focus { -webkit-box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; color: white; }
+
+
 
 /* Recent comments style */
 .recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;} 
