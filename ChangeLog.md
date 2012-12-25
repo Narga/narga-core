@@ -2,6 +2,12 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.1.1 - December 25th, 2012
+* Use twentytwelve gallery style
+* Rewrite select featured category function
+* Add more theme description and optimize style.css
+* Some minor bugs fix
+
 ### v1.1.0 - December 24th, 2012
 * Remove Custom Taxonomy Control for the Theme Customizer Class then write new function to list featured category.
 * Clean, remove unused codes to compatible with WordPress Theme Standard

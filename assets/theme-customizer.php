@@ -60,9 +60,8 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting('featured_category', array(
         'default'        => $default,
         'capability'     => 'edit_theme_options',
-        'type'           => 'option',
-
     ));
+
     $wp_customize->add_control( 'featured_category', array(
         'settings' => 'featured_category',
         'label'   => 'Select Featured Category:',

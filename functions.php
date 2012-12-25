@@ -22,7 +22,7 @@ function narga_setup() {
     add_editor_style( 'stylesheets/custom.css' );
 
     # Add post formarts supports. http://codex.wordpress.org/Post_Formats
-    # add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));
+    add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));
 
     # Add menu supports. http://codex.wordpress.org/Function_Reference/register_nav_menus
     add_theme_support('menus');
@@ -174,7 +174,7 @@ if (!function_exists('narga_excerpts')) :
         # If no excerpt is set
         else :
             $content = $post->post_content;
-        $excerpt_length = 65;
+        $excerpt_length = 30;
         $words = explode(' ', $content, $excerpt_length + 1);
         if(count($words) > $excerpt_length) :
             array_pop($words);
@@ -292,7 +292,11 @@ endif;
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
         echo '<div id="narga-orbit-slider">';
-        $query_posts = new WP_Query('category__in= '.get_theme_mod( 'featured_category').'&showposts='.get_theme_mod('number_slide' ).'');
+        $args = array(
+            'category_name' => get_theme_mod('featured_category'),
+            'showposts' => get_theme_mod('number_slide')
+        );
+        $query_posts = new WP_Query($args);
         while ($query_posts->have_posts()) : $query_posts->the_post();
         if(has_post_thumbnail()) {
             the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$query_posts->current_post,));

@@ -1,6 +1,6 @@
 Introduction
 ====================
-NARGA Framework is an extremely versatile HTML5 & CSS3 WordPress framework based on ZURB's [Foundation](http://foundation.zurb.com), a powerful tool for building prototypes on any kind of devices. This Framework follows [HTML5 Boilerplate](http://html5boilerplate.com) standard with the layout grid inspired by [One% CSS Grid](http://onepcssgrid.mattimling.com) and is [hNews microformat](https://www.readability.com/publishers/guidelines) ready. It is optimized for Search Engine while at the same time improves readability.
+NARGA Framework is an extremely versatile HTML5 & CSS3 WordPress framework based on ZURB's [Foundation](http://foundation.zurb.com), a powerful tool for building prototypes on any kind of devices. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. This Framework follows [HTML5 Boilerplate](http://html5boilerplate.com) standard with the layout grid inspired by [One% CSS Grid](http://onepcssgrid.mattimling.com) and is [hNews microformat](https://www.readability.com/publishers/guidelines) ready. It is optimized for Search Engine while at the same time improves readability.
 
 Because it's a percentage based grid system, it means that it will perfectly adapt to all screen resolutions (mobile, tablets and big screens). It is extremely easy to create your blog, CMS, brochure and any other kind of sites with NARGA Framework.
 
