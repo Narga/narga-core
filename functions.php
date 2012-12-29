@@ -1,4 +1,28 @@
 <?php
+/**
+ *
+ * Sets up the theme and provides some helper functions, which are used
+ * in the theme as custom template tags. Others are attached to action and
+ * filter hooks in WordPress to change core functionality.
+ *
+ * When using a child theme (see http://codex.wordpress.org/Theme_Development and
+ * http://codex.wordpress.org/Child_Themes), you can override certain functions
+ * (those wrapped in a function_exists() call) by defining them first in your child theme's
+ * functions.php file. The child theme's functions.php file is included before the parent
+ * theme's file, so the child theme functions would be used.
+ *
+ * Functions that are not pluggable (not wrapped in function_exists()) are instead attached
+ * to a filter or action hook.
+ *
+ * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
+ *
+ * @package WordPress
+ * @subpackage NARGA Framework
+ * @since NARGA Framework 1.0
+ */
+?>
+
+<?php
 /*  ------------------------------------
 :: Narga WordPress Framework Basic Setup
 ------------------------------------- */
@@ -32,7 +56,7 @@ function narga_setup() {
         #        'primary_navigation' => __('Primary Navigation', 'narga'),
         'secondary_navigation' => __('Secondary Navigation', 'narga')
     ));
-    
+
     # Enables post and comment RSS feed links to head
     add_theme_support( 'automatic-feed-links' );
 }
@@ -129,14 +153,19 @@ require( get_template_directory() . '/assets/theme-customizer.php' );
 if (!function_exists('narga_entry_meta')) :  
     function narga_entry_meta() {
         echo '<p class="post-meta-data">';
-        echo '<time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time> in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author vcard">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';
+        echo '<time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time>';
+        if (false === get_post_format()) {
+            echo 'in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author vcard">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';            
+        } else {
+            echo '';
+        }
         if (comments_open()) :
             echo ' <span class="entry-comments">';
-        comments_popup_link( 'Be the first to comment', '1 comment', '% comments', 'comments-link', 'Comments are off for this post');
-        echo '</span>';
-endif;
-edit_post_link(' | Edit', '', '');
-echo '</p>';
+            comments_popup_link( 'Be the first to comment', '1 comment', '% comments', 'comments-link', 'Comments are off for this post');
+            echo '</span>';
+        endif;
+    edit_post_link('Edit', ' | ', '');
+    echo '</p>';
     }
 endif;
 
@@ -147,7 +176,7 @@ if (!function_exists('narga_blog_head')) :
         echo '<h1><a href="' . esc_url( home_url( '/' ) ) . '" title="' . get_bloginfo('name') . '">' . get_bloginfo('name') . '</a></h1>';
         echo '<h2 class="subheader">' . get_bloginfo('description') . '</h2>';
         echo '</div>';
-        
+
     }  
 endif;
 
@@ -168,29 +197,42 @@ if (!function_exists('narga_excerpts')) :
         if(is_front_page() || is_archive() || is_search()) :
             global $post;
         $content = $post->post_excerpt;
+        $content = strip_shortcodes($content);
+        $content = str_replace(']]>', ']]&gt;', $content);
+        $content = strip_tags($content);
         # If an excerpt is set in the Optional Excerpt box
         if($content) :
             $content = apply_filters('the_excerpt', $content);
         # If no excerpt is set
         else :
             $content = $post->post_content;
-        $excerpt_length = 30;
+        $excerpt_length = 50;
         $words = explode(' ', $content, $excerpt_length + 1);
         if(count($words) > $excerpt_length) :
             array_pop($words);
-        array_push($words, '...');
+        array_push($words, '...<p><a class="more-link" href="' . get_permalink() . '" title="' . the_title_attribute('echo=0') . '">  ' . __( 'Read more &#187;', 'narga' ) . ' </a></p>');
         $content = implode(' ', $words);
 endif;
-$content = '<p>' . strip_tags($content) . '</p><p><a class="small button secondary" href="'. get_permalink($post->ID) . '">Read More &#187; </a></p>';
+$content = '<p>' . $content . '</p>';
 endif;
 endif;
 # Make sure to return the content
 return $content;
     }
 # Replace content with excerpt
+if (get_theme_mod('posts_excerpt') == 'enable') {
     add_filter('the_content', 'narga_excerpts');
+}
+
 endif;
 
+# Replace more link text
+if (!function_exists('narga_more_link')) :  
+    function narga_more_link( $more_link, $more_link_text ) {
+        return str_replace( $more_link_text, 'Read More &#187;', $more_link );
+    }
+add_filter( 'the_content_more_link', 'narga_more_link', 10, 2 );
+endif;
 /*  --------------------------------
 :: Adds "odd" class to all odd posts
 --------------------------------- */
@@ -228,64 +270,32 @@ if (!function_exists('narga_post_thumbnail')) :
 endif;
 
 if (!function_exists('narga_comments')) :  
-function narga_comments($comment, $args, $depth) {
-    $GLOBALS['comment'] = $comment;
-    echo '<li ';
-    comment_class();
-    echo '>
-    <article id="comment-' . get_comment_ID() . '">
-        <header class="comment-author vcard">';
-    echo get_avatar($comment,$size='64');
-    printf(__('<cite class="fn">%s</cite>', 'narga'), get_comment_author_link());
-    echo '<time datetime="' . get_comment_date('c') . '"  itemprop="commentTime"><a itemprop="url" href="' . htmlspecialchars( get_comment_link( $comment->comment_ID ) ) . '">';
-    printf(__('%1$s', 'narga'), get_comment_date(),  get_comment_time());
-    echo '</a></time>
+    function narga_comments($comment, $args, $depth) {
+        $GLOBALS['comment'] = $comment;
+        echo '<li ';
+        comment_class();
+        echo '>
+            <article id="comment-' . get_comment_ID() . '">
+            <header class="comment-author vcard">';
+        echo get_avatar($comment,$size='64');
+        printf(__('<cite class="fn">%s</cite>', 'narga'), get_comment_author_link());
+        echo '<time datetime="' . get_comment_date('c') . '"  itemprop="commentTime"><a itemprop="url" href="' . htmlspecialchars( get_comment_link( $comment->comment_ID ) ) . '">';
+        printf(__('%1$s', 'narga'), get_comment_date(),  get_comment_time());
+        echo '</a></time>
             </header>
             <section itemprop="commentText" class="comment">';
-            comment_text();
-    if ($comment->comment_approved == '0') : 
-        echo '<div class=" alert label">';
+        comment_text();
+        if ($comment->comment_approved == '0') : 
+            echo '<div class=" alert label">';
         _e('Your comment is awaiting moderation.', 'narga');
         echo '</div>';
-    endif;
-    echo '</section>';
-    edit_comment_link(__('Edit', 'narga'), '', '');
-    comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth'])));
-    echo '</article>';
-}
 endif;
-
-
-/*  --------------------------------
-:: Addition actions to comments
---------------------------------- */
-if (!function_exists('addition_actions_comment_link')) :  
-    function addition_actions_comment_link($id) {
-        global $comment, $post;
-
-        if ( $post->post_type == 'page' ) {
-            if ( !current_user_can( 'edit_page', $post->ID ) )
-                return;
-        } else {
-            if ( !current_user_can( 'edit_post', $post->ID ) )
-                return;
-        }
-
-        $id = $comment->comment_ID;
-
-        if ( null === $link )
-            $link = 'Edit';
-
-
-        $link = '<a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '" title="' . 'Edit comment' . '">' . $link . '</a>';
-        $link = $link . ' <a class="comment-del-link" href="'.admin_url("comment.php?action=cdc&c=$id").'">Del</a> ';
-        $link = $link . ' <a class="comment-spam-link" href="'.admin_url("comment.php?action=cdc&dt=spam&c=$id").'">Spam</a>';
-        $link = $before . $link . $after;
-
-        return $link;
+echo '</section>';
+$id = $comment->comment_ID;
+edit_comment_link(__('Edit', 'narga'), '<a class="comment-del-link" href="'.admin_url("comment.php?action=cdc&c=$id").'">Del</a> ', '<a class="comment-spam-link" href="'.admin_url("comment.php?action=cdc&dt=spam&c=$id").'">Spam</a>');
+comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth'])));
+echo '</article>';
     }
-
-add_filter('edit_comment_link', 'addition_actions_comment_link');
 endif;
 
 # function to render orbit slide based on featured category and number of slide in Customize.

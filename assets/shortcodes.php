@@ -167,21 +167,18 @@ function foundation_shortcode_reveal( $atts, $content = null ) {
 
 add_shortcode( 'reveal', 'foundation_shortcode_reveal' );
 
-# GitHub Gist shortcode [gist id="ID" file="FILE"]
-function gist_shortcode($atts) {
-    return sprintf(
-        '<script src="https://gist.github.com/%s.js%s"></script>', 
-        $atts['id'], 
-        $atts['file'] ? '?file=' . $atts['file'] : ''
-    );
-} add_shortcode('gist','gist_shortcode');
-
 # Converts audio5 shortcode to HTML5 audio tag
+# [audio5 src="http://yoursite.com/upload-folder/filename.mp3" loop="true" autoplay="autoplay" preload="auto" loop="loop" controls=""]
+# If you’re running the JetPack plugin for WordPress, you can easily add audio you’ve uploaded with the shortcode: [audio http://yoursite.com/upload-folder/filename.mp3]
 function narga_html5_audio($atts, $content = null) {
     extract(shortcode_atts(array(
-        "src" => ''
+        "src" => '',
+        "autoplay" => '',
+        "preload"=> 'true',
+        "loop" => '',
+        "controls"=> ''
     ), $atts));
-    return '<audio src="'.$src.'" controls autobuffer>';
+    return '<audio src="'.$src.'" autoplay="'.$autoplay.'" preload="'.$preload.'" loop="'.$loop.'" controls="'.$controls.'" autobuffer />';
 }
 add_shortcode('audio5', 'narga_html5_audio');
 
@@ -248,4 +245,15 @@ HTML;
     return $fb_like_code;
 }
 add_shortcode('fb', 'fb_like');
+
+# GitHub Gist shortcode [gist id="ID" file="FILE"]
+function gist_shortcode($atts) {
+    return sprintf(
+        '<script src="https://gist.github.com/%s.js%s"></script>', 
+        $atts['id'], 
+        $atts['file'] ? '?file=' . $atts['file'] : ''
+    );
+} add_shortcode('gist','gist_shortcode');
+
+
 ?>

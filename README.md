@@ -54,8 +54,12 @@ This is meant to be a base theme for WordPress custom theme development. A knowl
 Always get update by clone this repository:
 
 ``git clone git@github.com:Narga/narga-core.git
-
-git pull``
+``
+1. Extract narga-core.zip and upload the theme folder via FTP to your wp-content/themes/ directory.
+2. Go to your WordPress Admin Dashboard > Appearance > Themes and select the NARGA screenshot.
+3. Use Live Preview of NARGA Framework to change the options before active.
+4. The Front Page Layout Options only changes after save and active theme (sorry for this inconvenience)
+5. Orbit Slider use post title and featured image's description as Caption, let review it before set it as featured slide.
 
 License
 =======

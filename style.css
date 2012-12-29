@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------------------------------------
 Theme Name:         NARGA
 Theme URI:          http://www.narga.net/narga-core/
-Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">Narga</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a><br /><a href="http://www.narga.net/narga-core-demo" title="NARGA Framework Demo">View NARGA Framework Demo</a>
-Version:            1.1.1
+Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">Narga</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://www.narga.net/narga-core-demo" title="NARGA Framework Demo">NARGA Framework Demo</a>
+Version:            1.2.1
 Tags:              two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, microformats, theme-options, threaded-comments, translation-ready 
 Author:             Nguyễn Đình Quân
 Author URI:         http://www.narga.net/
@@ -82,7 +82,7 @@ figcaption.wp-caption-text { padding: 8px 10px; font-size: 13px; font-size: 1.3r
 .gallery .gallery-icon img{height:auto;max-width:90%;padding:5%;}
 .gallery-columns-1 .gallery-icon img{padding:3%;}
 /* Add fancy borders to all WordPress-added images but not things like badges and icons and the like */
-.entry-content img,.comment-content img,.widget img,img.header-image,.author-avatar img,img.wp-post-image{border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.2);}
+.entry-content img,.comment-content img,.widget img,img.header-image,.author-avatar img,img.wp-post-image, img.avatar {border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.2);}
 
 /* Label Adjustment */
 .tags a {color:#fff;font-weight:normal;}
@@ -97,7 +97,7 @@ ul.children {margin: 0 0 0 70px;list-style-type:none;}
 .commentlist li:last-child{margin-bottom:0}
 .commentlist cite.fn {font-size:23px;display:block;}
 .commentlist time {font-style:italic;font-size:11px;}
-img.avatar {float:right;border: 1px solid #ddd;background-color: #f3f3f3; padding:2px;}
+.commentlist img.avatar {float:right;border: 1px solid #ddd;background-color: #f3f3f3; padding:2px;}
 a.comment-del-link, a.comment-spam-link, a.comment-edit-link, a.comment-reply-link{float:right;background:#4598bb;padding:3px 5px;color:#fff;opacity:0.65;margin:0 3px 5px 0;}
 a.comment-del-link:hover, a.comment-reply-link:hover, a.comment-spam-link:hover, a.comment-edit-link:hover {opacity:1}
 .commentlist .odd{background:#F7F7F9}
@@ -117,4 +117,29 @@ section.comment div.notice {float:right; color: red;}
 #post-nav {clear:both;margin-left:10px;}
 ul.pagination li span.current { background: #2ba6cb; color: #fff; font-weight: bold; cursor: default; display: block; padding: 1px 7px 1px; }    
 
+
+/* =Post formats */
+footer p.post-meta-data {font-size:13px;font-style:italic;}
+/* Image posts */
+article.format-image header h2 {text-align:center;}
+
+/* Link posts */
+article.format-link header {float: right;font-style: italic;text-transform: uppercase;}
+article.format-link .entry-content {text-align:left;}
+article.format-link .entry-content a {font-size: 23px;}
+
+/* Quote posts */
+article.format-quote .quote-post-title, article.format-status .status-post-title, article.format-video .video-post-title, article.format-audio .audio-post-title  {float:right;}
+
+/* Status posts */
+.format-status header hgroup {display: inline-block;}
+.format-status header h2 {font-size:17px;}
+.format-status header h3 {font-size:14px;}
+.format-status header img {float: left;margin: 14px 10px 0 0;}
+
+
+/* =Aside post format */
+article.format-aside .aside {padding: 18px;display: block;background: none repeat scroll 0% 0% rgb(210, 224, 249);border-left: 22px solid rgb(39, 149, 182);}
+article.format-aside p {color: #4a5466;}
+article.format-aside blockquote:last-child,article.format-aside p:last-child {margin-bottom: 0;}
 

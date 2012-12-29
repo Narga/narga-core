@@ -2,6 +2,15 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.2.1 - December 27th, 2012
+* Complete rewrite loop content function
+* Fully support WordPress Post Format and allow user can styling it
+* Remove old loop files
+* Optimize 404 page, archive page, search result, category templates
+* Improve audio5 shortcode, combine and rewrite comment addition action for administrator, rewrite entry meta information function
+* Fix grid post thumbnail on single page
+* Some minor bugs fix and add more information to template files
+
 ### v1.1.1 - December 25th, 2012
 * Use twentytwelve gallery style
 * Rewrite select featured category function
