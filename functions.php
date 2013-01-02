@@ -40,7 +40,7 @@ function narga_setup() {
     add_image_size( 'grid-post-thumbnails', 360, 140, true);
 
     # Support Custom Background
-    add_theme_support( 'custom-background', array('default-color' => 'FFF','default-image' => get_template_directory_uri() . '' ));
+    add_theme_support( 'custom-background' );
 
     # Allows theme developers to add custom stylesheets to WordPress's TinyMCE visual editor. 
     add_editor_style( 'stylesheets/custom.css' );
@@ -83,7 +83,7 @@ function narga_assets() {
 
         # Enqueue to header
         wp_deregister_script( 'jquery' );
-        wp_register_script( 'jquery', get_template_directory_uri() . '/javascripts/jquery.min.js' );
+        wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', array(), '1.8.3', false);
         wp_enqueue_script( 'jquery' );
 
         # Load JavaScripts
@@ -95,7 +95,7 @@ function narga_assets() {
         if ( (!is_admin()) && is_singular() && comments_open() && get_option('thread_comments') )
             wp_enqueue_script('comment-reply');
     }
-}  
+}
 add_action( 'init', 'narga_assets' );
 
 /* ---------------------------------------------------------------

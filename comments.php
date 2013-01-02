@@ -46,9 +46,10 @@ printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&r
                 </ol>
                 <footer>
                         <nav id="comments-nav">
-                                <div class="comments-previous"><?php previous_comments_link( __( '&larr; Older comments', 'narga' ) ); ?></div>
-                                <div class="comments-next"><?php next_comments_link( __( 'Newer comments &rarr;', 'narga' ) ); ?></div>
-                        </nav>
+ <?php
+//Create pagination links for the comments on the current post, with single arrow heads for previous/next
+paginate_comments_links( array('prev_text' => '&lsaquo; Previous', 'next_text' => 'Next &rsaquo;'));
+?>                       </nav>
                 </footer>
         </section>
 <?php else : // this is displayed if there are no comments so far ?>

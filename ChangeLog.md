@@ -2,6 +2,12 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.2.2 - January 02nd, 2013
+* Change comment navigation link to pagination link
+* Change default option of theme's background support
+* Load Google jQuery as default and allow load local jQuery when it's unreachable
+* Remove unused codes and fix some minor bugs
+
 ### v1.2.1 - December 27th, 2012
 * Complete rewrite loop content function
 * Fully support WordPress Post Format and allow user can styling it
