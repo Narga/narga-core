@@ -9,7 +9,7 @@ I've tested and found that NARGA Framework works well with [bbPress 2.0](http://
 ###Links of NARGA Framework###
 * Homepage:         [http://www.narga.net/narga-core][6]
 * Demo:             [http://www.narga.net/narga-core-demo][3]
-* Forum:            [http://www.narga.net/forum/][9]
+* Forum:            [http://www.narga.net/forum/][1]
 * BitBucket:        [https://bitbucket.org/narga/narga-core][8]
 
 ###Learn more about Foundation & One% CSS Grid ###
@@ -55,6 +55,7 @@ Always get update by clone this repository:
 
 ``git clone git@github.com:Narga/narga-core.git
 ``
+
 1. Extract narga-core.zip and upload the theme folder via FTP to your wp-content/themes/ directory.
 2. Go to your WordPress Admin Dashboard > Appearance > Themes and select the NARGA screenshot.
 3. Use Live Preview of NARGA Framework to change the options before active.
@@ -64,11 +65,9 @@ Always get update by clone this repository:
 License
 =======
 
-[![Creative Commons License][4]][1] 
+[GNU General Public License][4]
 
-NARGA Framework by [Nguyễn Đình Quân][2] is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License][1].
-
-Based on a work at [NARGA Framework][6].
+NARGA Framework by [Nguyễn Đình Quân][2] is licensed under a [GNU General Public License][4].
 
 Permissions beyond the scope of this license may be available at [NARGA Proprietary Use License][7].
 
@@ -85,12 +84,11 @@ Branding Removal License
 The price of the Branding Removal license is **$99**. You can purchase it by [contact direct to the author: Nguyễn Đình Quân][5].
 
 
- [1]: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
+ [1]: http://www.narga.net/forum/
  [2]: http://www.narga.net/
  [3]: http://www.narga.net/narga-core-demo
- [4]: http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png
+ [4]: http://www.gnu.org/licenses/gpl-2.0.html
  [5]: http://www.narga.net/contact/
  [6]: http://www.narga.net/narga-core
  [7]: http://www.narga.net/terms
  [8]: https://bitbucket.org/narga/narga-core
- [9]: http://www.narga.net/forum/

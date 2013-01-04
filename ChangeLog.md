@@ -2,10 +2,16 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.2.3 - January 04th, 2013
+* Change license from Creative Common License to GPL v2
+* Update LICENSE, README files
+* Add CSS selector to archive and category template part
+* Remove duplicate codes in header
+
 ### v1.2.2 - January 02nd, 2013
 * Change comment navigation link to pagination link
 * Change default option of theme's background support
-* Load Google jQuery as default and allow load local jQuery when it's unreachable
+* Load Google jQuery as default instead local jQuery and allow load local jQuery when it's unreachable
 * Remove unused codes and fix some minor bugs
 
 ### v1.2.1 - December 27th, 2012

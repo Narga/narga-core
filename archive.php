@@ -21,7 +21,7 @@
 
 <?php get_header(); ?>
 <!-- Row for main content area -->
-<div id="content" class="eight columns">
+<div class="eight columns archive-content-wrapper">
 <div class="post-box">
 <h2><?php if ( is_day() ) : printf( __( 'Daily Archives: %s', 'narga' ), '<span>' . get_the_date() . '</span>' );
 elseif ( is_month() ) :
@@ -41,7 +41,8 @@ if ( function_exists('narga_pagination') ) { narga_pagination(); } else if ( is_
         <div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'narga' ) ); ?></div>
         <div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'narga' ) ); ?></div>
         </nav>
-        <?php } ?></div>
+        <?php } ?>
+</div>
 </div><!-- End Content row -->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
