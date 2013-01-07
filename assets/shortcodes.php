@@ -207,12 +207,12 @@ function twitter( $atts, $content=null ){
         'text' => '',
         'related' => '',
         'countbox' => 'none', # none, horizontal, vertical
- 
+
     ), $atts));
- 
+
     # Check for count url and set to $url if not provided
     if($counturl == null) $counturl = $url;
- 
+
     $twitter_code = <<<HTML
     <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script><a href='http://twitter.com/share' class="twitter-share-button" data-url="$url" data-counturl="$counturl" data-via="$via" data-hashtags="$hashtags" data-text="$text" data-related="$related" data-count="$countbox"></a>
 HTML;
@@ -225,26 +225,83 @@ add_shortcode('t', 'twitter');
 # Based on http://www.ilertech.com/2011/06/add-facebook-like-button-to-wordpress-3-0-with-a-simple-shortcode/
 function fb_like( $atts, $content=null ){
     extract(shortcode_atts(array(
-            'send' => 'false',
-            'layout' => 'standard', # standard, button_count, box_count
-            'show_faces' => 'true',
-            'width' => '400px',
-            'action' => 'like',
-            'font' => '',
-            'colorscheme' => 'light',
-            'ref' => '',
-            'locale' => 'en_US',
-            'appId' => '429051310480411'
+        'send' => 'false',
+        'layout' => 'standard', # standard, button_count, box_count
+        'show_faces' => 'true',
+        'width' => '400px',
+        'action' => 'like',
+        'font' => '',
+        'colorscheme' => 'light',
+        'ref' => '',
+        'locale' => 'en_US',
+        'appId' => '429051310480411'
     ), $atts));
- 
+
     $fb_like_code = <<<HTML
         <div id="fb-root"></div><script src="http://connect.facebook.net/$locale/all.js#appId=$appId&amp;xfbml=1"></script>
-<div class="fb-like" data-send="$send" data-width="$width" data-show-faces="$show_faces" data-colorscheme="$colorscheme" data-action="$action" data-font="$font"></div>
+<div class="fb-like" data-send="$send" data-layout="$layout" data-width="$width" data-show-faces="$show_faces" data-colorscheme="$colorscheme" data-action="$action" data-font="$font"></div>
 HTML;
- 
+
     return $fb_like_code;
 }
 add_shortcode('fb', 'fb_like');
+
+# Google Plus button shortcode
+# [gp size='small/medium/tall']
+# Based on http://www.ilertech.com/2011/06/add-google-1-to-wordpress-3-0-with-a-simple-shortcode/
+# Since v1.2.4
+
+// Global namespace in functions.php
+$plus1flag = false;
+
+function plus1( $atts, $content=null ){
+    extract(shortcode_atts(array(
+        'url' => '',
+        'lang' => 'en-US',
+        'parsetags' => 'onload',
+        'count' => 'false',
+        'size' => 'medium',
+        'callback' => '',
+
+    ), $atts));
+
+    // Set global flag
+    global $plus1flag;
+    $plus1flag = true;
+
+    // Check for $content and set to URL if not provided
+    if($content != null) $url = $content;
+
+    $plus1_code = <<<HTML
+    <div class="g-plusone" href='$url' count="$count" data-size="$size" callback="$callback"></div>
+HTML;
+
+    return $plus1_code;
+}
+
+#/ Add meta for front page ONLY and add scripts to any page with a shortcode
+function addPlus1Meta(){
+    global $plus1flag;
+    if($plus1flag){
+        if(is_home()){ // check for front page
+            echo "<link rel='canonical' href='" . site_url() ."' />";
+        }
+
+        echo <<<HTML
+
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+HTML;
+    }
+}
+
+add_shortcode('gp', 'plus1');
+add_action('wp_footer', 'addPlus1Meta');
 
 # GitHub Gist shortcode [gist id="ID" file="FILE"]
 function gist_shortcode($atts) {
