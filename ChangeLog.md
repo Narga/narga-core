@@ -2,6 +2,13 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.2.4 - January 12nd, 2013
+* Fix Google+ button syntax
+* Change main HTML5 structure to improved CSS selectors, not really effect to current child themes
+* Register Theme Customizer Link to WordPress Dashboard for access more easier
+* Fix localization strings, add comment pagination function, improved homepage pagination function
+* Remove unused and optimized codes, move PressTrends function to functions.php instead /assets/theme-customization.php
+
 ### v1.2.3 - January 04th, 2013
 * Change license from Creative Common License to GPL v2
 * Update LICENSE, README files

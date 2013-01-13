@@ -273,7 +273,7 @@ function plus1( $atts, $content=null ){
     if($content != null) $url = $content;
 
     $plus1_code = <<<HTML
-    <div class="g-plusone" href='$url' count="$count" data-size="$size" callback="$callback"></div>
+    <div class="g-plusone" data-href='$url' data-count="$count" data-size="$size" data-callback="$callback"></div>
 HTML;
 
     return $plus1_code;

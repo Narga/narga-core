@@ -2,7 +2,7 @@
 Theme Name:         NARGA
 Theme URI:          http://www.narga.net/narga-core/
 Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">Narga</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://www.narga.net/narga-core-demo" title="NARGA Framework Demo">NARGA Framework Demo</a>
-Version:            1.2.3
+Version:            1.2.4
 Tags:              two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, microformats, theme-options, threaded-comments, translation-ready 
 Author:             Nguyễn Đình Quân
 Author URI:         http://www.narga.net/
@@ -23,16 +23,9 @@ License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 ----------------------------------------- */
 
 /* Global */
-body {
-    font-size: 100%;
-    color: rgb(51, 51, 51);
-    line-height: 1.5em;
-    font-family: Georgia,"Times New Roman",Times,Serif;
-    text-shadow: 0px -1px 1px rgba(255, 255, 255, 0.01);
-    text-rendering: optimizelegibility;
-}
 body {font: 400 14px/1.6 'Open Sans', "Helvetica Neue", Helvetica, "Lucida Grande", Verdana, sans-serif; line-height:1.6;text-rendering: optimizelegibility;}
 h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', "Helvetica Neue", "Helvetica", Arial, Verdana, cursive; font-weight: 400;letter-spacing: -1px;}
+.container {padding: 0 18px;}
 ul li {list-style-position: inside;}
 aside#sidebar ul li, footer#content-info ul li {list-style-image: url(images/bullet.png);}
 code {padding: 1px 2px;color: #c60f13;}
@@ -115,7 +108,7 @@ section.comment div.notice {float:right; color: red;}
 
 /*  Adjust Foundation 3 Pagination Style for WordPress */ 
 #post-nav {clear:both;margin-left:10px;}
-ul.pagination li span.current { background: #2ba6cb; color: #fff; font-weight: bold; cursor: default; display: block; padding: 1px 7px 1px; }    
+ul.pagination li span.current, .page-numbers .current { background: #2ba6cb; color: #fff; font-weight: bold; cursor: default; display: block; padding: 1px 7px 1px; }    
 
 
 /* =Post formats */

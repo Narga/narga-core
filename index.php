@@ -42,5 +42,7 @@
 
 </div>		
 <!-- End Content row -->
+
 <?php get_sidebar(); ?>
+
 <?php get_footer(); ?>

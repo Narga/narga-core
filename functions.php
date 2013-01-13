@@ -20,9 +20,7 @@
  * @subpackage NARGA Framework
  * @since NARGA Framework 1.0
  */
-?>
 
-<?php
 /*  ------------------------------------
 :: Narga WordPress Framework Basic Setup
 ------------------------------------- */
@@ -155,17 +153,17 @@ if (!function_exists('narga_entry_meta')) :
         echo '<p class="post-meta-data">';
         echo '<time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time>';
         if (false === get_post_format()) {
-            echo 'in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author vcard">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';            
+            echo ' in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author vcard">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';            
         } else {
             echo '';
         }
         if (comments_open()) :
             echo ' <span class="entry-comments">';
-            comments_popup_link( 'Be the first to comment', '1 comment', '% comments', 'comments-link', 'Comments are off for this post');
-            echo '</span>';
-        endif;
-    edit_post_link('Edit', ' | ', '');
-    echo '</p>';
+        comments_popup_link( __( 'Be the first to comment', 'narga' ), __( '1 comment', 'narga'),  __( '% comments', 'narga' ),  __( 'comments-link', 'narga' ),  __( 'Comments are off for this post', 'narga' ));
+        echo '</span>';
+endif;
+edit_post_link('Edit', ' | ', '');
+echo '</p>';
     }
 endif;
 
@@ -355,15 +353,91 @@ if (!function_exists('narga_pagination')) :
             'current' => max( 1, get_query_var('paged') ),
             'total' => $wp_query->max_num_pages,
             'mid_size' => 5,
-            'prev_next' => True,
+            'prev_next' => true,
             'prev_text' => '&laquo;',
             'next_text' => '&raquo;',
             'type' => 'list'
         ) );
         # Display the pagination if more than one page is found
-        if ( $paginate_links ) {
-            echo '<nav id="post-nav">' . str_replace('page-numbers', 'pagination', $paginate_links) . '</nav>';
-        }
+            echo '<nav id="post-nav">' . str_replace('page-numbers', 'pagination', $paginate_links) . '</nav>';        
     }
 endif;
+/* ------------------------------------------------------------
+:: Rewrite default wordpress comments pagination function
+------------------------------------------------------------ */
+if (!function_exists('narga_comment_pagination')) :  
+    function narga_comment_pagination() {
+        //read the page links but do not echo
+        $comment_page = paginate_comments_links( array(
+            'prev_text' => '&laquo;',
+            'next_text' => '&raquo;',
+            'echo' => false, 
+            'type' => 'list'
+        )
+    );
+        echo '<nav id="comments-nav">' . str_replace('page-numbers', 'pagination', $comment_page) . '</nav>';
+    }
+endif;
+
+/*  ---------------------------------------
+:: Add Framework Customizer Direct Link ::
+--------------------------------------- */
+add_action('admin_menu', 'add_menu_narga');
+function add_menu_narga() {
+    add_menu_page('NARGA Customizer', 'NARGA', 'edit_theme_options', '../wp-admin/customize.php', '',    content_url('themes/narga-core/favicon.png'), 61);
+}
+
+/*  -----------------------
+:: PressTrends Theme API ::
+------------------------ */
+function presstrends_theme() {
+
+    // PressTrends Account API Key
+    $api_key = 'ns30etv6huadcsdnq3dvwxi10g6krsm04za2';
+    $auth = '198smtqj8tn6q9rhcmn68j8o8c9xrf0lv';
+
+    // Start of Metrics
+    global $wpdb;
+    $data = get_transient( 'presstrends_theme_cache_data' );
+    if ( !$data || $data == '' ) {
+        $api_base = 'http://api.presstrends.io/index.php/api/sites/add/auth/';
+        $url      = $api_base . $auth . '/api/' . $api_key . '/';
+
+        $count_posts    = wp_count_posts();
+        $count_pages    = wp_count_posts( 'page' );
+        $comments_count = wp_count_comments();
+
+        $plugin_name = '&';
+        foreach ( get_plugins() as $plugin_info ) {
+            $plugin_name .= $plugin_info['Name'] . '&';
+        }
+        $posts_with_comments = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type='post' AND comment_count > 0" );
+        $data                = array(
+            'url'             => stripslashes( str_replace( array( 'http://', '/', ':' ), '', site_url() ) ),
+            'posts'           => $count_posts->publish,
+            'pages'           => $count_pages->publish,
+            'comments'        => $comments_count->total_comments,
+            'approved'        => $comments_count->approved,
+            'spam'            => $comments_count->spam,
+            'pingbacks'       => $wpdb->get_var( "SELECT COUNT(comment_ID) FROM $wpdb->comments WHERE comment_type = 'pingback'" ),
+            'post_conversion' => ( $count_posts->publish > 0 && $posts_with_comments > 0 ) ? number_format( ( $posts_with_comments / $count_posts->publish ) * 100, 0, '.', '' ) : 0,
+            'theme_version'   => $theme_version,
+            'theme_name'      => $theme_name,
+            'site_name'       => str_replace( ' ', '', get_bloginfo( 'name' ) ),
+            'plugins'         => count( get_option( 'active_plugins' ) ),
+            'plugin'          => urlencode( $plugin_name ),
+            'wpversion'       => get_bloginfo( 'version' ),
+            'api_version'	  => '2.4',
+        );
+
+        foreach ( $data as $k => $v ) {
+            $url .= $k . '/' . $v . '/';
+        }
+        wp_remote_get( $url );
+        set_transient( 'presstrends_theme_cache_data', $data, 60 * 60 * 24 );
+    }
+}
+
+// PressTrends WordPress Action
+add_action('admin_init', 'presstrends_theme');
 ?>

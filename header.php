@@ -50,11 +50,11 @@
 </div>
 
 <!-- Row for blog navigation -->
-<div class="top-header">
+<div class="top-header row">
     <header class="twelve columns" role="banner">
         <?php narga_blog_head(); ?>
     </header>
 </div>
 
 <!-- Row for main content area -->
-<section id="main" role="grid">
+<section id="main" class="row" role="grid">
