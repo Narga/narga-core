@@ -13,5 +13,4 @@
     <input type="submit" id="searchsubmit" value="Search" class="button expand postfix">
   </div>
 </div>
-</form>
 

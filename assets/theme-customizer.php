@@ -255,13 +255,13 @@ class narga_topbar_walker extends Walker_Nav_Menu {
 // Navigation search form
 if (!function_exists('search_form_navigation')) :  
     function search_form_navigation() {
-        echo "<ul id=\"menu-pages\" class=\"top-bar-menu right\"><li class=\"divider\"></li><li id=\"menu-item-60\" class=\"menu-item menu-item-type-post_type menu-item-object-page has-dropdown\"><form method=\"get\" id=\"searchform\" action=\"";
-        echo esc_url( home_url( '/' ) );
-        echo "\"><label for=\"s\" class=\"assistive-text\">";
-        _e( '', 'narga' );
-        echo "</label><input type=\"text\" class=\"field\" name=\"s\" id=\"s\" placeholder=\"";
-        esc_attr_e( '', 'narga' );
-        echo "\" /></form></li></ul>";
+        echo '<ul id="menu-right-topbar" class="top-bar-menu right">
+            <li class="search"><form method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+            <input type="text" class="field" name="s" id="s" placeholder="';
+        esc_attr_e( 'Search', 'narga' );
+        echo '" />
+            </form></li>
+            </ul>';
     }
 endif;
 

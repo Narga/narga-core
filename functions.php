@@ -34,8 +34,8 @@ function narga_setup() {
 
     # Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
     add_theme_support('post-thumbnails');
-    set_post_thumbnail_size(805, 360, true);
-    add_image_size( 'grid-post-thumbnails', 360, 140, true);
+    set_post_thumbnail_size(764, 342, true);
+    add_image_size( 'grid-post-thumbnails', 346, 135, true);
 
     # Support Custom Background
     add_theme_support( 'custom-background' );
@@ -359,7 +359,7 @@ if (!function_exists('narga_pagination')) :
             'type' => 'list'
         ) );
         # Display the pagination if more than one page is found
-            echo '<nav id="post-nav">' . str_replace('page-numbers', 'pagination', $paginate_links) . '</nav>';        
+        echo '<nav id="post-nav">' . str_replace('page-numbers', 'pagination', $paginate_links) . '</nav>';        
     }
 endif;
 /* ------------------------------------------------------------
@@ -384,12 +384,15 @@ endif;
 --------------------------------------- */
 add_action('admin_menu', 'add_menu_narga');
 function add_menu_narga() {
-    add_menu_page('NARGA Customizer', 'NARGA', 'edit_theme_options', '../wp-admin/customize.php', '',    content_url('themes/narga-core/favicon.png'), 61);
+    add_theme_page('NARGA Customizer', 'NARGA', 'edit_theme_options', '../wp-admin/customize.php', '');
 }
 
 /*  -----------------------
 :: PressTrends Theme API ::
 ------------------------ */
+/**
+ * PressTrends Theme API
+ */
 function presstrends_theme() {
 
     // PressTrends Account API Key
@@ -406,6 +409,17 @@ function presstrends_theme() {
         $count_posts    = wp_count_posts();
         $count_pages    = wp_count_posts( 'page' );
         $comments_count = wp_count_comments();
+
+        // wp_get_theme was introduced in 3.4, for compatibility with older versions.
+        if ( function_exists( 'wp_get_theme' ) ) {
+            $theme_data    = wp_get_theme();
+            $theme_name    = urlencode( $theme_data->Name );
+            $theme_version = $theme_data->Version;
+        } else {
+            $theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+            $theme_name = $theme_data['Name'];
+            $theme_versino = $theme_data['Version'];
+        }
 
         $plugin_name = '&';
         foreach ( get_plugins() as $plugin_info ) {

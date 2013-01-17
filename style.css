@@ -23,7 +23,7 @@ License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 ----------------------------------------- */
 
 /* Global */
-body {font: 400 14px/1.6 'Open Sans', "Helvetica Neue", Helvetica, "Lucida Grande", Verdana, sans-serif; line-height:1.6;text-rendering: optimizelegibility;}
+body {font: 400 14px/1.6 'Open Sans', 'Lucida Sans Unicode', "Helvetica Neue", Helvetica, "Lucida Grande", Verdana, sans-serif; line-height:1.6;text-rendering: optimizelegibility;}
 h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', "Helvetica Neue", "Helvetica", Arial, Verdana, cursive; font-weight: 400;letter-spacing: -1px;}
 .container {padding: 0 18px;}
 ul li {list-style-position: inside;}
@@ -33,11 +33,12 @@ pre {padding: 1px 4px;}
 code, pre {font-family: Monaco,Menlo,Consolas,"Courier New",monospace;font-size: 12px;border-radius: 3px 3px 3px 3px;background-color: rgb(247, 247, 249);border: 1px solid rgb(225, 225, 232);}
 
 /*  Top Bar Search Form */
-nav #searchform .assistive-text{display: none;}
-nav #searchform #s {width: 100%;padding: 0 10px 0 30px;font-size: 92%;line-height: 14px;white-space: nowrap;background: url('images/ico-search.png') no-repeat 15px center #fff;box-shadow: none;text-overflow: ellipsis;-webkit-transition: width 0.7s;-moz-transition: width 0.7s;-o-transition:width 0.7s;transition:width 0.7s;}
-nav #searchform #s {z-index: 9999;position: absolute;right: 0;height: 45px;border: none;border-left: 1px solid #252525;text-indent: -9999px;background-color: #6F6F68;}
-nav .ie #searchform #s {width: 180px;background-position: 9px center;}
-nav #searchform #s:focus {background-position: 9px center;text-indent: 0;width: 180px;color: #fff;}
+.search-form {margin-top:4px;}
+.top-bar ul > li.search:hover { background: none !important; }
+.top-bar ul > li.search { padding: 2px; }
+.top-bar ul > li.search form {width: 75px; }
+.top-bar ul > li.search form input[type=text] {font-size: 12px;height: 30px;width: 72px;float:right;background: #FFF url(images/icon-search.png) no-repeat 5px 9px;padding: 8px 10px 8px 18px;color:#5da423;}
+.top-bar ul > li.search form input#s:focus {width: 200px;}
 
 /* Foundation-specific presentation CSS by ZURB */
 div.narga-header { margin: 20px 0; }
