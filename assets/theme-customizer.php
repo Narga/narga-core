@@ -188,7 +188,7 @@ function narga_topbar_r() {
         'container' => false, // remove nav container
         'container_class' => '', // class of container
         'menu' => '', // menu name
-        'menu_class' => 'top-bar-menu right hide-for-medium', // adding custom nav class
+        'menu_class' => 'top-bar-menu right hide-for-small', // adding custom nav class
         'theme_location' => 'top-bar-r', // where it's located in the theme
         'before' => '', // before each link <a>
         'after' => '', // after each link </a>

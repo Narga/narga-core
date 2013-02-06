@@ -33,11 +33,10 @@ pre {padding: 1px 4px;}
 code, pre {font-family: Monaco,Menlo,Consolas,"Courier New",monospace;font-size: 12px;border-radius: 3px 3px 3px 3px;background-color: rgb(247, 247, 249);border: 1px solid rgb(225, 225, 232);}
 
 /*  Top Bar Search Form */
-.search-form {margin-top:4px;}
 .top-bar ul > li.search:hover { background: none !important; }
-.top-bar ul > li.search { padding: 2px; }
+.top-bar ul > li.search { padding: 0 2px; }
 .top-bar ul > li.search form {width: 75px; }
-.top-bar ul > li.search form input[type=text] {font-size: 12px;height: 30px;width: 72px;float:right;background: #FFF url(images/icon-search.png) no-repeat 5px 9px;padding: 8px 10px 8px 18px;color:#5da423;}
+.top-bar ul > li.search form input[type=text] {font-size: 12px;height: 28px;width: 72px;float:right;background: #FFF url(images/icon-search.png) no-repeat 5px 9px;padding: 8px 10px 8px 18px;color:#5da423;}
 .top-bar ul > li.search form input#s:focus {width: 200px;}
 
 /* Foundation-specific presentation CSS by ZURB */
@@ -49,7 +48,6 @@ div.narga-header { margin: 20px 0; }
 .orbit-wrapper:hover .slider-nav span { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1; }
 
 /* Main Content */
-.sticky {}
 .entry-content {text-align:justify;}
 
 /* Alternate posts css classes */
@@ -112,8 +110,13 @@ section.comment div.notice {float:right; color: red;}
 ul.pagination li span.current, .page-numbers .current { background: #2ba6cb; color: #fff; font-weight: bold; cursor: default; display: block; padding: 1px 7px 1px; }    
 
 
-/* =Post formats */
+/* Post formats */
 footer p.post-meta-data {font-size:13px;font-style:italic;}
+
+/* Sticky posts */
+.sticky {}
+.sticky-entry {padding: 0 18px;}
+
 /* Image posts */
 article.format-image header h2 {text-align:center;}
 

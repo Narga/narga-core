@@ -13,14 +13,29 @@
  * @subpackage NARGA Framework
  * @since NARGA Framework 1.0
  */
-?>
-
-<?php get_header(); ?>
+get_header(); ?>
 <!-- Row for main content area -->
 <div class="eight columns">
-    <?php if (is_front_page() && get_theme_mod('slide_toggle') == 'enable') narga_orbit_slider(); else {echo (''); }?>
+    <?php if (is_front_page() && !is_paged() && get_theme_mod('slide_toggle') == 'enable') narga_orbit_slider(); else {echo (''); }?>
     <div class="main-content-wrapper">
-    <?php if (!have_posts()) : ?>
+    <?php
+    # Exclude sticky posts from the loop
+    query_posts(array("post__in" =>get_option("sticky_posts")));
+    if (!have_posts()) : ?>
+    <div class="notice">
+        <p class="bottom"><?php _e('Sorry, no results were found.', 'narga'); ?></p>
+    </div>
+    <?php get_search_form(); ?>
+    <?php endif; ?>
+
+    <?php /* Start loop */ ?>
+    <?php while (have_posts()) : the_post(); ?>
+        <?php get_template_part('content', get_post_format()); ?>
+    <?php endwhile; // End the loop ?>
+    <?php
+    # Exclude sticky posts from the loop
+    query_posts(array("post__not_in" =>get_option("sticky_posts")));
+    if (!have_posts()) : ?>
     <div class="notice">
         <p class="bottom"><?php _e('Sorry, no results were found.', 'narga'); ?></p>
     </div>

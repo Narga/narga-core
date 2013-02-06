@@ -146,26 +146,37 @@ add_action('wp_head', 'ie_conditional_html5');
 require( get_template_directory() . '/assets/shortcodes.php' );
 require( get_template_directory() . '/assets/theme-customizer.php' );
 
+/**
+ * Creates a nicely formatted and more specific title element text
+ * for output in head of document, based on current view.
+ *
+ * based on Twenty Twelve 1.0
+ *
+ * @param string $title Default title text for current view.
+ * @param string $sep Optional separator.
+ * @return string Filtered title.
+ */
+function narga_wp_title( $title, $sep ) {
+	global $paged, $page;
 
-# return entry meta information for posts, used by multiple loops.
-if (!function_exists('narga_entry_meta')) :  
-    function narga_entry_meta() {
-        echo '<p class="post-meta-data">';
-        echo '<time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time>';
-        if (false === get_post_format()) {
-            echo ' in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author vcard">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';            
-        } else {
-            echo '';
-        }
-        if (comments_open()) :
-            echo ' <span class="entry-comments">';
-        comments_popup_link( __( 'Be the first to comment', 'narga' ), __( '1 comment', 'narga'),  __( '% comments', 'narga' ),  __( 'comments-link', 'narga' ),  __( 'Comments are off for this post', 'narga' ));
-        echo '</span>';
-endif;
-edit_post_link('Edit', ' | ', '');
-echo '</p>';
-    }
-endif;
+	if ( is_feed() )
+		return $title;
+
+	// Add the site name.
+	$title .= get_bloginfo( 'name' );
+
+	// Add the site description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+		$title = "$title $sep $site_description";
+
+	// Add a page number if necessary.
+	if ( $paged >= 2 || $page >= 2 )
+		$title = "$title $sep " . sprintf( __( 'Page %s', 'narga' ), max( $paged, $page ) );
+
+	return $title;
+}
+add_filter( 'wp_title', 'narga_wp_title', 10, 2 );
 
 # function to generate blog name and subheader for custom as users want without copy the header.php file in child theme
 if (!function_exists('narga_blog_head')) :  
@@ -187,6 +198,27 @@ if (!function_exists('remove_unused_items')) :
     }  
 add_action( 'widgets_init', 'remove_unused_items' ); 
 endif;
+
+# return entry meta information for posts, used by multiple loops.
+if (!function_exists('narga_entry_meta')) :  
+    function narga_entry_meta() {
+        echo '<p class="post-meta-data">';
+        echo '<time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time>';
+        if (false === get_post_format()) {
+            echo ' in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author vcard">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';            
+        } else {
+            echo '';
+        }
+        if (comments_open()) :
+            echo ' <span class="entry-comments">';
+        comments_popup_link( __( 'Be the first to comment', 'narga' ), __( '1 comment', 'narga'),  __( '% comments', 'narga' ),  __( 'comments-link', 'narga' ),  __( 'Comments are off for this post', 'narga' ));
+        echo '</span>';
+endif;
+edit_post_link('Edit', ' | ', '');
+echo '</p>';
+    }
+endif;
+
 
 # Function to trim the excerpt
 if (!function_exists('narga_excerpts')) :  
@@ -221,7 +253,6 @@ return $content;
 if (get_theme_mod('posts_excerpt') == 'enable') {
     add_filter('the_content', 'narga_excerpts');
 }
-
 endif;
 
 # Replace more link text
@@ -231,16 +262,21 @@ if (!function_exists('narga_more_link')) :
     }
 add_filter( 'the_content_more_link', 'narga_more_link', 10, 2 );
 endif;
+
 /*  --------------------------------
 :: Adds "odd" class to all odd posts
 --------------------------------- */
 if (!function_exists('narga_addition_classes')) :  
     function narga_addition_classes ( $classes ) { 
         $current_class = 'odd';
-        if(!is_singular()) {
+        if(!is_singular() && !is_sticky()) {
             global $current_class;
             $current_class = ($current_class == 'odd') ? 'even' : 'odd';
             $classes[] = $current_class.' six column';
+        }
+        /* Temporaty remove sticky class */
+        elseif(!is_singular() && is_sticky()) {
+            $classes = str_replace('sticky', 'sticky-entry', $classes);
         }
         return $classes;
     }
