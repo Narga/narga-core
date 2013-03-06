@@ -9,7 +9,7 @@ add_filter('widget_text', 'do_shortcode');
 
 # Alerts [alert][/alert]
 
-function foundation_shortcode_alert( $atts, $content = null ) {
+function narga_shortcode_alert( $atts, $content = null ) {
     extract( shortcode_atts( array('type' => ''), $atts ) );
     return '<div class="alert-box ' . esc_attr($type) . '">' . do_shortcode($content) . ' <a href="" class="close">&times;</a> </div>';
 }
@@ -27,8 +27,7 @@ function narga_shortcode_column( $atts, $content = null ) {
 add_shortcode( 'column', 'foundation_shortcode_alert' );
 
 # Buttons [button][/button]
-
-function foundation_shortcode_button( $atts, $content = null ) {
+function narga_shortcode_button( $atts, $content = null ) {
     extract( shortcode_atts( array(
         'link' => '#',
         'size' => 'medium',
@@ -44,13 +43,11 @@ function foundation_shortcode_button( $atts, $content = null ) {
     return '<a ' . $reveal_data . ' href="' . esc_attr($link) . '" class="' . esc_attr($size) . ' ' . esc_attr($style) . ' ' . esc_attr($type) . ' button">' . $content . '</a>';
 }
 
-add_shortcode( 'button', 'foundation_shortcode_button' );
+add_shortcode( 'button', 'narga_shortcode_button' );
 
 
 // Panels [panel][/panel]
-
-function foundation_shortcode_panel( $atts, $content = null ) {
-
+function narga_shortcode_panel( $atts, $content = null ) {
     extract( shortcode_atts( array(
         'type' => '',
         'style' => ''
@@ -58,12 +55,10 @@ function foundation_shortcode_panel( $atts, $content = null ) {
 
     return '<div class="panel ' . esc_attr($type) . ' ' . esc_attr($style) . '">' . do_shortcode($content) . '</div>';
 }
-
-add_shortcode( 'panel', 'foundation_shortcode_panel' );
+add_shortcode( 'panel', 'narga_shortcode_panel' );
 
 // Tabs [tabs] [tab][/tab] [/tabs]
-
-function foundation_shortcode_tabs( $atts, $content ){
+function narga_shortcode_tabs( $atts, $content ){
     extract(shortcode_atts(array(
         'type' => ''
     ), $atts));
@@ -102,9 +97,9 @@ function foundation_shortcode_tabs( $atts, $content ){
     }
     return $return;
 }
-add_shortcode( 'tabs', 'foundation_shortcode_tabs' );
+add_shortcode( 'tabs', 'narga_shortcode_tabs' );
 
-function foundation_shortcode_tab( $atts, $content ){
+function narga_shortcode_tab( $atts, $content ){
     extract(shortcode_atts(array(
         'title' => 'Tab %d'
     ), $atts));
@@ -116,16 +111,14 @@ function foundation_shortcode_tab( $atts, $content ){
 
 }
 
-add_shortcode( 'tab', 'foundation_shortcode_tab' );
+add_shortcode( 'tab', 'narga_shortcode_tab' );
 
 /**
  * Elements
  */
 
 // Detection (Show) [show][/show]
-
-function foundation_shortcode_show( $atts, $content = null ) {
-
+function narga_shortcode_show( $atts, $content = null ) {
     extract( shortcode_atts( array(
         'for' => ''
     ), $atts ) );
@@ -133,11 +126,10 @@ function foundation_shortcode_show( $atts, $content = null ) {
     return '<div class="show-for-' . esc_attr($for) . '">' . do_shortcode($content) . '</div>';
 }
 
-add_shortcode( 'show', 'foundation_shortcode_show' );
+add_shortcode( 'show', 'narga_shortcode_show' );
 
 // Detection (Hide) [hide][/hide]
-
-function foundation_shortcode_hide( $atts, $content = null ) {
+function narga_shortcode_hide( $atts, $content = null ) {
 
     extract( shortcode_atts( array(
         'for' => ''
@@ -146,7 +138,7 @@ function foundation_shortcode_hide( $atts, $content = null ) {
     return '<div class="hide-for-' . esc_attr($for) . '">' . do_shortcode($content) . '</div>';
 }
 
-add_shortcode( 'hide', 'foundation_shortcode_hide' );
+add_shortcode( 'hide', 'narga_shortcode_hide' );
 
 /**
  * Extras
@@ -154,7 +146,7 @@ add_shortcode( 'hide', 'foundation_shortcode_hide' );
 
 // Reveal [reveal][/reveal]
 
-function foundation_shortcode_reveal( $atts, $content = null ) {
+function narga_shortcode_reveal( $atts, $content = null ) {
 
     extract( shortcode_atts( array(
         'name' => '',
@@ -165,7 +157,7 @@ function foundation_shortcode_reveal( $atts, $content = null ) {
 
 }
 
-add_shortcode( 'reveal', 'foundation_shortcode_reveal' );
+add_shortcode( 'reveal', 'narga_shortcode_reveal' );
 
 # Converts audio5 shortcode to HTML5 audio tag
 # [audio5 src="http://yoursite.com/upload-folder/filename.mp3" loop="true" autoplay="autoplay" preload="auto" loop="loop" controls=""]
@@ -198,7 +190,7 @@ add_shortcode('video5', 'narga_html5_video');
 # Twitter button shortcode
 # [t related='NARGA Framework - A rock solid starting WordPress HTML5 theme for developers' countbox='horizontal/vertical' via='narga' ]
 # Based on http://www.ilertech.com/2011/07/add-twitter-share-button-to-wordpress-3-0-with-a-simple-shortcode/
-function twitter( $atts, $content=null ){
+function narga_twitter( $atts, $content=null ){
     extract(shortcode_atts(array(
         'url' => null,
         'counturl' => null,
@@ -218,12 +210,12 @@ function twitter( $atts, $content=null ){
 HTML;
     return $twitter_code;
 }
-add_shortcode('t', 'twitter');
+add_shortcode('t', 'narga_twitter');
 
 # Facebook Like button shortcode
 # [fb  send='true' action='recommend' layout='button_count/box_count']
 # Based on http://www.ilertech.com/2011/06/add-facebook-like-button-to-wordpress-3-0-with-a-simple-shortcode/
-function fb_like( $atts, $content=null ){
+function narga_fb_like( $atts, $content=null ){
     extract(shortcode_atts(array(
         'send' => 'false',
         'layout' => 'standard', # standard, button_count, box_count
@@ -244,7 +236,7 @@ HTML;
 
     return $fb_like_code;
 }
-add_shortcode('fb', 'fb_like');
+add_shortcode('fb', 'narga_fb_like');
 
 # Google Plus button shortcode
 # [gp size='small/medium/tall']
@@ -254,7 +246,7 @@ add_shortcode('fb', 'fb_like');
 // Global namespace in functions.php
 $plus1flag = false;
 
-function plus1( $atts, $content=null ){
+function narga_gplus( $atts, $content=null ){
     extract(shortcode_atts(array(
         'url' => '',
         'lang' => 'en-US',
@@ -280,7 +272,7 @@ HTML;
 }
 
 #/ Add meta for front page ONLY and add scripts to any page with a shortcode
-function addPlus1Meta(){
+function narga_addgplus(){
     global $plus1flag;
     if($plus1flag){
         if(is_home()){ // check for front page
@@ -300,17 +292,17 @@ HTML;
     }
 }
 
-add_shortcode('gp', 'plus1');
-add_action('wp_footer', 'addPlus1Meta');
+add_shortcode('gp', 'narga_gplus');
+add_action('wp_footer', 'narga_addgplus');
 
 # GitHub Gist shortcode [gist id="ID" file="FILE"]
-function gist_shortcode($atts) {
+function narga_github_gist($atts) {
     return sprintf(
         '<script src="https://gist.github.com/%s.js%s"></script>', 
         $atts['id'], 
         $atts['file'] ? '?file=' . $atts['file'] : ''
     );
-} add_shortcode('gist','gist_shortcode');
+} add_shortcode('gist','narga_github_gist');
 
 
 ?>

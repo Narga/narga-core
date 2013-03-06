@@ -25,7 +25,7 @@
 :: Narga WordPress Framework Basic Setup
 ------------------------------------- */
 if (!isset( $content_width))
-    $content_width = 805;
+    $content_width = 764;
 
 function narga_setup() {
 
@@ -51,7 +51,6 @@ function narga_setup() {
     register_nav_menus(array(
         'top-bar-l' => __('Left Top Bar', 'narga'),
         'top-bar-r' => __('Right Top Bar', 'narga'),
-        #        'primary_navigation' => __('Primary Navigation', 'narga'),
         'secondary_navigation' => __('Secondary Navigation', 'narga')
     ));
 
@@ -124,7 +123,7 @@ function pw_add_custom_css_file() {
 }
 
 # add ie conditional html5  to header
-function ie_conditional_html5 () {
+function narga_ie_conditional_html5 () {
     global $is_IE;
     if ($is_IE) {
         echo '<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
@@ -138,7 +137,7 @@ function ie_conditional_html5 () {
         echo '<![endif]-->';
     }
 }
-add_action('wp_head', 'ie_conditional_html5');
+add_action('wp_head', 'narga_ie_conditional_html5');
 
 /*  -----------------------------------
 :: Narga WordPress Framework Assets
@@ -181,22 +180,21 @@ add_filter( 'wp_title', 'narga_wp_title', 10, 2 );
 # function to generate blog name and subheader for custom as users want without copy the header.php file in child theme
 if (!function_exists('narga_blog_head')) :  
     function narga_blog_head() {
-        echo '<div class="narga-header">';
+        echo '<header role="banner">';
         echo '<h1><a href="' . esc_url( home_url( '/' ) ) . '" title="' . get_bloginfo('name') . '">' . get_bloginfo('name') . '</a></h1>';
         echo '<h2 class="subheader">' . get_bloginfo('description') . '</h2>';
-        echo '</div>';
-
+        echo '</header>';
     }  
 endif;
 
 # Remove somethings not used or include in others functions
-if (!function_exists('remove_unused_items')) :  
-    function remove_unused_items() {  
+if (!function_exists('narga_remove_unused_items')) :  
+    function narga_remove_unused_items() {  
         global $wp_widget_factory;
         # Remove recent comments css
         remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );  
     }  
-add_action( 'widgets_init', 'remove_unused_items' ); 
+add_action( 'widgets_init', 'narga_remove_unused_items' ); 
 endif;
 
 # return entry meta information for posts, used by multiple loops.
@@ -361,8 +359,8 @@ endif;
  * Removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption
  * http://writings.orangegnome.com/writes/improved-html5-wordpress-captions/
  **/
-add_filter('img_caption_shortcode', 'img_caption_shortcode_filter',10,3);
-function img_caption_shortcode_filter($val, $attr, $content = null) {
+add_filter('img_caption_shortcode', 'narga_img_caption_shortcode_filter',10,3);
+function narga_img_caption_shortcode_filter($val, $attr, $content = null) {
     extract(shortcode_atts(array(
         'id'	=> '',
         'align'	=> '',
@@ -418,76 +416,8 @@ endif;
 /*  ---------------------------------------
 :: Add Framework Customizer Direct Link ::
 --------------------------------------- */
-add_action('admin_menu', 'add_menu_narga');
-function add_menu_narga() {
+add_action('admin_menu', 'narga_add_theme_menu');
+function narga_add_theme_menu() {
     add_theme_page('NARGA Customizer', 'NARGA', 'edit_theme_options', '../wp-admin/customize.php', '');
 }
-
-/*  -----------------------
-:: PressTrends Theme API ::
------------------------- */
-/**
- * PressTrends Theme API
- */
-function presstrends_theme() {
-
-    // PressTrends Account API Key
-    $api_key = 'ns30etv6huadcsdnq3dvwxi10g6krsm04za2';
-    $auth = '198smtqj8tn6q9rhcmn68j8o8c9xrf0lv';
-
-    // Start of Metrics
-    global $wpdb;
-    $data = get_transient( 'presstrends_theme_cache_data' );
-    if ( !$data || $data == '' ) {
-        $api_base = 'http://api.presstrends.io/index.php/api/sites/add/auth/';
-        $url      = $api_base . $auth . '/api/' . $api_key . '/';
-
-        $count_posts    = wp_count_posts();
-        $count_pages    = wp_count_posts( 'page' );
-        $comments_count = wp_count_comments();
-
-        // wp_get_theme was introduced in 3.4, for compatibility with older versions.
-        if ( function_exists( 'wp_get_theme' ) ) {
-            $theme_data    = wp_get_theme();
-            $theme_name    = urlencode( $theme_data->Name );
-            $theme_version = $theme_data->Version;
-        } else {
-            $theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
-            $theme_name = $theme_data['Name'];
-            $theme_versino = $theme_data['Version'];
-        }
-
-        $plugin_name = '&';
-        foreach ( get_plugins() as $plugin_info ) {
-            $plugin_name .= $plugin_info['Name'] . '&';
-        }
-        $posts_with_comments = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type='post' AND comment_count > 0" );
-        $data                = array(
-            'url'             => stripslashes( str_replace( array( 'http://', '/', ':' ), '', site_url() ) ),
-            'posts'           => $count_posts->publish,
-            'pages'           => $count_pages->publish,
-            'comments'        => $comments_count->total_comments,
-            'approved'        => $comments_count->approved,
-            'spam'            => $comments_count->spam,
-            'pingbacks'       => $wpdb->get_var( "SELECT COUNT(comment_ID) FROM $wpdb->comments WHERE comment_type = 'pingback'" ),
-            'post_conversion' => ( $count_posts->publish > 0 && $posts_with_comments > 0 ) ? number_format( ( $posts_with_comments / $count_posts->publish ) * 100, 0, '.', '' ) : 0,
-            'theme_version'   => $theme_version,
-            'theme_name'      => $theme_name,
-            'site_name'       => str_replace( ' ', '', get_bloginfo( 'name' ) ),
-            'plugins'         => count( get_option( 'active_plugins' ) ),
-            'plugin'          => urlencode( $plugin_name ),
-            'wpversion'       => get_bloginfo( 'version' ),
-            'api_version'	  => '2.4',
-        );
-
-        foreach ( $data as $k => $v ) {
-            $url .= $k . '/' . $v . '/';
-        }
-        wp_remote_get( $url );
-        set_transient( 'presstrends_theme_cache_data', $data, 60 * 60 * 24 );
-    }
-}
-
-// PressTrends WordPress Action
-add_action('admin_init', 'presstrends_theme');
 ?>

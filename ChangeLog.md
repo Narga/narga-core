@@ -2,6 +2,17 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.2.6 - February 24th, 2013
+* Prefix all class, functions, namespace with narga
+* Remove PressTrends function to prevent it phones home, follow Theme Review Wiki Guide
+* Fix typo in alert shortcode, remove favicon to allow child theme use user-defined icon 
+
+### v1.2.5 - February 1st, 2013
+* Update ZURB Foundation v3.2.5
+* Fix sticky class conflict with ZURB Foundation Topbar
+* Rewrite loop functions to display sticky post and normal post seperator
+* Add twentytwelve title function to get blog title nicely formated
+
 ### v1.2.4 - January 12nd, 2013
 * Fix Google+ button syntax
 * Change main HTML5 structure to improved CSS selectors, not really effect to current child themes

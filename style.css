@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------------------------------------
 Theme Name:         NARGA
 Theme URI:          http://www.narga.net/narga-core/
-Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">Narga</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://www.narga.net/narga-core-demo" title="NARGA Framework Demo">NARGA Framework Demo</a>
-Version:            1.2.4
+Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">Narga</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://demo.narga.net/" title="NARGA Framework Demo">NARGA Framework Demo</a>
+Version:            1.2.6
 Tags:              two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, microformats, theme-options, threaded-comments, translation-ready 
 Author:             Nguyễn Đình Quân
 Author URI:         http://www.narga.net/
@@ -25,13 +25,12 @@ License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 /* Global */
 body {font: 400 14px/1.6 'Open Sans', 'Lucida Sans Unicode', "Helvetica Neue", Helvetica, "Lucida Grande", Verdana, sans-serif; line-height:1.6;text-rendering: optimizelegibility;}
 h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', "Helvetica Neue", "Helvetica", Arial, Verdana, cursive; font-weight: 400;letter-spacing: -1px;}
-.container {padding: 0 18px;}
 ul li {list-style-position: inside;}
 aside#sidebar ul li, footer#content-info ul li {list-style-image: url(images/bullet.png);}
 code {padding: 1px 2px;color: #c60f13;}
 pre {padding: 1px 4px;}
 code, pre {font-family: Monaco,Menlo,Consolas,"Courier New",monospace;font-size: 12px;border-radius: 3px 3px 3px 3px;background-color: rgb(247, 247, 249);border: 1px solid rgb(225, 225, 232);}
-
+#main {width: 1200px; max-width: 100%; min-width: 768px;}
 /*  Top Bar Search Form */
 .top-bar ul > li.search:hover { background: none !important; }
 .top-bar ul > li.search { padding: 0 2px; }

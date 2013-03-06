@@ -3,10 +3,9 @@
 :: Narga WordPress Framework Customizer
 ------------------------------------ */
 # Narga's Theme Customization Class
-
 if ( class_exists( 'WP_Customize_Control' ) ) {
     # Adds textarea support to the theme customizer
-    class WP_Customize_Textarea_Control extends WP_Customize_Control {
+    class Narga_Textarea_Control extends WP_Customize_Control {
         public $type = 'textarea';
         public function __construct( $manager, $id, $args = array() ) {
             $this->statuses = array( '' => __( 'Default', 'narga' ) );
@@ -253,8 +252,8 @@ class narga_topbar_walker extends Walker_Nav_Menu {
 }
 
 // Navigation search form
-if (!function_exists('search_form_navigation')) :  
-    function search_form_navigation() {
+if (!function_exists('narga_search_form_navigation')) :  
+    function narga_search_form_navigation() {
         echo '<ul id="menu-right-topbar" class="top-bar-menu right">
             <li class="search"><form method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
             <input type="text" class="field" name="s" id="s" placeholder="';
@@ -266,7 +265,8 @@ if (!function_exists('search_form_navigation')) :
 endif;
 
 // Secondary Menu is Widgetable
-function widget_secondary_navigation() {
+if (!function_exists('narga_widget_secondary_navigation')) :  
+function narga_widget_secondary_navigation() {
     echo "<article id=\"secondary_navigation\" class=\"row widget widget_secondary_navigation\"><div class=\"sidebar-section twelve columns\">";
     $menu = wp_nav_menu(array(
         'echo' => false,
@@ -278,14 +278,15 @@ function widget_secondary_navigation() {
     echo str_replace($search, $replace, $menu);
     echo "</div></article>";
 }
+endif;
+
+# Register Secondary Menu is Widgetable
 wp_register_sidebar_widget(
-    '1',        // your unique widget id
-    'Secondary Navigation',          // widget name
-    'widget_secondary_navigation',  // callback function
+    '1',        # your unique widget id
+    'Secondary Navigation',          # widget name
+    'narga_widget_secondary_navigation',  // callback function
     array(                  // options
         'description' => 'Display Secondary Navigation in sidebar'
     )
 );
-
-
 ?>
