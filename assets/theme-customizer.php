@@ -92,71 +92,24 @@ function narga_customizer($wp_customize){
         ),
     )
 );
-
-    $wp_customize->add_section( 'front_page_layout', array(
-        'title'          => 'Front Page Layout',
-        'priority'       => 125,
-        'description'    => 'Change settings for your front page layout.',
-        'transport' => 'postMessage',
-    ) );
-
-    $wp_customize->add_setting( 'posts_excerpt', array(
-        'default' => 'enable',
-    ) );
-    $wp_customize->add_control( 'posts_excerpt', array(
-        'label'   => 'Posts excerpt and clean HTML tags',
-        'section' => 'front_page_layout',
-        'type'    => 'select',
-        'choices'    => array(
-            'enable' => 'Enable',
-            'disable' => 'Disable',
-        ),
-    ));
-    $wp_customize->add_setting( 'posts_grid_layout', array(
-        'default' => 'enable',
-    ) );
-
-    $wp_customize->add_control( 'posts_grid_layout', array(
-        'label'   => 'Grid layout for latest posts',
-        'section' => 'front_page_layout',
-        'type'    => 'select',
-        'choices'    => array(
-            'enable' => 'Enable',
-            'disable' => 'Disable',
-        ),
-    ));
-    $wp_customize->add_setting( 'posts_thumbnail', array(
-        'default' => 'enable',
-    ) );
-
-    $wp_customize->add_control( 'posts_thumbnail', array(
-        'label'   => 'Use Post Thumbnail',
-        'section' => 'front_page_layout',
-        'type'    => 'select',
-        'choices'    => array(
-            'enable' => 'Enable',
-            'disable' => 'Disable',
-        ),
-    ));
-    return $wp_customize;
 }
 // create widget areas: sidebar, footer
 $sidebars = array('Sidebar');
 foreach ($sidebars as $sidebar) {
     register_sidebar(array('name'=> $sidebar,
-        'before_widget' => '<article id="%1$s" class="row widget %2$s"><div class="sidebar-section twelve columns">',
+        'before_widget' => '<article id="%1$s" class="row widget %2$s"><div class="sidebar-section large-12 small-12 columns">',
         'after_widget' => '</div></article>',
-        'before_title' => '<h4><strong>',
-        'after_title' => '</strong></h4>'
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
     ));
 }
 $sidebars = array('Footer');
 foreach ($sidebars as $sidebar) {
     register_sidebar(array('name'=> $sidebar,
-        'before_widget' => '<article id="%1$s" class="three columns widget %2$s"><div class="footer-section">',
+        'before_widget' => '<article id="%1$s" class="large-3 columns widget hide-for-small %2$s"><div class="footer-section">',
         'after_widget' => '</div></article>',
-        'before_title' => '<h4><strong>',
-        'after_title' => '</strong></h4>'
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
     ));
 }
 /*  --------------------------------
@@ -198,6 +151,21 @@ function narga_topbar_r() {
         'walker' => new narga_topbar_walker()
     ));
 } // end right top bar
+// Secondary Menu is Widgetable
+if (!function_exists('narga_footer_navigation')) :  
+function narga_footer_navigation() {
+    $menu = wp_nav_menu(array(
+        'echo' => false,
+        'items_wrap' => '<dl class="%2$s">%3$s</dl>',
+        'theme_location' => 'footer_navigation',
+        'container' => false,
+        'menu_class' => 'sub-nav right'
+    )); 
+    $search  = array('<ul', '</ul>', '<li', '</li>', 'current-menu-item');
+    $replace = array('<dl', '</dl>', '<dd', '</dd>', 'active');
+    echo str_replace($search, $replace, $menu);
+}
+endif;
 
 /*
 Customize the output of menus for Foundation top bar classes and add descriptions
@@ -254,8 +222,8 @@ class narga_topbar_walker extends Walker_Nav_Menu {
 // Navigation search form
 if (!function_exists('narga_search_form_navigation')) :  
     function narga_search_form_navigation() {
-        echo '<ul id="menu-right-topbar" class="top-bar-menu right">
-            <li class="search"><form method="get" id="searchform" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+        echo '<ul id="menu-right-topbar" class="right hide-for-small">
+            <li class="has-form"><form method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
             <input type="text" class="field" name="s" id="s" placeholder="';
         esc_attr_e( 'Search', 'narga' );
         echo '" />

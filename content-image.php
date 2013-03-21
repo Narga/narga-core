@@ -1,11 +1,11 @@
 <?php
 /**
 * The template for displaying posts in the Image post format
- *
- * @package WordPress
- * @subpackage NARGA Framework
- * @since NARGA Framework 1.2
- */
+*
+* @package WordPress
+* @subpackage NARGA Framework
+* @since NARGA Framework 1.2
+*/
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -18,7 +18,7 @@
     </section>
     <footer>
         <?php narga_entry_meta(); ?>
-    <?php if ( comments_open() ) : ?>
+        <?php if ( comments_open() ) : ?>
         <div class="comments-link">
             <?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'narga' ) . '</span>', __( '1 Reply', 'narga' ), __( '% Replies', 'narga' ) ); ?>
         </div><!-- .comments-link -->

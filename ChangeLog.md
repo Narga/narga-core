@@ -2,6 +2,17 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.3 - March, 2013
+* Update ZURB Foundation v4.0.9, jQuery v1.9.1, change content width to 690px
+* Clean topbar search form, change template CSS class to work with ZURB Foundation 4
+* Add footer navigation menu.
+* Rewrite orbit function to compatible with ZURB Foundation 4
+* Remove automatic add odd and even class per post. Remove Customizer and userless functions. Remove Video post format defined file, add post format label.
+* Localization in footer, fix some un-translatable text.
+* Add author information box below post content in single post. Fix post tags disapppear from previous version.
+
+* Optimize and remove unused codes
+
 ### v1.2.6 - February 24th, 2013
 * Prefix all class, functions, namespace with narga
 * Remove PressTrends function to prevent it phones home, follow Theme Review Wiki Guide

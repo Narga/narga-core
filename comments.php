@@ -29,9 +29,8 @@ return;
 <?php // You can start editing here. Customize the respond form below ?>
 <?php if ( have_comments() ) : ?>
 <section id="comments">
-    <h3 class="comments-title">			<?php
-        printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'narga' ), number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
-        ?>
+    <h3 class="comments-title">		    
+        <?php printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'narga' ), number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );?>
     </h3>
 
     <ol class="commentlist">

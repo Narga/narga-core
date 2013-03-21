@@ -1,16 +1,16 @@
 <?php
 /**
 * The template for displaying posts in the Link post format
- *
- * @package WordPress
- * @subpackage NARGA Framework
- * @since NARGA Framework 1.2
- */
+*
+* @package WordPress
+* @subpackage NARGA Framework
+* @since NARGA Framework 1.2
+*/
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header>
-        <?php _e( '<div class="alert-box success">Link</div>', 'narga' ); ?>
+        <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'View %s', 'narga' ), the_title_attribute( 'echo=0' ) ) ); ?>" class="radius label right link-post-title" rel="bookmark"><?php _e( 'Link', 'narga' ); ?></a>
     </header>
     <section class="entry-content">
         <?php the_content(); ?>
