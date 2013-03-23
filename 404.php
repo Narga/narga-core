@@ -9,7 +9,7 @@ index/archive/search.
 */
 get_header(); ?>
 <!-- Row for main content area -->
-<div id="content" class="large-8 columns">
+<div id="content-wrapper" class="large-8 columns">
     <div class="post-box">
         <h2><?php _e('Sorry, the page you were looking for does not exist.', 'narga'); ?></h2>
         <p class="error"><?php _e('The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.', 'narga'); ?></p>

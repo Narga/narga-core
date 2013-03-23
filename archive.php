@@ -21,7 +21,7 @@
 
 <?php get_header(); ?>
 <!-- Row for main content area -->
-<div class="large-8 columns archive-content-wrapper">
+<div id="archive-wrapper" class="large-8 columns">
     <div class="post-box">
         <h2><?php if ( is_day() ) : printf( __( 'Daily Archives: %s', 'narga' ), '<span>' . get_the_date() . '</span>' );
             elseif ( is_month() ) :

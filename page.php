@@ -13,10 +13,8 @@
 ?>
 <?php get_header(); ?>
 <!-- Row for main content area -->
-<div id="page-content" class="large-8 columns" role="content">
-    <div class="post-box">
+<div id="page-content-wrapper" class="large-8 columns" role="content">
         <?php get_template_part('content', 'page'); ?>
-    </div>
 </div><!-- End Content row -->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

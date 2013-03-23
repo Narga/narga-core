@@ -4,7 +4,7 @@ Template Name: Full Width
 */
 get_header(); ?>
     <!-- Row for main content area -->
-    <div id="full-width" class="large-12 columns" role="content">
+    <div id="full-width-wrapper" class="large-12 columns" role="content">
     <div class="post-box">
     <?php get_template_part('content', 'page'); ?>
     </div>

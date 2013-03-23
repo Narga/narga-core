@@ -14,11 +14,11 @@
 <!-- End row for main content area -->
             </section>		
 
-            <!-- End of the main container -->
-        </div>
         <!-- Footer area -->
         <footer class="row" role="contentinfo">
-            <div class="large-12 columns">
+            <div class="row">
+                <?php dynamic_sidebar("Footer"); ?>
+            </div>
                 <hr />
                 <div class="row">
                     <div class="large-6 columns">
@@ -27,7 +27,6 @@
                     <div class="large-6 columns">
                         <?php narga_footer_navigation(); ?>
                     </div>
-                </div>
             </div>
         </footer>
         <!-- Check for Zepto support, load jQuery if necessary -->

@@ -10,7 +10,7 @@
 
 <?php get_header(); ?>
 <!-- Row for main content area -->
-<div id="single-content" class="large-8 columns" role="content">
+<div id="single-content-wrapper" class="large-8 columns" role="content">
     <div class="post-box">
         <?php while ( have_posts() ) : the_post(); ?>
         <?php get_template_part('content', get_post_format()); ?>

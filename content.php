@@ -21,7 +21,7 @@
         <?php if(is_singular()) { ?>                   
         <p class="tags"><?php the_tags('<span class="radius label">','</span> <span class="radius label">','</span>'); ?></p>
         <div class="post-author">
-            <h3>About the Author &#151; <?php the_author_posts_link(); ?></h3>
+            <h3><?php _e('About the Author &#151; ', 'narga'); ?><?php the_author_posts_link(); ?></h3>
             <p><?php echo get_avatar(get_the_author_meta('ID'), '80', '', 'The author avatar'); echo get_the_author_meta("description");?></p>
         </div>
         <?php } ?>

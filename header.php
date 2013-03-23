@@ -1,13 +1,13 @@
 <?php
 /**
-* The Header for our theme.
-*
-* Displays all of the head section and everything up till:
-*
-* @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.0
-*/
+ * The Header for our theme.
+ *
+ * Displays all of the head section and everything up till:
+ *
+ * @package WordPress
+ * @subpackage NARGA Framework
+ * @since NARGA Framework 1.0
+ */
 ?>
 <!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -44,10 +44,10 @@
                 </nav>
             </div>
 
-            <!-- Start the main container -->
-            <div id="container" class="container row" role="document">
-
                 <!-- Row for blog navigation -->
-                <?php narga_blog_head(); ?>
+                <div class="row">
+                    <?php narga_blog_head(); ?>
+                </div>
+
                 <!-- Row for main content area -->
                 <section id="main" class="row" role="grid">
