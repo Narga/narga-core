@@ -16,7 +16,7 @@
 
         <!-- Footer area -->
         <footer class="row" role="contentinfo">
-            <div class="row">
+            <div id="footer-widgets">
                 <?php dynamic_sidebar("Footer"); ?>
             </div>
                 <hr />

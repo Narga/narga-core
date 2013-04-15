@@ -25,7 +25,7 @@ License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 /* Global */
 body {font-family: "Open Sans", Helvetica, Arial, sans-serif; text-rendering: optimizeLegibility; }
 h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', sans-serif; font-weight: 300;}
-ul li {list-style-position: inside;}
+ul li, ol li {list-style-position: inside;}
 
 /*  Top Bar Search Form */
 form.search-form input[type=text] {font-size: 12px;height: 28px;width: 72px;float:right;background: #FFF url(images/icon-search.png) no-repeat 5px 9px;padding: 8px 10px 8px 18px;color:#5da423;}
@@ -36,10 +36,6 @@ form.search-form input#s:focus {width: 150px;}
 /* Main Content */
 .entry-content, .textwidget {text-align:justify;}
 .post-author {display:block;margin:18px 0;}
-/* Alternate posts css classes */
-article.odd {clear:left;}
-article.even {clear:right;}
-.no-grid {max-width:100%;}
 
 /* Add Align position for images and figures */
 .alignright { float: right; margin: 0 0 18px 18px; }
@@ -66,7 +62,7 @@ figcaption.wp-caption-text { padding: 8px 10px; line-height: 18px; color: #555;}
 .tags a {color:#fff;font-weight:normal;}
 
 /* Sidebar Adjustment */
-aside#sidebar .textwidget {
+div.textwidget {
     font-family: inherit;
     font-weight: normal;
     font-size: 1em;

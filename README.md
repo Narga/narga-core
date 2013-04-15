@@ -1,6 +1,6 @@
 Introduction
 ====================
-NARGA Framework is an extremely versatile HTML5 & CSS3 WordPress framework based on ZURB's [Foundation](http://foundation.zurb.com), a powerful tool for building prototypes on any kind of devices. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. This Framework follows [HTML5 Boilerplate](http://html5boilerplate.com) standard with the layout grid inspired by [One% CSS Grid](http://onepcssgrid.mattimling.com) and is [hNews microformat](https://www.readability.com/publishers/guidelines) ready. It is optimized for Search Engine while at the same time improves readability.
+NARGA Framework is an extremely versatile HTML5 & CSS3 WordPress framework based on ZURB's [Foundation](http://foundation.zurb.com), a powerful tool for building prototypes on any kind of devices. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. This Framework follows [HTML5 Boilerplate](http://html5boilerplate.com) standard with the layout grid inspired by ZURB Foundation Templates and is [hNews microformat](https://www.readability.com/publishers/guidelines) ready. It is optimized for Search Engine while at the same time improves readability.
 
 Because it's a percentage based grid system, it means that it will perfectly adapt to all screen resolutions (mobile, tablets and big screens). It is extremely easy to create your blog, CMS, brochure and any other kind of sites with NARGA Framework.
 
@@ -12,11 +12,10 @@ I've tested and found that NARGA Framework works well with [bbPress 2.0](http://
 * Forum:            [http://www.narga.net/forum/][1]
 * BitBucket:        [https://bitbucket.org/narga/narga-core][8]
 
-###Learn more about Foundation & One% CSS Grid ###
+###Learn more about Foundation###
 * [Foundation Homepage](http://foundation.zurb.com)
 * [Foundation Documentation](http://foundation.zurb.com/docs)
 * [Foundation GitHub](https://github.com/zurb/foundation)
-* [One% CSS Grid](http://onepcssgrid.mattimling.com)
 
 What are the Features?
 ======================
@@ -25,7 +24,7 @@ NARGA Framework inherits all the cool features from Foundation, and packs with s
 ###Support Features###
 * HTML5 Boilerplate standard and is hNews microformat ready.
 * Optimized for SEO.
-* Inspired from [One% CSS Grid](http://onepcssgrid.mattimling.com), it fits 1280px screens (in fullscreen view)
+* Inspired from ZURB Foundation Templates for better WordPress practice.
 * Basic CSS included, you can also use it as a finished theme.
 * Foundation files are separate, you can update Foundation without any problems. Of course, is is always a good idea to have some backups.
 * Support child themes, all parent functions can replace in functions.php.
@@ -38,12 +37,8 @@ NARGA Framework inherits all the cool features from Foundation, and packs with s
 * Custom filter for images, will automatically wrap images with figure tag.
 * Two Widget: sidebar and footer.
 * Two menus: top bar fixed navigation menu and information menu on sidebar.
-* Template structure inspired by [HTML5Doctor](http://html5doctor.com/). Separated loops from templates, for better WordPress practice.
 * Several custom page templates are included in the package. A folder named custom is used for storing all your custom page templates. You can share your custom templates in the forum.
 * Looks good but what if you don't need these features? Sure, you can turn them off.
-
-###PressTrends###
-NARGA Framework is using the service to track the usage of the framework and help us to improve it. Of course, you can always disable it by removing it from functions.php.
 
 Usage
 =====
@@ -59,8 +54,7 @@ Always get update by clone this repository:
 * Extract narga-core.zip and upload the theme folder via FTP to your wp-content/themes/ directory.
 * Go to your WordPress Admin Dashboard > Appearance > Themes and select the NARGA screenshot.
 * Use Live Preview of NARGA Framework to change the options before active.
-* The Front Page Layout Options only changes after save and active theme (sorry for this inconvenience)
-* Orbit Slider use post title and featured image's description as Caption, let review it before set it as featured slide.
+* Make your own child theme with highly customizable functions from this framework
 
 License
 =======

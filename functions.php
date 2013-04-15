@@ -41,7 +41,6 @@ if (!isset( $content_width))
 # Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
         add_theme_support('post-thumbnails');
         set_post_thumbnail_size(764, 342, true);
-        add_image_size( 'grid-post-thumbnails', 346, 135, true);
 
 # Support Custom Background
         add_theme_support( 'custom-background' );

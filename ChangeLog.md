@@ -2,6 +2,9 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
+### v1.3.2 - March rd, 2013
+* Update Readme file, add some CSS selectors
+
 ### v1.3.1 - March 23rd, 2013
 * Add footer widgets
 * Change CSS selectors for more flexible layout, remove and rewrite some in style.css
