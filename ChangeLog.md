@@ -2,8 +2,26 @@
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
-### v1.3.2 - March rd, 2013
-* Update Readme file, add some CSS selectors
+### TODO
+* Google Font chooser
+* Header customizable
+
+### v1.3.3 - May 3rd, 2013
+* Upgrade ZURB Foundation v4.1.5
+* Update README file for more compatible with GPL, remove others content, script which is not compatible with GPL, add Shortcode manual
+* Remove custom function that replace default jQuery library by Google jQuery, it's planning re-add in future as a option in Customization
+* Change the way to load default stylesheet style.css, in previous version it's loading duplicate in function.php and header.php
+* Fix Image Clear Float
+* Add post navigation to drive user to previous or next post
+* Fix topbar navigation height
+* Beautifier CSS code in style.css to easier viewing and edititng.
+* Remove default body font for child theme
+* Re-struture comments list
+* Fix some Internationalization strings
+* Remove Secondary Menu as Widgetable on sidebar because it's userless, re-add if I receive any requests
+* Temporate remove audio post format until WordPress v3.6 was released, fix Video Post Format distorted
+* Add function to change content width on full-width template
+* Remove unused codes, fix some minor bugs
 
 ### v1.3.1 - March 23rd, 2013
 * Add footer widgets

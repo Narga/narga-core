@@ -31,7 +31,7 @@ require( get_template_directory() . '/assets/theme-customizer.php' );
     :: Narga WordPress Framework Basic Setup
     ------------------------------------- */
 if (!isset( $content_width))
-    $content_width = 690;
+    $content_width = 640;
 
     function narga_setup() {
 
@@ -49,14 +49,15 @@ if (!isset( $content_width))
         add_editor_style( 'stylesheets/custom.css' );
 
 # Add post formarts supports. http://codex.wordpress.org/Post_Formats
-        add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));
+        add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'chat'));
 
 # Add menu supports. http://codex.wordpress.org/Function_Reference/register_nav_menus
         add_theme_support('menus');
+        
+# Register Navigation
         register_nav_menus(array(
                     'top-bar-l' => __('Left Top Bar', 'narga'),
                     'top-bar-r' => __('Right Top Bar', 'narga'),
-                    'secondary_navigation' => __('Secondary Navigation', 'narga'),
                     'footer_navigation' => __('Footer Navigation', 'narga')
                     ));
 
@@ -69,22 +70,19 @@ add_action('after_setup_theme', 'narga_setup');
    :: Enqueue Scripts and Styles for Front-End
    ---------------------------------------- */
 function narga_assets() {
+    global $wp_styles;
+
     if ( !is_admin() ) {
+# Loads Foundation Main stylesheet
         wp_register_style( 'foundation', get_template_directory_uri() . '/stylesheets/foundation.min.css', false );
         wp_enqueue_style( 'foundation' );
-
-# Load style.css to allow contents overwrite foundation & app css
-        wp_register_style( 'style', get_template_directory_uri() . '/style.css', false );
-        wp_enqueue_style( 'style' );
 
 # Load Google Fonts API
         wp_register_style( 'google-font',"http://fonts.googleapis.com/css?family=Oswald|Open+Sans:400,400italic,700,700italic", false );
         wp_enqueue_style( 'google-font' );
 
-# Enqueue to header
-        wp_deregister_script( 'jquery' );
-        wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', array(), '1.9.1', true);
-        wp_enqueue_script( 'jquery' );
+# Loads our main stylesheet.
+        wp_enqueue_style( 'narga-style', get_stylesheet_uri() );
 
 # Load JavaScripts
         wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array(), '1.0', true );
@@ -112,18 +110,33 @@ define('ACTION_FILE', $upload_dir['basedir'].'/custom-functions.php');
 if(file_exists(ACTION_FILE))
     include(ACTION_FILE);
 
-    /* ---------------------------------------------------------------
-       :: Load custom.css file if it exists in the uploads folder
-       :: Brought from PressWork - http://presswork.me
-       --------------------------------------------------------------- */
+/* ---------------------------------------------------------------
+:: Load custom.css file if it exists in the uploads folder
+:: Brought from PressWork - http://presswork.me
+--------------------------------------------------------------- */
     define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
     define('CSS_DISPLAY', $upload_dir['baseurl'].'/custom.css');
 if(file_exists(CSS_FILE))
     add_action("wp_print_styles", "add_custom_css_file", 99);
-    function pw_add_custom_css_file() {
+    function narga_add_custom_css_file() {
         wp_register_style('narga_custom_css', CSS_DISPLAY);
         wp_enqueue_style( 'narga_custom_css');
     }
+
+/**
+ * Adjusts content_width value for full-width and single image attachment
+ * templates, and when there are no active widgets in the sidebar.
+ * @since NARGA v1.3.3
+ * @from Twenty Twelve
+ */
+function narga_content_width() {
+	if ( is_page_template( 'templates/full-width.php' ) || is_attachment() ) {
+		global $content_width;
+		$content_width = 975;
+	}
+}
+add_action( 'template_redirect', 'narga_content_width' );
+
 
 # add ie conditional html5  to header
 function narga_ie_conditional_html5 () {
@@ -217,20 +230,18 @@ if (!function_exists('narga_entry_meta')) :
         comments_popup_link( __( 'Be the first to comment', 'narga' ), __( '1 comment', 'narga'),  __( '% comments', 'narga' ),  __( 'comments-link', 'narga' ),  __( 'Comments are off for this post', 'narga' ));
         echo '</span>';
         endif;
-        echo '<time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time>';
+        echo '<a href="' . get_permalink() . '" title="' . get_the_time() . '" rel="bookmark"><time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time></a>';
         if (false === get_post_format()) {
-            echo ' in <span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author">'. __('by', 'narga') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';            
+            echo __(' in ', 'narga') .'<span class="entry-categories">' . get_the_category_list( ', ' ) . '</span> <span class="byline author">' . __(' by ', 'narga') . '<a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .'</a></span>';            
         } else {
             echo '';
         }
-        edit_post_link('Edit', ' | ', '');
+        edit_post_link(__('Edit', 'narga'), ' | ', '');
         echo '</p>';
     }
 endif;
 
-/*  -----------------------------------------
-    :: Fix post sticky class conflict with topbar 
-    ------------------------------------------- */
+# Fix post sticky class conflict with topbar 
 if (!function_exists('narga_fix_sticky_class')) :  
     function narga_fix_sticky_class($classes) {
         $classes = array_diff($classes, array("sticky"));
@@ -239,18 +250,17 @@ if (!function_exists('narga_fix_sticky_class')) :
 add_filter('post_class','narga_fix_sticky_class');
 endif;
 
-
 # Replace more link text
 if (!function_exists('narga_more_link')) :  
     function narga_more_link( $more_link, $more_link_text ) {
-        return str_replace( $more_link_text, 'Read More &#187;', $more_link );
+        $readmore = __( 'Read More &#187;', 'narga' );
+        return str_replace( $more_link_text, $readmore, $more_link );
     }
 add_filter( 'the_content_more_link', 'narga_more_link', 10, 2 );
 endif;
 
-/*  --------------------------------
-    :: Post Thumbnail Control
-    --------------------------------- */
+
+# Post Thumbnail Control 
 if (!function_exists('narga_post_thumbnail')) :  
     function narga_post_thumbnail() {
         if (get_theme_mod( 'posts_thumbnail') == 'enable') {
@@ -272,29 +282,47 @@ endif;
 if (!function_exists('narga_comments')) :  
     function narga_comments($comment, $args, $depth) {
         $GLOBALS['comment'] = $comment;
+	switch ( $comment->comment_type ) :
+		case 'pingback' :
+		case 'trackback' :
+		// Display trackbacks differently than normal comments.
+	?>
+	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+		<p><?php _e( 'Pingback:', 'narga' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'narga' ), '<span class="edit-link">', '</span>' ); ?></p>
+	<?php
+			break;
+		default :
+		// Proceed with normal comments.
+		global $post;
         echo '<li ';
         comment_class();
         echo '>
             <article id="comment-' . get_comment_ID() . '">
-            <header class="comment-author">';
-        echo get_avatar($comment,$size='64');
-        printf(__('<cite class="fn">%s</cite>', 'narga'), get_comment_author_link());
+            <header class="comment-meta comment-author vcard">';
+        echo get_avatar($comment,64);
+        printf(__('<cite class="fn">%s</cite>', 'narga'), get_comment_author_link(),
+        // If current post author is also comment author, make it known visually.
+        ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author', 'narga' ) . '</span>' : '');
         echo '<time datetime="' . get_comment_date('c') . '"  itemprop="commentTime"><a itemprop="url" href="' . htmlspecialchars( get_comment_link( $comment->comment_ID ) ) . '">';
         printf(__('%1$s', 'narga'), get_comment_date(),  get_comment_time());
         echo '</a></time>
             </header>
             <section itemprop="commentText" class="comment">';
-        comment_text();
         if ($comment->comment_approved == '0') : 
-            echo '<div class=" alert label">';
+            echo '<div class="comment-awaiting-moderation">';
         _e('Your comment is awaiting moderation.', 'narga');
         echo '</div>';
         endif;
-        echo '</section>';
+        comment_text();
         $id = $comment->comment_ID;
-        edit_comment_link(__('Edit', 'narga'), '<a class="comment-del-link" href="'.admin_url("comment.php?action=cdc&c=$id").'">Del</a> ', '<a class="comment-spam-link" href="'.admin_url("comment.php?action=cdc&dt=spam&c=$id").'">Spam</a>');
-        comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth'])));
-        echo '</article>';
+        edit_comment_link(__('Edit', 'narga'), '<a class="comment-del-link" href="'.admin_url("comment.php?action=cdc&c=$id").'">' . __( 'Del', 'narga' ) . '</a> ', '<a class="comment-spam-link" href="'.admin_url("comment.php?action=cdc&dt=spam&c=$id").'">' . __( 'Spam', 'narga' ) . '</a>');
+        echo '<span class="reply">';
+        comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'narga' ), 'after' => '<span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) );
+        echo '</span>
+            </section>
+            </article>';
+		break;
+	endswitch; // end comment_type check
     }
 endif;
 

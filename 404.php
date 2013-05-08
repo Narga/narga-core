@@ -11,14 +11,17 @@ get_header(); ?>
 <!-- Row for main content area -->
 <div id="content-wrapper" class="large-8 columns">
     <div class="post-box">
-        <h2><?php _e('Sorry, the page you were looking for does not exist.', 'narga'); ?></h2>
-        <p class="error"><?php _e('The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.', 'narga'); ?></p>
-        <p><?php _e('We couldn\'t find that page. If you think this was an error on our part, please let us know. If not, maybe these links will help you:', 'narga'); ?></p>
-        <ul> 
-            <li><?php _e('Check your spelling', 'narga'); ?></li>
-            <li><?php printf(__('Return to the <a href="%s">home page</a>', 'narga'), home_url()); ?></li>
-            <li><?php _e('Click the <a href="javascript:history.back()">Back</a> button', 'narga'); ?></li>
-        </ul>
+        <article id="post-0" class="post error404 no-results not-found">
+            <header class="entry-header">
+                <h1 class="entry-title"><?php _e( 'This is somewhat embarrassing, isn&rsquo;t it?', 'narga' ); ?></h1>
+            </header>
+
+            <div class="entry-content">
+                <p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'narga' ); ?></p>
+                <?php get_search_form(); ?>
+            </div><!-- .entry-content -->
+        </article><!-- #post-0 -->
+
     </div>
 
 </div><!-- End Content row -->

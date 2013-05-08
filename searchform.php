@@ -10,7 +10,7 @@
             <input type="text" class="input-text" value="" name="s" placeholder="<?php _e('Enter your search keywords...', 'narga'); ?>">
         </div>
         <div class="large-3 small-3 columns">
-            <input type="submit" id="searchsubmit" value="Search" class="button expand postfix">
+            <input type="submit" id="searchsubmit" value="<?php _e( 'Search', 'narga' ); ?>" class="button expand postfix">
         </div>
     </div>
 </form>

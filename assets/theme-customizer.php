@@ -78,7 +78,7 @@ function narga_customizer($wp_customize){
         'settings'   => 'number_slide',
     ) ) );
     $wp_customize->add_setting('topbar_search_form_toggle', array(
-        'default' => 'enable',
+        'default' => 'disable',
     )
 );
     // Add Topbar Search Form Toggle
@@ -151,6 +151,7 @@ function narga_topbar_r() {
         'walker' => new narga_topbar_walker()
     ));
 } // end right top bar
+
 // Secondary Menu is Widgetable
 if (!function_exists('narga_footer_navigation')) :  
 function narga_footer_navigation() {
@@ -232,29 +233,4 @@ if (!function_exists('narga_search_form_navigation')) :
     }
 endif;
 
-// Secondary Menu is Widgetable
-if (!function_exists('narga_widget_secondary_navigation')) :  
-function narga_widget_secondary_navigation() {
-    echo "<article id=\"secondary_navigation\" class=\"row widget widget_secondary_navigation\"><div class=\"sidebar-section twelve columns\">";
-    $menu = wp_nav_menu(array(
-        'echo' => false,
-        'items_wrap' => '<dl class="%2$s">%3$s</dl>','theme_location' => 'secondary_navigation', 'container' => false, 'menu_class' => 'sub-nav'
-    )); 
-
-    $search  = array('<ul', '</ul>', '<li', '</li>', 'current-menu-item');
-    $replace = array('<dl', '</dl>', '<dd', '</dd>', 'active');
-    echo str_replace($search, $replace, $menu);
-    echo "</div></article>";
-}
-endif;
-
-# Register Secondary Menu is Widgetable
-wp_register_sidebar_widget(
-    '1',        # your unique widget id
-    'Secondary Navigation',          # widget name
-    'narga_widget_secondary_navigation',  // callback function
-    array(                  // options
-        'description' => 'Display Secondary Navigation in sidebar'
-    )
-);
 ?>

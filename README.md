@@ -11,6 +11,7 @@ I've tested and found that NARGA Framework works well with [bbPress 2.0](http://
 * Demo:             [http://www.narga.net/narga-core-demo][3]
 * Forum:            [http://www.narga.net/forum/][1]
 * BitBucket:        [https://bitbucket.org/narga/narga-core][8]
+* GitHub            [https://github.com/narga/narga-core]
 
 ###Learn more about Foundation###
 * [Foundation Homepage](http://foundation.zurb.com)
@@ -56,6 +57,117 @@ Always get update by clone this repository:
 * Use Live Preview of NARGA Framework to change the options before active.
 * Make your own child theme with highly customizable functions from this framework
 
+Shortcodes
+=========
+I've converted almost main ZURB Foundation functions to shortcodes. That’s why the decision is up to you – you either install our shortcode plugins designed to work with themes using Foundation CSS & JS or you don’t. It’s that easy!
+
+***Alert Box Shortcode***
+
+The [alert]…[/alert] shortcode gives you and your editors and easy way to display the [Foundation Alerts][http://foundation.zurb.com/old-docs/f3/elements.php#alertsEx] with some additional options.
+
+_Shortcode options_
+
+[alert]…[/alert] // no options
+
+[alert type=alert]…[/alert] // type attribute alert
+
+[alert type=success]…[/alert] // type attribute success
+
+[alert type=secondary]…[/alert] // type attribute secondary
+
+[alert close=no]…[/alert] // no close button
+
+[alert timeout=10000]…[/alert] // timeout of 10s
+
+***Columns Shortcodes***
+
+One of the best features of Foundation is the powerful grid it offers, used throughout required+ Foundation. We took the grid and turned it into an easy and powerful shortcode plugin, meet [column]:
+
+// The first example
+[column columns=4]…[/column][column columns=8]…[/column]
+
+// The second example
+[column columns=3]…[/column][column columns=6]…[/column][column columns=3]…[/column]
+
+// The third example (note the offset attribute)
+[column columns=6 offset=3]…[/column][column columns=3]…[/column]
+
+
+***Button Shortcode***
+
+Easy to add a button with pre-define shortcodes
+
+[button]…[/button] // no options
+
+[alert style=secondary/alert/success]…[/alert] // style of buttons
+
+[alert type=radius/round]…[/alert] // type of buttons
+
+***Panel Shortcode***
+
+A panel is a simple, helpful Foundation component that enables you to outline sections of your page easily. 
+
+[panel][/panel]
+
+***Tabular shortcode***
+
+Okay, they're not the sexiest things ever, but tables get the job done (for tabular data, of course).
+
+[tabs] [tab][/tab] [/tabs]
+
+***Hide/Show Shortcode***
+
+_Show block_
+
+[show][/show]
+
+_Hide block_
+
+[hide][/hide]
+
+***Reveal Shortcode***
+
+Simple modal windows to create an even more stunning experience for users.
+
+[reveal link="Link text" linkclass="button radius alert"]
+…
+[=reveal link="Link text" linkclass="button radius secondary"]
+…
+[=/reveal]
+[/reveal]
+
+***HTML5 Audio player***
+
+Converts audio5 shortcode to HTML5 audio tag
+
+[audio5 src="http://yoursite.com/upload-folder/filename.mp3" loop="true" autoplay="autoplay" preload="auto" loop="loop" controls=""]
+
+***HTML5 Video player***
+
+Converts video5 shortcode to HTML5 video tag
+
+[video5 src="http://yoursite.com/upload-folder/filename.mp4" ontrols=""]
+
+***Social Media buttons***
+
+_Twitter button shortcode_
+
+[t related='NARGA Framework - A rock solid starting WordPress HTML5 theme for developers' countbox='horizontal/vertical' via='narga' ]
+
+_Facebook Like button shortcode_
+
+[fb  send='true' action='recommend' layout='button_count/box_count']
+
+_Google Plus button shortcode_
+
+[gp size='small/medium/tall']
+
+***GitHub Gist shortcode***
+
+Display GitHub Gist with shortcode without raw HTML embed
+
+[gist id="ID" file="FILE"]
+
 License
 =======
 
@@ -70,13 +182,6 @@ Ownership
 You may not claim intellectual or exclusive ownership of any of our products, modified or unmodified. All products are property of [Narga][2] and their respective designers. Our products are provided “as is” without warranty of any kind, either expressed or implied. In no event shall we be liable for any damages including, but not limited to, direct, indirect, special, incidental or consequential damages or other losses arising out of the use of or inability to use our products.
 
 Also if you intend to use the **NARGA Framework** in a commercial project, or a template you intend to redistribute in any form, please retain a "[Powered by Narga][2]" logo and link in the backend administrative interface.
-
-Branding Removal License
-========================
-**The Branding Removal** license is just a license to remove "Powered by Narga" graphic from the footer of pages that your clients can see and nothing more, but it does not give you license to re-brand the system and sell it as your own product.
-
-The price of the Branding Removal license is **$99**. You can purchase it by [contact direct to the author: Nguyễn Đình Quân][5].
-
 
  [1]: http://www.narga.net/forum/
  [2]: http://www.narga.net/

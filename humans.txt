@@ -16,4 +16,4 @@
 
 # License
 
-   Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License  
+   GNU General Public License v2  

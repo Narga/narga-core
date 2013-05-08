@@ -9,12 +9,17 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
     <header>
-        <h2><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'View %s', 'narga' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
-        <?php narga_entry_meta(); ?>
+    <?php if ( is_single() ) : ?>
+    <h1 class="entry-title"><?php the_title(); ?></h1>
+    <?php else : ?>
+    <h2 class="entry-title">
+    <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'View %s', 'narga' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+    <?php endif; // is_single() ?>
+    <?php narga_entry_meta(); ?>
     </header>
     <?php if(!is_singular()) {narga_post_thumbnail();} ?>
-    <section class="entry-content">
-        <?php the_content(); ?>
+    <section class="entry-content <?php if ( has_post_format( 'video' )) {echo 'flex-video';}?>">
+        <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'narga' ) ); ?>
     </section>
     <footer>
         <?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'narga'), 'after' => '</p></nav>' )); ?>

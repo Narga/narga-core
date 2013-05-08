@@ -34,7 +34,7 @@ return;
     </h3>
 
     <ol class="commentlist">
-        <?php wp_list_comments('type=comment&callback=narga_comments'); ?>
+        <?php wp_list_comments( array( 'callback' => 'narga_comments', 'style' => 'ol' ) ); ?>
     </ol>
 
     <footer>
@@ -58,4 +58,3 @@ return;
 <?php endif; // have_comments() ?>
 
 <?php comment_form(); ?>
-

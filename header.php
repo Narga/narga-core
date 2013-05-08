@@ -26,26 +26,30 @@
             <link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/images/devices/narga-icon-ipad.png" />
             <link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/images/devices/narga-icon-retina.png" />
             <link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/images/devices/narga-icon.png" />
-            <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
             <?php wp_head(); ?>
         </head>
         <body <?php body_class(); ?>>
             <!-- ZURB Foundation Topbar -->
-            <div class="contain-to-grid">
+            <div class="fixed">
+                <div class="contain-to-grid">
                 <nav role="navigation" class="top-bar">
                     <ul class="title-area">
                         <li class="name"><h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1></li>
-                        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+                        <li class="toggle-topbar menu-icon"><a href="#"><span><?php _e( 'Menu', 'narga' ); ?></span></a></li>
                     </ul>
                     <section class="top-bar-section">
-                        <?php narga_topbar_l(); ?><?php narga_topbar_r(); ?>
+                        <!-- Left Nav Section -->
+                        <?php narga_topbar_l(); ?>
+                        <!-- Right Nav Section -->
+                        <?php narga_topbar_r(); ?>
                         <?php if (get_theme_mod( 'topbar_search_form_toggle') == 'enable') { narga_search_form_navigation(); } else {echo (''); }?>
                     </section>
                 </nav>
+                </div>
             </div>
 
                 <!-- Row for blog navigation -->
-                <div class="row">
+                <div id="site-header" class="row">
                     <?php narga_blog_head(); ?>
                 </div>
 

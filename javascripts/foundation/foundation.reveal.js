@@ -6,7 +6,7 @@
   Foundation.libs.reveal = {
     name: 'reveal',
 
-    version : '4.0.9',
+    version : '4.1.3',
 
     locked : false,
 
@@ -41,6 +41,8 @@
 
       if (typeof method === 'object') {
         $.extend(true, this.settings, method);
+      } else if (typeof options !== 'undefined') {
+        $.extend(true, this.settings, options);
       }
 
       if (typeof method != 'string') {
@@ -67,6 +69,11 @@
         .on('click.fndtn.reveal touchend.click.fndtn.reveal', this.close_targets(), function (e) {
           e.preventDefault();
           if (!self.locked) {
+            var settings = $.extend({}, self.settings, self.data_options($('.reveal-modal.open')));
+            if ($(e.target)[0] === $('.' + settings.bgClass)[0] && !settings.closeOnBackgroundClick) {
+              return;
+            }
+
             self.locked = true;
             self.close.call(self, $(this).closest('.reveal-modal'));
           }
@@ -101,7 +108,7 @@
         if (open_modal.length < 1) {
           this.toggle_bg(modal);
         }
-        this.hide(open_modal, this.settings.css.open);
+        this.hide(open_modal, this.settings.css.close);
         this.show(modal, this.settings.css.open);
       }
     },
@@ -132,7 +139,7 @@
     toggle_bg : function (modal) {
       if ($('.reveal-modal-bg').length === 0) {
         this.settings.bg = $('<div />', {'class': this.settings.bgClass})
-          .insertAfter(modal);
+          .appendTo('body');
       }
 
       if (this.settings.bg.filter(':visible').length > 0) {
@@ -150,7 +157,7 @@
           var end_css = {
             top: $(window).scrollTop() + el.data('css-top') + 'px',
             opacity: 1
-          }
+          };
 
           return this.delay(function () {
             return el

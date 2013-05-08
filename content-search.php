@@ -26,7 +26,7 @@
         <?php if (is_archive() || is_search()) : // Only display excerpts for archives and search ?>
         <?php the_excerpt(); ?>
         <?php else : ?>
-        <?php the_content('Continue reading...'); ?>
+        <?php the_content( __( 'Continue reading &rarr;', 'narga' ) ); ?>
         <?php endif; ?>
     </section>
     <footer>

@@ -37,7 +37,9 @@
         .each(this.append_custom_markup);
       $('form.custom input[type="checkbox"]', $(this.scope)).not('[data-customforms="disabled"]')
         .each(this.append_custom_markup);
-      $('form.custom select', $(this.scope)).not('[data-customforms="disabled"]')
+      $('form.custom select', $(this.scope))
+          .not('[data-customforms="disabled"]')
+          .not('[multiple=multiple]')
         .each(this.append_custom_select);
     },
 
@@ -45,6 +47,16 @@
       var self = this;
 
       $(this.scope)
+        .on('click.fndtn.forms', 'form.custom span.custom.checkbox', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          self.toggle_checkbox($(this));
+        })
+        .on('click.fndtn.forms', 'form.custom span.custom.radio', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          self.toggle_radio($(this));
+        })
         .on('change.fndtn.forms', 'form.custom select:not([data-customforms="disabled"])', function (e) {
           self.refresh_custom_select($(this));
         })
@@ -56,26 +68,17 @@
             if ($associatedElement.attr('type') === 'checkbox') {
               e.preventDefault();
               $customCheckbox = $(this).find('span.custom.checkbox');
-
-              //the checkbox might be outside after the label
+              //the checkbox might be outside after the label or inside of another element
               if ($customCheckbox.length == 0) {
-                $customCheckbox = $(this).next('span.custom.checkbox');
-              }
-              //the checkbox might be outside before the label
-              if ($customCheckbox.length == 0) {
-                $customCheckbox = $(this).prev('span.custom.checkbox');
+                $customCheckbox = $associatedElement.add(this).siblings('span.custom.checkbox').first();
               }
               self.toggle_checkbox($customCheckbox);
             } else if ($associatedElement.attr('type') === 'radio') {
               e.preventDefault();
               $customRadio = $(this).find('span.custom.radio');
-              //the radio might be outside after the label
+              //the radio might be outside after the label or inside of another element
               if ($customRadio.length == 0) {
-                $customRadio = $(this).next('span.custom.radio');
-              }
-              //the radio might be outside before the label
-              if ($customRadio.length == 0) {
-                $customRadio = $(this).prev('span.custom.radio');
+                $customRadio = $associatedElement.add(this).siblings('span.custom.radio').first();
               }
               self.toggle_radio($customRadio);
             }
@@ -143,11 +146,42 @@
           }
         });
 
+      $(window).on('keydown', function (e) {
+        var focus = document.activeElement,
+            dropdown = $('.custom.dropdown.open');
+
+        if (dropdown.length > 0) {
+          e.preventDefault();
+
+          if (e.which === 13) {
+            dropdown.find('li.selected').trigger('click');
+          }
+
+          if (e.which === 38) {
+            var current = dropdown.find('li.selected'),
+                prev = current.prev(':not(.disabled)');
+
+            if (prev.length > 0) {
+              current.removeClass('selected');
+              prev.addClass('selected');
+            }
+          } else if (e.which === 40) {
+            var current = dropdown.find('li.selected'),
+                next = current.next(':not(.disabled)');
+
+            if (next.length > 0) {
+              current.removeClass('selected');
+              next.addClass('selected');
+            }
+          }
+        }
+      });
+
       this.settings.init = true;
     },
 
     append_custom_markup : function (idx, sel) {
-      var $this = $(sel).hide(),
+      var $this = $(sel).addClass('hidden-field'),
           type  = $this.attr('type'),
           $span = $this.next('span.custom.' + type);
 
@@ -190,7 +224,7 @@
         $currentSelect = $customSelect.prepend('<a href="#" class="current">' + $selectedOption.html() + '</a>' ).find( ".current" );
         $this
           .after( $customSelect )
-          .hide();
+          .addClass('hidden-field');
 
       } else {
         liHtml = $options.map(function() {
