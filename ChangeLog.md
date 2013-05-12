@@ -6,6 +6,15 @@ The content of this file will be list all the tasks has done. I will update it a
 * Google Font chooser
 * Header customizable
 
+### v1.3.4 - May 8th, 2013
+* Update ZURB Foundation v4.1.6
+* Remove unused Post Thumbnail Control function
+* Remove default entry title font size
+* Add more CSS selectors to comment list
+* Remove some shortcodes which is un-compatible with ZURB Foundation v4.1.6
+* Change order of javascript files when page loading
+* Improve style and fixed bugs
+
 ### v1.3.3 - May 3rd, 2013
 * Upgrade ZURB Foundation v4.1.5
 * Update README file for more compatible with GPL, remove others content, script which is not compatible with GPL, add Shortcode manual
@@ -21,6 +30,7 @@ The content of this file will be list all the tasks has done. I will update it a
 * Remove Secondary Menu as Widgetable on sidebar because it's userless, re-add if I receive any requests
 * Temporate remove audio post format until WordPress v3.6 was released, fix Video Post Format distorted
 * Add function to change content width on full-width template
+* Remove comment form submit button style, remove .bypostauthor style for more customizable in child theme
 * Remove unused codes, fix some minor bugs
 
 ### v1.3.1 - March 23rd, 2013

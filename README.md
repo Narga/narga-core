@@ -99,9 +99,9 @@ Easy to add a button with pre-define shortcodes
 
 [button]…[/button] // no options
 
-[alert style=secondary/alert/success]…[/alert] // style of buttons
+[button style=secondary/alert/success]…[/button] // style of buttons
 
-[alert type=radius/round]…[/alert] // type of buttons
+[button type=radius/round]…[/button] // type of buttons
 
 ***Panel Shortcode***
 
@@ -112,29 +112,6 @@ A panel is a simple, helpful Foundation component that enables you to outline se
 ***Tabular shortcode***
 
 Okay, they're not the sexiest things ever, but tables get the job done (for tabular data, of course).
-
-[tabs] [tab][/tab] [/tabs]
-
-***Hide/Show Shortcode***
-
-_Show block_
-
-[show][/show]
-
-_Hide block_
-
-[hide][/hide]
-
-***Reveal Shortcode***
-
-Simple modal windows to create an even more stunning experience for users.
-
-[reveal link="Link text" linkclass="button radius alert"]
-…
-[=reveal link="Link text" linkclass="button radius secondary"]
-…
-[=/reveal]
-[/reveal]
 
 ***HTML5 Audio player***
 

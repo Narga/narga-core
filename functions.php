@@ -85,9 +85,11 @@ function narga_assets() {
         wp_enqueue_style( 'narga-style', get_stylesheet_uri() );
 
 # Load JavaScripts
-        wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array(), '1.0', true );
-        wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/javascripts/vendor/custom.modernizr.js', array(), '1.0', false );
-        wp_enqueue_script( 'narga', get_template_directory_uri() . '/javascripts/narga.js', array(), '1.1', true );
+        wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/javascripts/vendor/custom.modernizr.js', array(), '2.6.2', true );
+
+        wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array(), '4.1.6', true );
+
+        wp_enqueue_script( 'narga', get_template_directory_uri() . '/javascripts/narga.js', array(), '1.3.3', true );
 
 # Enable threaded comments 
         if ( (!is_admin()) && is_singular() && comments_open() && get_option('thread_comments') )
@@ -259,23 +261,6 @@ if (!function_exists('narga_more_link')) :
 add_filter( 'the_content_more_link', 'narga_more_link', 10, 2 );
 endif;
 
-
-# Post Thumbnail Control 
-if (!function_exists('narga_post_thumbnail')) :  
-    function narga_post_thumbnail() {
-        if (get_theme_mod( 'posts_thumbnail') == 'enable') {
-            echo '<div class="post-thumb';
-            if (get_theme_mod( 'posts_grid_layout') == 'disable') { echo ' no-grid'; } else echo ''; echo '">';
-            if (has_post_thumbnail()) {
-                echo '<a href="' . get_permalink() . '" title="Permanent Link to ' . get_the_title() . '">' . the_post_thumbnail('grid-post-thumbnails') . '</a>';
-            } else {
-                echo '';
-            }
-            echo '</div>';
-        } else { echo (''); }
-    }
-endif;
-
 /*  --------------------------------
     :: WordPress Comments Adjustment
     --------------------------------- */
@@ -297,15 +282,19 @@ if (!function_exists('narga_comments')) :
         echo '<li ';
         comment_class();
         echo '>
-            <article id="comment-' . get_comment_ID() . '">
-            <header class="comment-meta comment-author vcard">';
+            <article id="comment-' . get_comment_ID() . '" class="comment">
+            <header>
+            <div class="comment-author vcard">';
         echo get_avatar($comment,64);
         printf(__('<cite class="fn">%s</cite>', 'narga'), get_comment_author_link(),
         // If current post author is also comment author, make it known visually.
-        ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author', 'narga' ) . '</span>' : '');
-        echo '<time datetime="' . get_comment_date('c') . '"  itemprop="commentTime"><a itemprop="url" href="' . htmlspecialchars( get_comment_link( $comment->comment_ID ) ) . '">';
+            ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author', 'narga' ) . '</span>' : '');
+        echo '<div class="comment-meta">
+            <time datetime="' . get_comment_date('c') . '"  itemprop="commentTime"><a itemprop="url" href="' . htmlspecialchars( get_comment_link( $comment->comment_ID ) ) . '">';
         printf(__('%1$s', 'narga'), get_comment_date(),  get_comment_time());
         echo '</a></time>
+            </div>
+            </div>
             </header>
             <section itemprop="commentText" class="comment">';
         if ($comment->comment_approved == '0') : 
