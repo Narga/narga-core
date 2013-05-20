@@ -15,7 +15,6 @@ index/archive/search.
     </header>
     <section class="entry-content">
         <?php the_content(); ?>
-        <?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'narga'), 'after' => '</p></nav>' )); ?>
     </section>
     <footer>
         <?php narga_entry_meta(); ?>

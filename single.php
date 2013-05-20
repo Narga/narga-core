@@ -11,6 +11,7 @@
 <?php get_header(); ?>
 <!-- Row for main content area -->
 <div id="single-content-wrapper" class="large-8 small-12 columns" role="content">
+        <?php narga_breadcrumb(); ?>
         <?php while ( have_posts() ) : the_post(); ?>
         <?php get_template_part('content', get_post_format()); ?>
         <?php endwhile; // end of the loop. ?>

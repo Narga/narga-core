@@ -22,7 +22,7 @@
 <?php get_header(); ?>
 <!-- Row for main content area -->
 <div id="archive-wrapper" class="large-8 columns" role="content">
-    <div class="post-box">
+        <?php narga_breadcrumb(); ?>
         <h2><?php if ( is_day() ) : printf( __( 'Daily Archives: %s', 'narga' ), '<span>' . get_the_date() . '</span>' );
             elseif ( is_month() ) :
             printf( __( 'Monthly Archives: %s', 'narga' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'narga' ) ) . '</span>' );
@@ -42,7 +42,6 @@
             <div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'narga' ) ); ?></div>
         </nav>
         <?php } ?>
-    </div>
 </div><!-- End Content row -->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

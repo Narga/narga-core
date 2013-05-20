@@ -17,8 +17,7 @@
     <?php endif; // is_single() ?>
     <?php narga_entry_meta(); ?>
     </header>
-    <?php if(!is_singular()) {narga_post_thumbnail();} ?>
-    <section class="entry-content <?php if ( has_post_format( 'video' )) {echo 'flex-video';}?>">
+    <section class="entry-content<?php if ( has_post_format( 'video' )) {echo ' flex-video';}?>">
         <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'narga' ) ); ?>
     </section>
     <footer>

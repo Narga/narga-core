@@ -5,6 +5,13 @@ The content of this file will be list all the tasks has done. I will update it a
 ### TODO
 * Google Font chooser
 * Header customizable
+* Icon webfont
+
+### v1.3.5 - May 20th, 2013
+* Add breadcrumbs function and display on category, single, page
+* Fix important bugs when remove Post Thumbnails function
+* Improve layout and fixed bugs
+* Add TODO section to implement in future
 
 ### v1.3.4 - May 8th, 2013
 * Update ZURB Foundation v4.1.6

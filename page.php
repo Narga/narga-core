@@ -14,6 +14,7 @@
 <?php get_header(); ?>
 <!-- Row for main content area -->
 <div id="page-content-wrapper" class="large-8 columns" role="content">
+        <?php narga_breadcrumb(); ?>
         <?php get_template_part('content', 'page'); ?>
         <?php comments_template( '', true ); ?>
 </div><!-- End Content row -->
