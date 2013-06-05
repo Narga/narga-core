@@ -9,7 +9,7 @@ index/archive/search.
 */
 get_header(); ?>
 <!-- Row for main content area -->
-<div id="content-wrapper" class="large-8 columns">
+<div id="404-wrapper" class="large-8 columns">
     <div class="post-box">
         <article id="post-0" class="post error404 no-results not-found">
             <header class="entry-header">

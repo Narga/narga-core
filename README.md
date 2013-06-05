@@ -8,10 +8,9 @@ I've tested and found that NARGA Framework works well with [bbPress 2.0](http://
 
 ###Links of NARGA Framework###
 * Homepage:         [http://www.narga.net/narga-core][6]
-* Demo:             [http://www.narga.net/narga-core-demo][3]
-* Forum:            [http://www.narga.net/forum/][1]
+* Demo:             [http://demo.narga.net/][3]
 * BitBucket:        [https://bitbucket.org/narga/narga-core][8]
-* GitHub            [https://github.com/narga/narga-core]
+* GitHub            [https://github.com/narga/narga-core][1]
 
 ###Learn more about Foundation###
 * [Foundation Homepage](http://foundation.zurb.com)
@@ -49,12 +48,15 @@ This is meant to be a base theme for WordPress custom theme development. A knowl
 
 Always get update by clone this repository:
 
-``git clone git@github.com:Narga/narga-core.git
-``
+`git clone git@github.com:Narga/narga-core.git`
+
+or
+
+`git clone https://bitbucket.org/narga/narga-core`
 
 * Extract narga-core.zip and upload the theme folder via FTP to your wp-content/themes/ directory.
-* Go to your WordPress Admin Dashboard > Appearance > Themes and select the NARGA screenshot.
-* Use Live Preview of NARGA Framework to change the options before active.
+* Go to your `WordPress Admin Dashboard > Appearance > Themes` then select the NARGA screenshot.
+* Use **Live Preview** of **NARGA Framework** to change the options before active.
 * Make your own child theme with highly customizable functions from this framework
 
 Shortcodes
@@ -103,16 +105,6 @@ Easy to add a button with pre-define shortcodes
 
 [button type=radius/round]…[/button] // type of buttons
 
-***Panel Shortcode***
-
-A panel is a simple, helpful Foundation component that enables you to outline sections of your page easily. 
-
-[panel][/panel]
-
-***Tabular shortcode***
-
-Okay, they're not the sexiest things ever, but tables get the job done (for tabular data, of course).
-
 ***HTML5 Audio player***
 
 Converts audio5 shortcode to HTML5 audio tag
@@ -160,9 +152,9 @@ You may not claim intellectual or exclusive ownership of any of our products, mo
 
 Also if you intend to use the **NARGA Framework** in a commercial project, or a template you intend to redistribute in any form, please retain a "[Powered by Narga][2]" logo and link in the backend administrative interface.
 
- [1]: http://www.narga.net/forum/
+ [1]: https://github.com/narga/narga-core
  [2]: http://www.narga.net/
- [3]: http://www.narga.net/narga-core-demo
+ [3]: http://demo.narga.net/
  [4]: http://www.gnu.org/licenses/gpl-2.0.html
  [5]: http://www.narga.net/contact/
  [6]: http://www.narga.net/narga-core

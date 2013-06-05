@@ -36,10 +36,3 @@
 
 <?php endwhile; // End the loop ?>
 
-<?php /* Display navigation to next/previous pages when applicable */ ?>
-<?php if ( function_exists('narga_pagination') ) { narga_pagination(); } else if ( is_paged() ) { ?>
-<nav id="post-nav">
-    <div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'narga' ) ); ?></div>
-    <div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'narga' ) ); ?></div>
-</nav>
-<?php } ?>

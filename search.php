@@ -9,7 +9,7 @@
 
 <?php get_header(); ?>
 <!-- Row for main content area -->
-<div id="content-wrapper" class="large-8 columns" role="content">
+<div id="search-wrapper" class="large-8 columns" role="content">
     <div class="post-box">
         <h2><?php _e('Search Results for', 'narga'); ?> "<?php echo get_search_query(); ?>"</h2>
         <?php get_template_part('content', 'search'); ?>

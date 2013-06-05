@@ -16,7 +16,11 @@
 get_header(); ?>
 <!-- Row for main content area -->
 <div id="main-content" class="large-8 columns" role="content">
-    <?php if (is_front_page() && !is_paged() && get_theme_mod('slide_toggle') == 'enable') narga_orbit_slider(); else {echo (''); }?>
+<?php 
+if (is_front_page() && !is_paged() && narga_options('featured_category') != '-1') :
+    narga_orbit_slider();
+endif;
+?>
     <?php if (!have_posts()) : ?>
     <div class="notice">
         <p class="bottom"><?php _e('Sorry, no results were found.', 'narga'); ?></p>

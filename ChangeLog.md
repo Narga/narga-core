@@ -6,6 +6,17 @@ The content of this file will be list all the tasks has done. I will update it a
 * Google Font chooser
 * Header customizable
 * Icon webfont
+* Topbar customizable: sticky, fixed, Contain Top Bar Width 
+
+### v1.3.6 - June 05th, 2013
+* Remove duplicate navigation in search result page
+* Change theme-customizer.php to customizer.php
+* Change some CSS selector of layout
+* README file edited
+* Refactoring Customize function, class, options for control theme options easier. Allow Customize text strings translable.
+* Rewrite Top Bar function to render with more options: sticky, contain to grid... move all Top Bar function to standalone file.
+* Fix archive template to display tags, category, archive
+* Optimize header.php, orbit slide, add slider indicator
 
 ### v1.3.5 - May 20th, 2013
 * Add breadcrumbs function and display on category, single, page

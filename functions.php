@@ -20,11 +20,13 @@
  * @subpackage NARGA Framework
  * @since NARGA Framework 1.0
  */
+
 /*  -----------------------------------
     :: Narga WordPress Framework Assets
     ------------------------------------ */
-require( get_template_directory() . '/assets/shortcodes.php' );
-require( get_template_directory() . '/assets/theme-customizer.php' );
+require_once locate_template('/assets/customizer.php' );
+require_once locate_template('/assets/shortcodes.php' );
+require_once locate_template('/assets/topbar.php' );
 
 
 /*  ------------------------------------
@@ -199,12 +201,14 @@ endif;
  * Since NARGA v1.1
  *
  */
-if (!function_exists('narga_blog_head')) :  
-    function narga_blog_head() {
-        echo '<header id="header" class="large-12 columns" role="banner">
+if (!function_exists('narga_header')) :  
+    function narga_header() {
+        echo '<div id="site-header" class="row">
+            <header id="header" class="large-12 columns" role="banner">
             <h1><a id="site-title" href="' . esc_url( home_url( '/' ) ) . '" title="' . get_bloginfo('name') . '" rel="home">' . get_bloginfo('name') . '</a></h1>
             <h3 id="tagline" class="hide-for-small">' . get_bloginfo('description') . '</h3>
-            </header>';
+            </header>
+            </div>';
     }  
 endif;
 
@@ -327,8 +331,8 @@ if (!function_exists('narga_orbit_slider')) :
         echo '<div class="orbit-container">
             <ul data-orbit data-options="bullets:false;">';
         $args = array(
-                'category_name' => get_theme_mod('featured_category'),
-                'showposts' => get_theme_mod('number_slide')
+                'cat' => narga_options('featured_category'),
+                'showposts' => narga_options('number_slide')
                 );
         $query_posts = new WP_Query($args);
         while ($query_posts->have_posts()) : $query_posts->the_post();
@@ -340,8 +344,16 @@ if (!function_exists('narga_orbit_slider')) :
         echo '
             <div class="orbit-caption"><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></div></li>' . "\n";
         endwhile;
-        echo '</ul>
-            </div>';
+        echo '</ul>';
+        if (narga_options('slide_indicator') == 1) :
+            $i = 1;
+            echo '<ol class="orbit-bullets">';
+            for($i; $i <= narga_options('number_slide'); $i++) {
+                echo '<li data-orbit-slide-number="' . $i . '"></li>';
+            }
+            echo '</ol>';
+        endif;
+        echo '</div>';
     }
 endif;
 
@@ -399,6 +411,7 @@ endif;
  * Since NARGA v1.3.5
  *
  **/
+if (!function_exists('narga_breadcrumb')) :  
 function narga_breadcrumb() {
     if (!is_home()) {
         echo '<ul class="breadcrumbs"><li><a href="';
@@ -414,6 +427,7 @@ function narga_breadcrumb() {
         echo "</ul>";
     }
 }
+endif;
 
 /**
  * Add Framework Customizer Direct Link
