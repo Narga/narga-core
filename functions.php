@@ -27,7 +27,7 @@
 require_once locate_template('/assets/customizer.php' );
 require_once locate_template('/assets/shortcodes.php' );
 require_once locate_template('/assets/topbar.php' );
-
+require_once locate_template('/assets/integration.php' );
 
 /*  ------------------------------------
     :: Narga WordPress Framework Basic Setup
@@ -75,6 +75,9 @@ function narga_assets() {
     global $wp_styles;
 
     if ( !is_admin() ) {
+# Load jQuery library
+        wp_enqueue_script('jquery', true);
+
 # Loads Foundation Main stylesheet
         wp_register_style( 'foundation', get_template_directory_uri() . '/stylesheets/foundation.min.css', false );
         wp_enqueue_style( 'foundation' );
@@ -233,7 +236,7 @@ if (!function_exists('narga_entry_meta')) :
         echo '<p class="post-meta-data">';
         if (comments_open()) :
             echo ' <span class="entry-comments right">';
-        comments_popup_link( __( 'Be the first to comment', 'narga' ), __( '1 comment', 'narga'),  __( '% comments', 'narga' ),  __( 'comments-link', 'narga' ),  __( 'Comments are off for this post', 'narga' ));
+        comments_popup_link( __( 'No comment', 'narga' ), __( '1 comment', 'narga'),  __( '% comments', 'narga' ),  __( 'comments-link', 'narga' ),  __( 'Comments are off for this post', 'narga' ));
         echo '</span>';
         endif;
         echo '<a href="' . get_permalink() . '" title="' . get_the_time() . '" rel="bookmark"><time class="updated" datetime="'. get_the_time('c') .'">'. sprintf(__('%s', 'narga'), get_the_time('M jS, Y'), get_the_time()) .'</time></a>';

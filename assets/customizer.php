@@ -91,9 +91,10 @@ function narga_options($name, $default = false) {
 add_action( 'customize_register', 'narga_customizer' );
 function narga_customizer($wp_customize){
 
+    # Orbit Slider as Featured Slider
     $wp_customize->add_section('narga_featured_categories', array(
         'title' => 'Orbit Slider',
-        'priority' => 36,
+        'priority' => 80,
         'description'    => __('Orbit Slider Configuration', 'narga'),
         'transport' => 'postMessage',
     ));
@@ -141,7 +142,7 @@ function narga_customizer($wp_customize){
         'priority'  => 3,
     ) );
 
-
+    # Top Bar Title
     $wp_customize->add_setting( 'narga_options[topbar_title]', array(
         'default'        => get_bloginfo('name'),
         'type'           => 'option',
@@ -225,6 +226,85 @@ function narga_customizer($wp_customize){
         'transport' => 'postMessage',
         'priority' => 6,
     ) );
+
+    # Integration Services
+    $wp_customize->add_section('narga_integration', array(
+        'title' => 'Integration Services',
+        'priority' => 100,
+        'description'    => __('Integration Services', 'narga'),
+        'transport' => 'postMessage',
+    ));
+
+    # Google Analytics
+    $wp_customize->add_setting( 'narga_options[google_analytics]', array(
+        'default'        => '',
+        'type'           => 'option',
+        'capability'     => 'manage_options',
+    ) );
+
+    $wp_customize->add_control( 'narga_options[google_analytics]', array(
+        'label'   => __('Google Analytics ID', 'narga'),
+        'section' => 'narga_integration',
+        'type'     => 'text',
+        'priority' => 1,
+    ) );
+
+    # Google Site Verification
+    $wp_customize->add_setting( 'narga_options[google_site]', array(
+        'default'        => '',
+        'type'           => 'option',
+        'capability'     => 'manage_options',
+    ) );
+
+    $wp_customize->add_control( 'narga_options[google_site]', array(
+        'label'   => __('Google Site Verification', 'narga'),
+        'section' => 'narga_integration',
+        'type'     => 'text',
+        'priority' => 2,
+    ) );
+
+    # Bing Site Verification
+    $wp_customize->add_setting( 'narga_options[bing_site]', array(
+        'default'        => '',
+        'type'           => 'option',
+        'capability'     => 'manage_options',
+    ) );
+
+    $wp_customize->add_control( 'narga_options[bing_site]', array(
+        'label'   => __('Bing Site Verification', 'narga'),
+        'section' => 'narga_integration',
+        'type'     => 'text',
+        'priority' => 3,
+    ) );
+
+    # Yahoo Site Verification
+    $wp_customize->add_setting( 'narga_options[yahoo_site]', array(
+        'default'        => '',
+        'type'           => 'option',
+        'capability'     => 'manage_options',
+    ) );
+
+    $wp_customize->add_control( 'narga_options[yahoo_site]', array(
+        'label'   => __('Yahoo Site Verification', 'narga'),
+        'section' => 'narga_integration',
+        'type'     => 'text',
+        'priority' => 3,
+    ) );
+
+    # Alexa Site Verification
+    $wp_customize->add_setting( 'narga_options[alexa_site]', array(
+        'default'        => '',
+        'type'           => 'option',
+        'capability'     => 'manage_options',
+    ) );
+
+    $wp_customize->add_control( 'narga_options[alexa_site]', array(
+        'label'   => __('Alexa Site Verification', 'narga'),
+        'section' => 'narga_integration',
+        'type'     => 'text',
+        'priority' => 4,
+    ) );
+
 }
 // create widget areas: sidebar, footer
 $sidebars = array('Sidebar');

@@ -6,7 +6,13 @@ The content of this file will be list all the tasks has done. I will update it a
 * Google Font chooser
 * Header customizable
 * Icon webfont
-* Topbar customizable: sticky, fixed, Contain Top Bar Width 
+* Integrate Theme Documents
+
+### v.1.3.7 - June 11st, 2013
+* Add Google Adsense shortcode
+* Add Integration Services Options that's allow user integrate Google Analytics, Google Webmaster Tools, Yahoo Site, Bing Site, Alexa Verification ...
+* Fix jQuery library not load by default
+* Minor bugs fix
 
 ### v1.3.6 - June 05th, 2013
 * Remove duplicate navigation in search result page

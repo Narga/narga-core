@@ -1,20 +1,20 @@
 <?php
-/*  ------------------------------------------------------
-:: WordPress Shortcodes Configuration, since version 1.0
-:: Some of shortcodes based from WP-Foundation frameworks
-------------------------------------------------------- */
+/**
+ * WordPress Shortcodes Configuration, since version 1.0
+ * Some of shortcodes based from WP-Foundation frameworks
+ **/
 
-# Allow shortcodes in widgets
+/**
+ * Allow shortcodes in widgets
+ * since NARGA v1.1.0
+ **/
 add_filter('widget_text', 'do_shortcode');
 
 /**
  * Removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption
  * http://writings.orangegnome.com/writes/improved-html5-wordpress-captions/
- *
- * Since NARGA v1.1
- *
+ * Since NARGA v1.1.0
  **/
-add_filter('img_caption_shortcode', 'narga_img_caption_shortcode_filter',10,3);
 function narga_img_caption_shortcode_filter($val, $attr, $content = null) {
     extract(shortcode_atts(array(
         'id'	=> '',
@@ -29,17 +29,29 @@ function narga_img_caption_shortcode_filter($val, $attr, $content = null) {
     return '<figure id="' . $id . '" class="wp-caption ' . esc_attr($align) . '" style="width: ' . $width . 'px;">'
         . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
 }
+add_filter('img_caption_shortcode', 'narga_img_caption_shortcode_filter',10,3);
 
-# Alerts [alert][/alert]
-
+/**
+ * ZURB Foundation Alerts shortcode
+ * @param array $atts
+ * @return string
+ * [alert][/alert]
+ * since NARGA v1.1.0
+ **/
 function narga_shortcode_alert( $atts, $content = null ) {
     extract( shortcode_atts( array('type' => ''), $atts ) );
     return '<div class="alert-box ' . esc_attr($type) . '">' . do_shortcode($content) . ' <a href="" class="close">&times;</a> </div>';
 }
 add_shortcode( 'alert', 'narga_shortcode_alert' );
 
-# Columns [column][/column]
-function narga_shortcode_column( $atts, $content = null ) {
+/**
+ * ZURB Foundation Columns shortcode
+ * @param array $atts
+ * @return string
+ * [column][/column]
+ * since NARGA v1.1.0
+ **/
+function narga_shortcode_columns( $atts, $content = null ) {
     extract( shortcode_atts( array('center' => '', 'span' => '',), $atts ) );
     # Set the 'center' variable
     if ($center == 'true') {
@@ -47,9 +59,15 @@ function narga_shortcode_column( $atts, $content = null ) {
     }
     return '<div class="' . esc_attr($span) . ' columns ' . esc_attr($center) .'">' . do_shortcode($content) . '</div>';
 }
-add_shortcode( 'column', 'foundation_shortcode_alert' );
+add_shortcode( 'column', 'narga_shortcode_columns' );
 
-# Buttons [button][/button]
+/**
+ * ZURB Foundation Buttons shortcode
+ * @param array $atts
+ * @return string
+ * [button link="" size="medium/small" type="" style="" reveal=""][/button]
+ * since NARGA v1.1.0
+ **/
 function narga_shortcode_button( $atts, $content = null ) {
     extract( shortcode_atts( array(
         'link' => '#',
@@ -67,7 +85,6 @@ function narga_shortcode_button( $atts, $content = null ) {
 }
 
 add_shortcode( 'button', 'narga_shortcode_button' );
-
 
 # Converts audio5 shortcode to HTML5 audio tag
 # [audio5 src="http://yoursite.com/upload-folder/filename.mp3" loop="true" autoplay="autoplay" preload="auto" loop="loop" controls=""]
@@ -97,9 +114,13 @@ add_shortcode('video5', 'narga_html5_video');
 
 /* Social Media */
 
-# Twitter button shortcode
-# [t related='NARGA Framework - A rock solid starting WordPress HTML5 theme for developers' countbox='horizontal/vertical' via='narga' ]
-# Based on http://www.ilertech.com/2011/07/add-twitter-share-button-to-wordpress-3-0-with-a-simple-shortcode/
+/**
+ * Twitter button shortcode
+ * @param array $atts
+ * @return string
+ * [t related='NARGA Framework - A rock solid starting WordPress HTML5 theme for developers' countbox='horizontal/vertical' via='narga' ]
+ * since NARGA v1.2.4
+ **/
 function narga_twitter( $atts, $content=null ){
     extract(shortcode_atts(array(
         'url' => null,
@@ -122,9 +143,13 @@ HTML;
 }
 add_shortcode('t', 'narga_twitter');
 
-# Facebook Like button shortcode
-# [fb  send='true' action='recommend' layout='button_count/box_count']
-# Based on http://www.ilertech.com/2011/06/add-facebook-like-button-to-wordpress-3-0-with-a-simple-shortcode/
+/**
+ * Facebook Like button shortcode
+ * @param array $atts
+ * @return string
+ * [fb send='true' action='recommend' layout='button_count/box_count']
+ * since NARGA v1.2.4
+ **/
 function narga_fb_like( $atts, $content=null ){
     extract(shortcode_atts(array(
         'send' => 'false',
@@ -148,12 +173,15 @@ HTML;
 }
 add_shortcode('fb', 'narga_fb_like');
 
-# Google Plus button shortcode
-# [gp size='small/medium/tall']
-# Based on http://www.ilertech.com/2011/06/add-google-1-to-wordpress-3-0-with-a-simple-shortcode/
-# Since v1.2.4
+/**
+ * Google Plus button shortcode
+ * @param array $atts
+ * @return string
+ * [gp size='small/medium/tall']
+ * since NARGA v1.2.4
+ **/
 
-// Global namespace in functions.php
+# Global namespace in functions.php
 $plus1flag = false;
 
 function narga_gplus( $atts, $content=null ){
@@ -167,11 +195,11 @@ function narga_gplus( $atts, $content=null ){
 
     ), $atts));
 
-    // Set global flag
+    # Set global flag
     global $plus1flag;
     $plus1flag = true;
 
-    // Check for $content and set to URL if not provided
+    # Check for $content and set to URL if not provided
     if($content != null) $url = $content;
 
     $plus1_code = <<<HTML
@@ -181,11 +209,11 @@ HTML;
     return $plus1_code;
 }
 
-#/ Add meta for front page ONLY and add scripts to any page with a shortcode
+# Add meta for front page ONLY and add scripts to any page with a shortcode
 function narga_addgplus(){
     global $plus1flag;
     if($plus1flag){
-        if(is_home()){ // check for front page
+        if(is_home()){ # check for front page
             echo "<link rel='canonical' href='" . site_url() ."' />";
         }
 
@@ -205,14 +233,53 @@ HTML;
 add_shortcode('gp', 'narga_gplus');
 add_action('wp_footer', 'narga_addgplus');
 
-# GitHub Gist shortcode [gist id="ID" file="FILE"]
+/**
+ * GitHub Gist shortcode
+ * @param array $atts
+ * @return string
+ * [gist id="ID" file="FILE"]
+ * since NARGA v1.3.0
+ **/
+if (!function_exists('narga_github_gist')) :  
 function narga_github_gist($atts) {
     return sprintf(
         '<script src="https://gist.github.com/%s.js%s"></script>', 
         $atts['id'], 
         $atts['file'] ? '?file=' . $atts['file'] : ''
     );
-} add_shortcode('gist','narga_github_gist');
+}
+add_shortcode('gist','narga_github_gist');
+endif;
 
+/**
+ * Adsense shortcode callback
+ * @param array $atts
+ * @return string
+ * [adsense ad_client="" ad_slot="" width="" height=""]
+ * since NARGA v1.3.7
+ **/
+if (!function_exists('narga_adsense')) :  
+function narga_adsense( $atts ) {
+    # Extract and apply the defaults
+    extract(shortcode_atts(array(
+        'ad_client' => '',
+        'ad_slot' => '',
+        'width' => '',
+        'height' => '',
+    ), $atts));
+    
+    return '<script type="text/javascript"><!--'. "\n" . 
+        'google_ad_client = "' . $ad_client . '";'. "\n" . 
+        'google_ad_slot = "' . $ad_slot . '";'. "\n" . 
+        'google_ad_width = ' . $width . ';'. "\n" . 
+        'google_ad_height = ' . $height . ';'. "\n" . 
+        '//-->'. "\n" . 
+        '</script>'. "\n" .
+        '<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>';
+}
+add_shortcode('adsense','narga_adsense');
+endif;
 
 ?>

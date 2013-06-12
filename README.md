@@ -137,6 +137,12 @@ Display GitHub Gist with shortcode without raw HTML embed
 
 [gist id="ID" file="FILE"]
 
+***Google Adsense shortcode***
+
+Display Adsense Ads with shortcode without raw HTML embed
+
+[adsense ad_client="" ad_slot="" width="" height=""]
+
 License
 =======
 
