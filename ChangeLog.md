@@ -8,7 +8,15 @@ The content of this file will be list all the tasks has done. I will update it a
 * Icon webfont
 * Integrate Theme Documents
 
-### v.1.3.7 - June 11st, 2013
+### v1.3.8 - June 20th, 2013
+* Compress zepto.js to zepto.min.js, compresstion all image files
+* Optimize shortcode function to load addition javascript files asynchronous
+* Add option to allow user hide Top Bar Title.
+* Not display 'comments are closed' on page with comment disabled.
+* Fix images clear float and content/sidebar overlap.
+* Add .no-border, .alignnone CSS selector
+
+### v1.3.7 - June 11st, 2013
 * Add Google Adsense shortcode
 * Add Integration Services Options that's allow user integrate Google Analytics, Google Webmaster Tools, Yahoo Site, Bing Site, Alexa Verification ...
 * Fix jQuery library not load by default

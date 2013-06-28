@@ -137,7 +137,7 @@ function narga_twitter( $atts, $content=null ){
     if($counturl == null) $counturl = $url;
 
     $twitter_code = <<<HTML
-    <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script><a href='http://twitter.com/share' class="twitter-share-button" data-url="$url" data-counturl="$counturl" data-via="$via" data-hashtags="$hashtags" data-text="$text" data-related="$related" data-count="$countbox"></a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><a href='http://twitter.com/share' class="twitter-share-button" data-url="$url" data-counturl="$counturl" data-via="$via" data-hashtags="$hashtags" data-text="$text" data-related="$related" data-count="$countbox">Tweet</a>
 HTML;
     return $twitter_code;
 }
@@ -165,7 +165,13 @@ function narga_fb_like( $atts, $content=null ){
     ), $atts));
 
     $fb_like_code = <<<HTML
-        <div id="fb-root"></div><script src="http://connect.facebook.net/$locale/all.js#appId=$appId&amp;xfbml=1"></script>
+        <div id="fb-root"></div><script type="text/javascript">// <![CDATA[
+(function() {
+    var e = document.createElement('script'); e.async = true;
+     e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js#appId=$appId&amp;xfbml=1';
+         document.getElementById('fb-root').appendChild(e);
+ }());
+// ]]></script>
 <div class="fb-like" data-send="$send" data-layout="$layout" data-width="$width" data-show-faces="$show_faces" data-colorscheme="$colorscheme" data-action="$action" data-font="$font"></div>
 HTML;
 

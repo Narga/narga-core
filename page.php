@@ -20,7 +20,12 @@ if (narga_options('breadcrumb') == 1) :
 endif;
 ?>
 <?php get_template_part('content', 'page'); ?>
-<?php comments_template( '', true ); ?>
+
+<?php # Display comment list when it opened
+if ( comments_open() ) :
+    comments_template( '', true );
+endif;
+?>
 </div>
 <!-- End Content row -->
 <?php get_sidebar(); ?>

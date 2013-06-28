@@ -109,7 +109,12 @@ if (!function_exists('narga_topbar')) :
         endif;
         echo '>
             <nav role="navigation" class="top-bar">
-                <ul class="title-area">
+            <ul class="title-area';
+        #Sticky Top Bar Option
+        if (narga_options('show_topbar_title') == 0) :
+            echo ' show-for-small';
+        endif;
+        echo '">
                     <li class="name"><h1><a href="' .  narga_options('topbar_title_url') . '">' .  narga_options('topbar_title') . '</a></h1></li>
                     <li class="toggle-topbar menu-icon"><a href="#"><span>';
         _e( 'Menu', 'narga' );

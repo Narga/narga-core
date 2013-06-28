@@ -142,6 +142,21 @@ function narga_customizer($wp_customize){
         'priority'  => 3,
     ) );
 
+    # Display Top Bar Title
+    $wp_customize->add_setting('narga_options[show_topbar_title]', array(
+        'capability' => 'edit_theme_options',
+        'type'       => 'option',
+    ) );
+
+    $wp_customize->add_control('narga_options[show_topbar_title]', array(
+        'settings'  => 'narga_options[show_topbar_title]',
+        'label'     => __('Display Top Bar Title', 'narga'),
+        'section'   => 'nav',
+        'type'      => 'checkbox',
+        'transport' => 'postMessage',
+        'priority'  => 0,
+    ) );
+
     # Top Bar Title
     $wp_customize->add_setting( 'narga_options[topbar_title]', array(
         'default'        => get_bloginfo('name'),
