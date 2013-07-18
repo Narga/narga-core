@@ -12,9 +12,8 @@ The content of this file will be list all the tasks has done. I will update it a
 ### v1.3.9 - July 18th, 2013
 * Fix Image Clearing Float on page, add single image attachment template.
 * Remove integrate.php & shortcodes.php because they are plugin territory, implement to Pro Pack in future. Remove information in Readme file, move function that removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption.
-* narga_assets function now hooked correctly.
 * Remove zepto script in footer when using build-in WordPress jQuery
-* Minor bugs fixed: home_url needs escaping in searchform.php, rename custom query name in Orbit function.
+* Minor bugs fixed: home_url needs escaping in searchform.php, rename custom query name in Orbit function, narga_assets function now hooked correctly
 
 ### v1.3.8 - June 20th, 2013
 * Compress zepto.js to zepto.min.js, compresstion all image files
