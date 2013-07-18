@@ -25,9 +25,7 @@
     :: Narga WordPress Framework Assets
     ------------------------------------ */
 require_once locate_template('/assets/customizer.php' );
-require_once locate_template('/assets/shortcodes.php' );
 require_once locate_template('/assets/topbar.php' );
-require_once locate_template('/assets/integration.php' );
 
 /*  ------------------------------------
     :: Narga WordPress Framework Basic Setup
@@ -101,7 +99,7 @@ function narga_assets() {
             wp_enqueue_script('comment-reply');
     }
 }
-add_action( 'init', 'narga_assets' );
+add_action( 'wp_enqueue_scripts', 'narga_assets' );
 
 /* ---------------------------------------------------------------
    ::  Includes the pro and custom functions if it exists
@@ -337,12 +335,12 @@ if (!function_exists('narga_orbit_slider')) :
                 'cat' => narga_options('featured_category'),
                 'showposts' => narga_options('number_slide')
                 );
-        $query_posts = new WP_Query($args);
-        while ($query_posts->have_posts()) : $query_posts->the_post();
+        $narga_slider_query = new WP_Query($args);
+        while ($narga_slider_query->have_posts()) : $narga_slider_query->the_post();
         if(has_post_thumbnail()) {
             echo '
                 <li>';
-            the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$query_posts->current_post,));
+            the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$narga_slider_query->current_post,));
         }
         echo '
             <div class="orbit-caption"><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></div></li>' . "\n";
@@ -431,6 +429,28 @@ function narga_breadcrumb() {
     }
 }
 endif;
+
+/**
+ * Removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption
+ * http://writings.orangegnome.com/writes/improved-html5-wordpress-captions/
+ * Since NARGA v1.1.0
+ **/
+function narga_img_caption_shortcode_filter($val, $attr, $content = null) {
+    extract(shortcode_atts(array(
+        'id'	=> '',
+        'align'	=> '',
+        'width'	=> '',
+        'caption' => ''
+    ), $attr));
+
+    if ( 1 > (int) $width || empty($caption) )
+        return $val;
+
+    return '<figure id="' . $id . '" class="wp-caption ' . esc_attr($align) . '" style="width: ' . $width . 'px;">'
+        . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
+}
+add_filter('img_caption_shortcode', 'narga_img_caption_shortcode_filter',10,3);
+
 
 /**
  * Add Framework Customizer Direct Link
