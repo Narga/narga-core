@@ -1,8 +1,8 @@
 /*
 Theme Name:         NARGA
 Theme URI:          http://www.narga.net/narga-core/
-Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">Narga</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://demo.narga.net/" title="NARGA Framework Demo">NARGA Framework Demo</a>
-Version:            1.3.9
+Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">NARGA.NET</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://demo.narga.net/" title="NARGA Framework Demo">NARGA Framework Demo</a>
+Version:            1.4.0
 Tags:              two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, microformats, theme-options, threaded-comments, translation-ready 
 
 Author:             Nguyễn Đình Quân
@@ -80,6 +80,11 @@ pre {
 	line-height: 1.7;
 }
 
+/* Clearing floats */
+.clearfix:after, .format-status .entry-content:after {
+   clear: both;
+}
+
 /*  Top Bar Search Form */
 form.search-form input[type=text] {
     font-size: 12px;
@@ -109,7 +114,6 @@ form.search-form input#s:focus {
 .entry-content ul li, .entry-content ol li {
     list-style-position: inside;
 }
-
 
 .entry-title {
 	line-height: 1.2;
@@ -141,15 +145,6 @@ form.search-form input#s:focus {
 .alignnone {
     float:none;
     margin:0;
-}
-/* Clearing floats */
-.clear:after, .wrapper:after, .format-status .entry-content:after {
-    clear: both;
-}
-
-.clear:before, .clear:after, .wrapper:before, .wrapper:after, .format-status .entry-header:before, .format-status .entry-header:after {
-    display: table;
-    content: "";
 }
 
 /* Add HTML5 Class for Images */

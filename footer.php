@@ -15,26 +15,20 @@
             </section>		
 
         <!-- Footer area -->
-        <footer class="row" role="contentinfo">
-            <div id="footer-widgets">
+        <footer role="contentinfo">
+            <div id="footer-widgets" class="row">
                 <?php dynamic_sidebar("Footer"); ?>
             </div>
+                <div class="row full-width" id="footer-info">
                 <hr />
-                <div class="row">
-                    <div class="large-6 columns">
-                        <?php printf( __('Proudly powered by <a href="http://wordpress.org/" title="%1$s" rel="generator">%2$s</a> &middot; <a href="http://www.narga.net/" title="%3$s" rel="designer">%4$s</a>.', 'narga'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'A responsive WordPress Framework'), 'NARGA'); ?>
+                    <div class="small-12 large-4 columns">
+                        <?php printf( __('<p>Proudly powered by <a href="http://wordpress.org/" title="%1$s" rel="generator">%2$s</a> &middot; <a href="http://www.narga.net/" title="%3$s" rel="designer">%4$s</a>.</p>', 'narga'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'A responsive WordPress Framework'), 'NARGA'); ?>
                     </div>
-                    <div class="large-6 columns">
+                    <div class="small-12 large-8 columns">
                         <?php narga_footer_navigation(); ?>
                     </div>
             </div>
         </footer>
-        <!-- Check for Zepto support, load jQuery if necessary -->
-        <script>
-            document.write('<script src=<?php echo get_template_directory_uri(); ?>/javascripts/vendor/'
-                + ('__proto__' in {} ? 'zepto' : 'jquery')
-                + '.min.js><\/script>');
-            </script>
             <?php wp_footer(); ?>
         </body>
     </html>

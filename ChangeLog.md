@@ -1,13 +1,25 @@
-### NARGA Framework ChangeLog
+# NARGA Framework ChangeLog
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
-### TODO
+## TODO
 * Google Font chooser
 * Header customizable
 * Icon webfont
 * Integrate Theme Documents
 * Custom Favicon
+* Re-struture theme follow underscores
+
+### v1.4.1 - August 09th, 2013
+* Upgrade ZURB Foundation to  v4.3.1
+* Update NargaTopbarWalker class to compatible with WordPress 3.6
+* Add /assets/jetpack.php to support infinity scroll function of JetPack plugin
+* Clean code and fix some minor style problem.
+
+### v1.4.0 - July 19th, 2013
+* Complete fix Clearing Float
+* Enqueue Zepto by function
+* Clean Readme.md file; remove bloat code in functions.php, small change in footer. Remove jQuery library by using WordPress build-in.
 
 ### v1.3.9 - July 18th, 2013
 * Fix Image Clearing Float on page, add single image attachment template.

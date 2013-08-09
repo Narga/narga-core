@@ -15,6 +15,7 @@
     </header>
     <section class="entry-content">
         <?php the_content(); ?>
+        <div class="clearfix"></div>
         <?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'narga'), 'after' => '</p></nav>' )); ?>
     </section>
 </article>	

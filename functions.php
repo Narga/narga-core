@@ -21,15 +21,12 @@
  * @since NARGA Framework 1.0
  */
 
-/*  -----------------------------------
-    :: Narga WordPress Framework Assets
-    ------------------------------------ */
+/* Narga WordPress Framework Assets */
 require_once locate_template('/assets/customizer.php' );
 require_once locate_template('/assets/topbar.php' );
+require_once locate_template('/assets/jetpack.php' );
 
-/*  ------------------------------------
-    :: Narga WordPress Framework Basic Setup
-    ------------------------------------- */
+/* Narga WordPress Framework Basic Setup */
 if (!isset( $content_width))
     $content_width = 640;
 
@@ -228,7 +225,11 @@ if (!function_exists('narga_remove_unused_items')) :
 add_action( 'widgets_init', 'narga_remove_unused_items' ); 
 endif;
 
-# return entry meta information for posts, used by multiple loops.
+/**
+ * Return entry meta information for posts, used by multiple loops
+ *
+ * Since NARGA v1.1
+ */
 if (!function_exists('narga_entry_meta')) :  
     function narga_entry_meta() {
         echo '<p class="post-meta-data">';
@@ -323,9 +324,7 @@ endif;
 /**
  * Orbit Slider as Featured Post
  * function to render orbit slide based on featured category and number of slide in Customize.
- *
  * Since NARGA v1.1
- *
  */
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
@@ -360,10 +359,8 @@ endif;
 
 /**
  * Rewrite default wordpress pagination function
- * http://codex.wordpress.org/Function_Reference/paginate_links
  *
  * Since NARGA v1.1
- *
  **/
 if (!function_exists('narga_pagination')) :  
     function narga_pagination() {
@@ -432,10 +429,13 @@ endif;
 
 /**
  * Removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption
+ *
  * http://writings.orangegnome.com/writes/improved-html5-wordpress-captions/
+ *
  * Since NARGA v1.1.0
  **/
-function narga_img_caption_shortcode_filter($val, $attr, $content = null) {
+if (!function_exists('narga_img_caption_width_fix')) :
+function narga_img_caption_width_fix ($val, $attr, $content = null) {
     extract(shortcode_atts(array(
         'id'	=> '',
         'align'	=> '',
@@ -449,8 +449,27 @@ function narga_img_caption_shortcode_filter($val, $attr, $content = null) {
     return '<figure id="' . $id . '" class="wp-caption ' . esc_attr($align) . '" style="width: ' . $width . 'px;">'
         . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
 }
-add_filter('img_caption_shortcode', 'narga_img_caption_shortcode_filter',10,3);
+add_filter('img_caption_shortcode', 'narga_img_caption_width_fix',10,3);
+endif;
 
+/**
+ * Enqueue Zepto to footer
+ *
+ * Idea by ZGani 
+ *
+ * Since NARGA v1.4.0
+ **/
+if (!function_exists('narga_enqueue_zepto')) :
+    function narga_enqueue_zepto(){
+        echo '<!-- Check for Zepto support, load jQuery if necessary -->
+        <script type="text/javascript">
+            document.write(\'<script src=' . get_template_directory_uri() . '/javascripts/vendor/\'
+            + (\'__proto__\' in {} ? \'zepto\' : \'jquery\')
+            + \'.min.js><\/script>\');
+        </script>';
+    } 
+  add_action('wp_footer', 'narga_enqueue_zepto');
+endif;
 
 /**
  * Add Framework Customizer Direct Link
