@@ -2,7 +2,7 @@
 Theme Name:         NARGA
 Theme URI:          http://www.narga.net/narga-core/
 Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">NARGA.NET</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://demo.narga.net/" title="NARGA Framework Demo">NARGA Framework Demo</a>
-Version:            1.4.0
+Version:            1.4.1.1
 Tags:              two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, microformats, theme-options, threaded-comments, translation-ready 
 
 Author:             Nguyễn Đình Quân
@@ -12,35 +12,6 @@ License:            GNU General Public License, version 2, GPL
 License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 
 */
-
-/*
-:: IMPORTANT NOTE ON CUSTOMIZATION
- * Don't add customizations to this file!
- * Make your own child theme to build your functions and styles
- * Custom, Pro functions and styles can be apply by custom.css and custom-functions.php
- * Don't add it here; as it will either get overwritten by updates, and will prevent you from updating at all!
-
-*  Copyright 2005-2013 Narga.  http://www.narga.net/
-*
-*  This program is free software; you can redistribute it and/or modify it under
-*  the terms of the GNU General Public License version 2, as published by the
-*  Free Software Foundation.
-*
-*  You may NOT assume that you can use any other version of the GPL.
-*
-*  This program is distributed in the hope that it will be useful, but WITHOUT
-*  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-*  FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details
-*
-*  You should have received a copy of the GNU General Public License along with
-*  this program; if not, write to:
-*
-*      Free Software Foundation, Inc.
-*      51 Franklin St, Fifth Floor
-*      Boston, MA  02110-1301  USA
-*
-*  The license for this software can also likely be found here:
-*  http://www.gnu.org/licenses/gpl-2.0.html
 
 
 /* Global */
@@ -109,6 +80,7 @@ form.search-form input#s:focus {
     padding-bottom: 22px;
     word-wrap: break-word;
     -moz-hyphens: auto;
+    -ms-word-wrap: break-word;
 }
 
 .entry-content ul li, .entry-content ol li {

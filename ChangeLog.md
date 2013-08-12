@@ -10,10 +10,12 @@ The content of this file will be list all the tasks has done. I will update it a
 * Custom Favicon
 * Re-struture theme follow underscores
 
-### v1.4.1 - August 09th, 2013
+### v1.4.1.2 - August 09th, 2013
 * Upgrade ZURB Foundation to  v4.3.1
 * Update NargaTopbarWalker class to compatible with WordPress 3.6
 * Add /assets/jetpack.php to support infinity scroll function of JetPack plugin
+* Remove bloat information in style.css, footer.php, remove iOS icon, robot.txt
+* Change the way to load jQuery and styles
 * Clean code and fix some minor style problem.
 
 ### v1.4.0 - July 19th, 2013
