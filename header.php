@@ -5,8 +5,8 @@
 * Displays all of the head section and everything up till:
 *
 * @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.0
+* @subpackage NARGA
+* @since NARGA 1.0
 */
 ?>
 <!doctype html>

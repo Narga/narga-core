@@ -8,8 +8,9 @@
 
 /**
  * Add theme support for Infinite Scroll.
- * See: http://jetpack.me/support/infinite-scroll/
+ * See: http://wwww.narga.net/how-to-make-your-theme-support-jetpacks-infinite-scroll-feature/
  */
+
 function narga_jetpack_setup() {
     add_theme_support( 'infinite-scroll', array(
         'footer'    => 'footer-info',
@@ -22,3 +23,5 @@ function narga_jetpack_setup() {
     ) );
 }
 add_action( 'after_setup_theme', 'narga_jetpack_setup' );
+
+?>

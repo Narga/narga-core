@@ -4,8 +4,8 @@
 index/archive/search.
 *
 * @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.2
+* @subpackage NARGA
+* @since NARGA 1.2
 */
 ?>
 

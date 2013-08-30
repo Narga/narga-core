@@ -1,14 +1,24 @@
-# NARGA Framework ChangeLog
+# NARGA ChangeLog
 
 The content of this file will be list all the tasks has done. I will update it after the newest version released.
 
 ## TODO
 * Google Font chooser
-* Header customizable
 * Icon webfont
 * Integrate Theme Documents
 * Custom Favicon
 * Re-struture theme follow underscores
+* Combine some customize options to one section (site titles, logo, background ...)
+
+### v1.5 - August 30th, 2013
+* NARGA Framework now named as NARGA WordPress theme, shortname is NARGA. Change new screenshot.png
+* Complete rewrite README file, change description in style.css. Addition information in Customization Panel.
+* Footer: Fix Search form text cut-off when it placed on Footer Widge area. Add function to count active footer widgets to help display widgets flexibly. Improve footer HTML structure.
+* Add fallback function to top bar, it's appear if a given top bar is empty. Remove right top bar menu because it's useless
+* Custom hearder support, it works as logo
+* Change position of post navigation, add some CSS selectors to author box, improve Clearing Float.
+* Orbit Sliders change to Featured Post Sliders, add condition to show default image slider if featured post was not given featured image.
+* Minor bugs fixed & improve some features: pagination, CSS style
 
 ### v1.4.1.2 - August 09th, 2013
 * Upgrade ZURB Foundation to  v4.3.1
@@ -80,7 +90,7 @@ The content of this file will be list all the tasks has done. I will update it a
 * Remove default body font for child theme
 * Re-struture comments list
 * Fix some Internationalization strings
-* Remove Secondary Menu as Widgetable on sidebar because it's userless, re-add if I receive any requests
+* Remove Secondary Menu as Widgetable on sidebar because it's useless, re-add if I receive any requests
 * Temporate remove audio post format until WordPress v3.6 was released, fix Video Post Format distorted
 * Add function to change content width on full-width template
 * Remove comment form submit button style, remove .bypostauthor style for more customizable in child theme
@@ -98,7 +108,7 @@ The content of this file will be list all the tasks has done. I will update it a
 * Clean topbar search form, change template CSS class to work with ZURB Foundation 4
 * Add footer navigation menu.
 * Rewrite orbit function to compatible with ZURB Foundation 4
-* Remove automatic add odd and even class per post. Remove Customizer and userless functions. Remove Video post format defined file, add post format label.
+* Remove automatic add odd and even class per post. Remove Customizer and useless functions. Remove Video post format defined file, add post format label.
 * Localization in footer, fix some un-translatable text.
 * Add author information box below post content in single post. Fix post tags disapppear from previous version.
 * Optimize and remove unused codes

@@ -4,8 +4,8 @@
 index/archive/search.
 *
 * @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.0
+* @subpackage NARGA
+* @since 1.0
 */
 get_header(); ?>
 <!-- Row for main content area -->

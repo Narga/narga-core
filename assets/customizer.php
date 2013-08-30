@@ -1,7 +1,6 @@
 <?php
 /**
- * Narga WordPress Framework Customizer
- *
+ * Narga Customizer
  * Since NARGA v0.1
  *
  **/
@@ -9,9 +8,7 @@
 
 /**
  * Narga's Theme Customization Class
- *
  * Since NARGA v0.5
- *
  **/
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
@@ -37,7 +34,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 /**
  * modified dropdown-pages 
  * from wp-includes/class-wp-customize-control.php
- *
  * @since 1.0.0
  */
 if ( class_exists( 'WP_Customize_Control' ) ) {
@@ -67,8 +63,7 @@ class WP_Customize_Dropdown_Categories_Control extends WP_Customize_Control {
 }
 }
 /**
- * Returns the options array for NARGA Framework
- *
+ * Returns the options array for NARGA
  * @since NARGA 1.3.5
  */
 function narga_options($name, $default = false) {
@@ -83,9 +78,7 @@ function narga_options($name, $default = false) {
 
 /**
  * Narga's Theme Customizer Settings
- *
  * Since NARGA v0.5
- *
  **/
 
 add_action( 'customize_register', 'narga_customizer' );
@@ -93,7 +86,7 @@ function narga_customizer($wp_customize){
 
     # Orbit Slider as Featured Slider
     $wp_customize->add_section('narga_featured_categories', array(
-        'title' => 'Orbit Slider',
+        'title' => 'Featured Posts Slider',
         'priority' => 80,
         'description'    => __('Orbit Slider Configuration', 'narga'),
         'transport' => 'postMessage',
@@ -106,7 +99,7 @@ function narga_customizer($wp_customize){
     ) );
 
     $wp_customize->add_control( new WP_Customize_Dropdown_Categories_Control( $wp_customize, 'narga_featured_category', array( 
-        'label'    => __('Featured Category', 'narga'),
+        'label'    => __('As default, the slides are 640x290 but are responsive. Make sure your image has at least 640x290. <br />Featured Category', 'narga'),
         'section'  => 'narga_featured_categories',
         'type'     => 'dropdown-categories',
         'settings' => 'narga_options[featured_category]',
@@ -217,6 +210,7 @@ function narga_customizer($wp_customize){
 
     # Top Bar Search Form
     $wp_customize->add_setting('narga_options[search_form]', array(
+        'default'        => '1',
         'capability'     => 'manage_options',
         'type'       => 'option',
     ) );
@@ -243,27 +237,66 @@ function narga_customizer($wp_customize){
     ) );
 
 }
-// create widget areas: sidebar, footer
+
+/**
+ * Widgetable for Sidebar, Footer
+ * Since NARGA v1.1
+ */
 $sidebars = array('Sidebar');
 foreach ($sidebars as $sidebar) {
     register_sidebar(array('name'=> $sidebar,
-        'before_widget' => '<article id="%1$s" class="row widget %2$s"><div class="sidebar-section large-12 small-12 columns">',
-        'after_widget' => '</div></article>',
-        'before_title' => '<h4>',
+        'before_widget' => '<article id="%1$s" class="widget %2$s">',
+        'after_widget' => '</article>',
+        'before_title' => '<h4 class="widget-title">',
         'after_title' => '</h4>'
     ));
 }
 $sidebars = array('Footer');
 foreach ($sidebars as $sidebar) {
     register_sidebar(array('name'=> $sidebar,
-        'before_widget' => '<article id="%1$s" class="large-3 columns widget hide-for-small %2$s"><div class="footer-section">',
-        'after_widget' => '</div></article>',
+        'before_widget' => '<article id="%1$s" class="large-' . narga_widgets_count( 'sidebar-2' ) . ' columns widget %2$s">',
+        'after_widget' => '</article>',
         'before_title' => '<h4>',
         'after_title' => '</h4>'
     ));
 }
 
-// Secondary Menu is Widgetable
+/**
+ * Get number of active WordPress widgets in a footer widget area
+ * Since NARGA v1.5
+ */
+
+function narga_widgets_count( $sidebar_id ) {
+
+    # Default Foundation Grid is 12 columns
+    $total_columns = '12';
+    $sidebars_widgets = wp_get_sidebars_widgets();
+
+    // if sidebar doesn't exist return error
+    if ( !isset( $sidebars_widgets[$sidebar_id] ) ) {
+        return __('Invalid sidebar ID', 'narga');
+    }
+    # return (int) count( (array) $sidebars_widgets[ $sidebar_id ] );
+    $count_widgets = count( $sidebars_widgets[ $sidebar_id ] );
+    /* count number of widgets in the sidebar and do some simple math to calculate the columns */
+    switch( $count_widgets ) {
+		case 1 : $count_widgets = $columns; break;
+		case 2 : $count_widgets = $total_columns / 2; break;
+		case 3 : $count_widgets = $total_columns / 3; break;
+		case 4 : $count_widgets = $total_columns / 4; break;
+		case 5 : $count_widgets = $total_columns / 5; break;
+		case 6 : $count_widgets = $total_columns / 6; break;
+		case 7 : $count_widgets = $total_columns / 7; break;
+		case 8 : $count_widgets = $total_columns / 8; break;
+    }
+    return $count_widgets = ceil( $count_widgets );
+
+}
+
+/**
+ * Footer Naviagation
+ * Since NARGA v1.1
+ */ 
 if (!function_exists('narga_footer_navigation')) :  
     function narga_footer_navigation() {
         $menu = wp_nav_menu(array(

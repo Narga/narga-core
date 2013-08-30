@@ -7,8 +7,8 @@
 * and that other 'pages' on your WordPress site will use a
 * different template.
 *
-* @package NARGA Framework
-* @since NARGA Framework 1.0
+* @package NARGA
+* @since NARGA 1.0
 */
 ?>
 <?php get_header(); ?>

@@ -3,8 +3,8 @@
 * The template for displaying Search Results pages.
 *
 * @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.0
+* @subpackage NARGA
+* @since NARGA 1.0
 */
 ?>
 

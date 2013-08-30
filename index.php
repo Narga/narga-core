@@ -10,15 +10,17 @@
 * Learn more: http://codex.wordpress.org/Template_Hierarchy
 *
 * @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.0
+* @subpackage NARGA
+* @since NARGA 1.0
 */
 get_header(); ?>
 <!-- Row for main content area -->
 <div id="main-content" class="large-8 columns" role="content">
 <?php 
 if (is_front_page() && !is_paged() && narga_options('featured_category') != '-1') :
+    echo '<div id="orbit-slider">';
     narga_orbit_slider();
+    echo '</div>';
 endif;
 ?>
     <?php if (!have_posts()) : ?>

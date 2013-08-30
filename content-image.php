@@ -3,8 +3,8 @@
 * The template for displaying posts in the Image post format
 *
 * @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.2
+* @subpackage NARGA
+* @since NARGA 1.2
 */
 ?>
 

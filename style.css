@@ -1,20 +1,48 @@
 /*
-Theme Name:         NARGA
-Theme URI:          http://www.narga.net/narga-core/
-Description:        NARGA is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation. It'll help you do amazing things faster & easier than ever before. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">NARGA.NET</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://demo.narga.net/" title="NARGA Framework Demo">NARGA Framework Demo</a>
-Version:            1.4.1.1
-Tags:              two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, microformats, theme-options, threaded-comments, translation-ready 
+Theme Name:     NARGA
+Theme URI:      http://www.narga.net/narga-core/
+Description:    <strong>NARGA</strong> is a versatile HTML5 responsive WordPress theme using on <em>ZURB's Foundation CSS</em>, a powerful tool for building prototypes on any kind of devices. NARGA is <strong>starter theme</strong> that supports child-theme so it'll help you do amazing things faster & easier than ever before. It is a magazine theme with minimalistic style. Suitable for any niche, especially for news or magazine sites. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">NARGA.NET</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://demo.narga.net/" title="NARGA Demo">NARGA Demo</a>
+Version:        1.5
+Tags:           two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, theme-options, threaded-comments, translation-ready 
 
-Author:             Nguyễn Đình Quân
-Author URI:         http://www.narga.net/
+Author:         Nguyễn Đình Quân
+Author URI:     http://www.narga.net/
 
-License:            GNU General Public License, version 2, GPL
-License URI:        http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:    narga
 
+License:        GNU General Public License v2.0
+License URI:    http://www.gnu.org/licenses/gpl-2.0.html
+NARGA WordPress Theme, Copyright 2013 NARGA.NET
+NARGA is distributed under the terms of the GNU GPL
 */
 
+/**
+ * Table of Contents:
+ *
+ * 1.0 - Global
+ *   1.1 - Clearing Float
+ * 2.0 - Header
+ *   2.1 - Top Bar Search Form
+ * 3.0 - Main Content
+ *   3.1 - WordPress Images Adjustments 
+ *   3.2 - Label Adjustment
+ *   3.3 - Post, Images Navigation
+ *   3.4 - Assistive text
+ *   3.5 - Post Formats
+ * 4.0 - Sidebar Adjustment
+ * 5.0 - Comment Adjustment
+ *   5.1 - Recent comments style
+ * 6.0 - Adjust Pagination
+ * 7.0 - Footer
+*/
 
-/* Global */
+/* 1.0 Global */
+body {
+    font-family: "Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
+    background: none repeat scroll 0% 0% transparent;
+    word-wrap: break-word !important;
+}
+
 .size-auto, 
 .size-full,
 .size-large,
@@ -25,7 +53,7 @@ License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
     font-weight: 300;
 }
 
@@ -51,12 +79,33 @@ pre {
 	line-height: 1.7;
 }
 
-/* Clearing floats */
-.clearfix:after, .format-status .entry-content:after {
-   clear: both;
+/* 1.1. Clearing Float */
+.clearfix:after { 
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden; 
 }
 
-/*  Top Bar Search Form */
+.clearfix { 
+  display: inline-block;  
+}
+
+* html .clearfix {  
+  height: 1%;  
+} /* Hides from IE-mac \*/
+
+.clearfix {  
+  display: block;  
+}
+
+/* 2.0 Header */
+#site-header {
+    margin-bottom: 34px;
+}
+
+/*  2.1 Top Bar Search Form */
 form.search-form input[type=text] {
     font-size: 12px;
     height: 28px;
@@ -71,16 +120,10 @@ form.search-form input#s:focus {
     width: 150px;
 }
 
-/* Header */
-
-/* Main Content */
+/* 3.0 Main Content */
 #main-content article {
-    border-bottom: 1px solid rgb(237, 237, 237);
-    margin-bottom: 22px;
-    padding-bottom: 22px;
-    word-wrap: break-word;
     -moz-hyphens: auto;
-    -ms-word-wrap: break-word;
+    -ms-word-wrap: break-word !important;
 }
 
 .entry-content ul li, .entry-content ol li {
@@ -92,12 +135,16 @@ form.search-form input#s:focus {
 	font-weight: normal;
 }
 
-.post-author {
-    display: block;
-    margin: 18px 0;
-    clear: both;
+.entry-content {
+    padding-bottom: 22px;
 }
 
+.post-author {
+    padding: 22px 0;
+    min-height: 200px;
+}
+
+/* 3.1 WordPress Images Adjustments */
 /* Add Align position for images and figures */
 .alignright {
     float: right;
@@ -177,7 +224,7 @@ figcaption.wp-caption-text {
     padding: 3%;
 }
 /* Add fancy borders to all WordPress-added images but not things like badges and icons and the like */
-.entry-content img,.comment-content img,.widget img,img.header-image,.author-avatar img,img.wp-post-image, img.avatar {
+.entry-content img,.comment-content img,.widget img, .author-avatar img, img.wp-post-image, img.avatar {
     border-radius: 3px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
@@ -220,22 +267,10 @@ audio:not([controls]) {
 	display: none;
 }
 
-/* Label Adjustment */
+/* 3.2 Label Adjustment */
 .tags a {color:#fff;font-weight:normal;}
 
-/* Sidebar Adjustment */
-div.textwidget {
-    line-height: 1.6;
-    margin-bottom: 1.25em;
-}
-aside#sidebar p {
-    font-size: 14px;
-    font-size: 0.875rem;
-    font-size: 0.875em;
-    margin-bottom: 1.25em;
-}
-
-/* Navigation */
+/* 3.3 Post, Images Navigation */
 section#main nav {
 	clear: both;
 	line-height: 2;
@@ -270,13 +305,112 @@ section#main nav {
     margin: 3.428571429rem 0;
 }
 
-/* Assistive text */
+/* 3.4 Assistive text */
 .assistive-text {
     position: absolute !important;
     clip: rect(1px, 1px, 1px, 1px);
 }
 
-/* Comment Adjustment */
+/* 3.5 Post formats */
+footer p.post-meta-data {
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Sticky posts */
+.sticky {;
+}
+
+.sticky-entry {
+    padding: 0 18px;
+}
+
+/* Image posts */
+article.format-image header h2 {
+    text-align: center;
+}
+
+/* Link posts */
+article.format-link .link-post-title, article.format-quote .quote-post-title, article.format-status .status-post-title {
+    font-style: italic;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+article.format-link a.link-post-title:hover, article.format-quote a.quote-post-title:hover, article.format-status a.status-post-title:hover {
+    color: #FFFF99;
+}
+
+article.format-link .entry-content {
+    text-align: left;
+}
+
+article.format-link .entry-content a {
+    font-size: 23px;
+}
+
+/* Quote posts */
+
+/* Status posts */
+.format-status header hgroup {
+    display: inline-block;
+}
+
+.format-status header h2 {
+    font-size: 17px;
+}
+
+.format-status header h3 {
+    font-size: 14px;
+}
+
+.format-status header img {
+    float: left;
+    margin: 6px 10px 0 0;
+}
+
+
+/* Aside post format */
+article.format-aside .aside {
+    padding: 18px;
+    display: block;
+    background: none repeat scroll 0% 0% rgb(210, 224, 249);
+    border-left: 22px solid rgb(39, 149, 182);
+}
+
+article.format-aside p {
+    color: #4a5466;
+}
+
+article.format-aside blockquote:last-child,article.format-aside p:last-child {
+    margin-bottom: 0;
+}
+
+/* 4.0 Sidebar Adjustment */
+div.textwidget {
+    line-height: 1.6;
+    margin-bottom: 1.25em;
+}
+
+aside#sidebar p {
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-size: 0.875em;
+    margin-bottom: 1.25em;
+}
+
+article.widget ul li {
+    list-style-position: inside;
+    list-style-image:url('images/bullet.png');
+}
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+     position: absolute;
+     left: -9000px;
+}
+
+/* 5.0 Comment Adjustment */
 .commentlist .pingback {
 	margin-bottom: 22px;
 	margin-bottom: 2.2rem;
@@ -364,14 +498,14 @@ section.comment div.notice {
     padding: 5px 15px;
 }
 
-/* Recent comments style */
+/* 5.1 Recent comments style */
 .recentcomments a {
     display: inline !important;
     padding: 0 !important;
     margin: 0 !important;
 } 
 
-/*  Adjust Foundation 3 Pagination Style for WordPress */ 
+/* 6.0  Adjust Foundation 3 Pagination Style for WordPress */ 
 ul.pagination li span.current, .page-numbers .current {
     background: #2ba6cb;
     color: #fff;
@@ -379,80 +513,11 @@ ul.pagination li span.current, .page-numbers .current {
     cursor: default;
     display: block;
     padding: 1px 7px;
-}    
-
-/* Post formats */
-footer p.post-meta-data {
-    font-size: 13px;
-    font-style: italic;
 }
 
-/* Sticky posts */
-.sticky {;
-}
-
-.sticky-entry {
-    padding: 0 18px;
-}
-
-/* Image posts */
-article.format-image header h2 {
-    text-align: center;
-}
-
-/* Link posts */
-article.format-link .link-post-title, article.format-quote .quote-post-title, article.format-status .status-post-title {
-    font-style: italic;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-article.format-link a.link-post-title:hover, article.format-quote a.quote-post-title:hover, article.format-status a.status-post-title:hover {
-    color: #FFFF99;
-}
-
-article.format-link .entry-content {
-    text-align: left;
-}
-
-article.format-link .entry-content a {
-    font-size: 23px;
-}
-
-/* Quote posts */
-
-/* Status posts */
-.format-status header hgroup {
-    display: inline-block;
-}
-
-.format-status header h2 {
-    font-size: 17px;
-}
-
-.format-status header h3 {
-    font-size: 14px;
-}
-
-.format-status header img {
-    float: left;
-    margin: 6px 10px 0 0;
-}
-
-
-/* Aside post format */
-article.format-aside .aside {
-    padding: 18px;
-    display: block;
-    background: none repeat scroll 0% 0% rgb(210, 224, 249);
-    border-left: 22px solid rgb(39, 149, 182);
-}
-
-article.format-aside p {
-    color: #4a5466;
-}
-
-article.format-aside blockquote:last-child,article.format-aside p:last-child {
-    margin-bottom: 0;
+/* 7.0 Footer */
+/* WP Calendar Widget */
+article.widget_calendar {
+    padding:0;
 }
 

@@ -1,7 +1,6 @@
 <?php
 /**
  * Narga ZURB Topbar for WordPress
- *
  * Since NARGA v0.1
  *
  **/
@@ -19,36 +18,17 @@ function narga_topbar_l() {
         'link_before' => '', // before each link text
         'link_after' => '', // after each link text
         'depth' => 5, // limit the depth of the nav
-        'fallback_cb' => false, // fallback function (see below)
-        'walker' => new NargaTopbarWalker()
+        'fallback_cb' => 'narga_menu_fallback', // workaround to show a message to set up a menu
+        'walker' => new NARGATopbarWalker()
     ));
 } // end left top bar
-
-// the right top bar
-function narga_topbar_r() {
-    wp_nav_menu(array(
-        'container' => false, // remove nav container
-        'container_class' => '', // class of container
-        'menu' => '', // menu name
-        'menu_class' => 'top-bar-menu right hide-for-small', // adding custom nav class
-        'theme_location' => 'top-bar-r', // where it's located in the theme
-        'before' => '', // before each link <a>
-        'after' => '', // after each link </a>
-        'link_before' => '', // before each link text
-        'link_after' => '', // after each link text
-        'depth' => 5, // limit the depth of the nav
-        'fallback_cb' => false, // fallback function (see below)
-        'walker' => new NargaTopbarWalker()
-    ));
-} // end right top bar
-
 
 /*
 Customize the output of menus for Foundation top bar classes and add descriptions
 http://www.kriesi.at/archives/improve-your-wordpress-navigation-menu-output
 http://code.hyperspatial.com/1514/twitter-bootstrap-walker-classes/
  */
-class NargaTopbarWalker extends Walker_Nav_Menu {
+class NARGATopbarWalker extends Walker_Nav_Menu {
     function display_element($element, &$children_elements, $max_depth, $depth=0, $args, &$output) {
         $element->has_children = !empty($children_elements[$element->ID]);
         $element->classes[] = ($element->current || $element->current_item_ancestor) ? 'active' : '';
@@ -111,7 +91,6 @@ echo '</span></a></li>
     <!-- Left Nav Section -->';
 narga_topbar_l();
 echo '<!-- Right Nav Section -->';
-narga_topbar_r();                   
 #Top Bar Search Form
 if (narga_options('search_form') == 1) :
     narga_topbar_search_form();
@@ -135,5 +114,24 @@ if (!function_exists('narga_topbar_search_form')) :
             </ul>';
     }
 endif;
+
+/**
+ * A fallback when no navigation is selected by default, otherwise it throws some nasty errors in your face.
+ * From required+ Foundation http://themes.required.ch
+ * since NARGA v1.5
+ */
+function narga_menu_fallback() {
+    echo '<div class="alert-box secondary">';
+    // Translators 1: Link to Menus, 2: Link to Customize
+    printf( __( 'Please assign a menu to the primary menu location under %1$s or %2$s the design.', 'narga' ),
+        sprintf(  __( '<a href="%s">Menus</a>', 'narga' ),
+        get_admin_url( get_current_blog_id(), 'nav-menus.php' )
+    ),
+    sprintf(  __( '<a href="%s">Customize</a>', 'narga' ),
+    get_admin_url( get_current_blog_id(), 'customize.php' )
+)
+        );
+    echo '</div>';
+}
 
 ?>

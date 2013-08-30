@@ -1,5 +1,5 @@
 /*
- *  Narga Franework Functions
+ *  Narga Functions
  *	Copyright (C) 2013 Dinh Quan Nguyen a.k.a Narga <dinhquan (at) narga (dot) net>, NARGA - http://www.narga.net
  *	Free to use under GPL: http://www.opensource.org/licenses/gpl-license.php
  */
@@ -10,4 +10,10 @@ addComment={moveForm:function(d,f,i,c){var m=this,a,h=m.I(d),b=m.I(i),l=m.I("can
 
 jQuery(document).foundation();
 
+jQuery(".section").mouseenter(function() {
+    jQuery(this).toggleClass("active");
+}).mouseleave(function() {
+    jQuery(this).removeClass("active");
+      return false; // Prevents further propagation of event
+});
 /* ]]> */

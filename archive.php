@@ -14,7 +14,7 @@
 
 *
 * @package WordPress
-* @subpackage NARGA Framework
+* @subpackage NARGA
 * @since Twenty Twelve 1.0
 */
 ?>

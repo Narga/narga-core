@@ -3,8 +3,8 @@
 * The default template for displaying content. Used for both single and index/archive/search.
 *
 * @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.2
+* @subpackage NARGA
+* @since NARGA 1.2
 */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
@@ -24,9 +24,17 @@
         <?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'narga'), 'after' => '</p></nav>' )); ?>
         <?php if(is_singular()) { ?>                   
         <p class="tags"><?php the_tags('<span class="radius label">','</span> <span class="radius label">','</span>'); ?></p>
+        <?php if ( is_single() ) : ?>
+        <nav class="nav-single">
+            <h3 class="assistive-text"><?php _e( 'Post navigation', 'narga' ); ?></h3>
+            <span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'narga' ) . '</span> %title' ); ?></span>
+            <span class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'narga' ) . '</span>' ); ?></span>
+        </nav>      
+        <?php endif; // is_single() ?>
         <div class="post-author">
             <h3><?php _e('About the Author &#151; ', 'narga'); ?><?php the_author_posts_link(); ?></h3>
-            <p><?php echo get_avatar(get_the_author_meta('ID'), '80', '', 'The author avatar'); echo get_the_author_meta("description");?></p>
+            <div class="post-author-info"><?php echo get_avatar(get_the_author_meta('ID'), '80', '', 'The author avatar');?>
+            <p><?php echo get_the_author_meta("description");?></div>
         </div>
         <?php } ?>
     </footer>

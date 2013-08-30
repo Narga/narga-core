@@ -16,102 +16,134 @@
  *
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
- * @package WordPress
- * @subpackage NARGA Framework
- * @since NARGA Framework 1.0
+ * @package NARGA
+ * @since NARGA 1.0
  */
 
-/* Narga WordPress Framework Assets */
+/* NARGA Assets */
 require_once locate_template('/assets/customizer.php' );
 require_once locate_template('/assets/topbar.php' );
 require_once locate_template('/assets/jetpack.php' );
-
-/* Narga WordPress Framework Basic Setup */
+/* NARGA Basic Setup */
 if (!isset( $content_width))
     $content_width = 640;
 
-    function narga_setup() {
+function narga_setup() {
+    # Add language supports. By default, this framework not include language files.
+    load_theme_textdomain('narga', get_template_directory() . '/languages');
 
-# Add language supports. By default, this framework not include language files.
-        load_theme_textdomain('narga', get_template_directory() . '/languages');
+    # Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
+    add_theme_support('post-thumbnails');
+    set_post_thumbnail_size(640, 290, true);
 
-# Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
-        add_theme_support('post-thumbnails');
-        set_post_thumbnail_size(764, 342, true);
+    # Support Custom Background
+    add_theme_support( 'custom-background', array(
+        'default-image' => '',  // background image default
+	'default-color' => '', // background color default (dont add the #)
+        'wp-head-callback' => '_custom_background_cb',
+        'admin-head-callback' => '',
+        'admin-preview-callback' => ''
+    ));
 
-# Support Custom Background
-        add_theme_support( 'custom-background' );
+    # Support Custom Header
+    add_theme_support( 'custom-header', array(
+	'default-image'          => '',
+	'random-default'         => false,
+	'width'                  => 0,
+	'height'                 => 0,
+	'flex-height'            => false,
+	'flex-width'             => false,
+	'default-text-color'     => '',
+	'header-text'            => true,
+	'uploads'                => true,
+	'wp-head-callback'       => '',
+	'admin-head-callback'    => '',
+        'admin-preview-callback' => '',
+    ));
 
-# Allows theme developers to add custom stylesheets to WordPress's TinyMCE visual editor. 
-        add_editor_style( 'stylesheets/custom.css' );
+    # Allows theme developers to add custom stylesheets to WordPress's TinyMCE visual editor. 
+    add_editor_style( 'stylesheets/custom.css' );
 
-# Add post formarts supports. http://codex.wordpress.org/Post_Formats
-        add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'chat'));
+    # Add post formarts supports. http://codex.wordpress.org/Post_Formats
+    add_theme_support('post-formats', array (
+        'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'chat'
+    ));
 
-# Add menu supports. http://codex.wordpress.org/Function_Reference/register_nav_menus
-        add_theme_support('menus');
-        
-# Register Navigation
-        register_nav_menus(array(
-                    'top-bar-l' => __('Left Top Bar', 'narga'),
-                    'top-bar-r' => __('Right Top Bar', 'narga'),
-                    'footer_navigation' => __('Footer Navigation', 'narga')
-                    ));
+    # Add menu supports. http://codex.wordpress.org/Function_Reference/register_nav_menus
+    add_theme_support('menus');
 
-# Enables post and comment RSS feed links to head
-        add_theme_support( 'automatic-feed-links' );
-    }
+    # Register Navigation
+    register_nav_menus(array(
+        'top-bar-l' => __('Top Bar', 'narga'),
+        'footer_navigation' => __('Footer Navigation', 'narga')
+    ));
+
+    # Enables post and comment RSS feed links to head
+    add_theme_support( 'automatic-feed-links' );
+}
 add_action('after_setup_theme', 'narga_setup');
 
 /* ----------------------------------------
    :: Enqueue Scripts and Styles for Front-End
-   ---------------------------------------- */
+---------------------------------------- */
 function narga_assets() {
     global $wp_styles;
 
     if ( !is_admin() ) {
 
-# Loads Foundation Main stylesheet
+        # Loads Foundation Main stylesheet
         wp_enqueue_style( 'foundation', get_template_directory_uri() . '/stylesheets/foundation.min.css', array(), '2013-08-12', false );
 
-# Load Google Fonts API
+        # Load Google Fonts API
         wp_enqueue_style( 'google-font',"http://fonts.googleapis.com/css?family=Oswald|Open+Sans:400,400italic,700,700italic", array(), '2013-08-12', false );
 
-# Loads our main stylesheet.
+        # Loads our main stylesheet.
         wp_enqueue_style( 'narga-style', get_stylesheet_uri(), array(), '2013-08-12'  );
 
-# Load JavaScripts
+        # Load JavaScripts
         wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/javascripts/vendor/custom.modernizr.js', array( 'jquery' ), '2.6.2', true );
 
-        wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array( 'jquery' ), '4.1.6', true );
+        wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array( 'jquery' ), '4.3.1', true );
 
         wp_enqueue_script( 'narga', get_template_directory_uri() . '/javascripts/narga.js', array( 'jquery' ), '1.3.3', true );
 
-# Enable threaded comments 
+        # Enable threaded comments 
         if ( (!is_admin()) && is_singular() && comments_open() && get_option('thread_comments') )
             wp_enqueue_script('comment-reply');
     }
 }
 add_action( 'wp_enqueue_scripts', 'narga_assets' );
 
-/* ---------------------------------------------------------------
-   ::  Includes the pro and custom functions if it exists
-   --------------------------------------------------------------- */
+/**
+ * Enqueue Zepto to footer
+ * Idea by ZGani 
+ * Since NARGA v1.4.0
+ **/
+if (!function_exists('narga_enqueue_zepto')) :
+    function narga_enqueue_zepto(){
+        echo '<!-- Check for Zepto support, load jQuery if necessary -->
+            <script type="text/javascript">
+document.write(\'<script src=' . get_template_directory_uri() . '/javascripts/vendor/\'
++ (\'__proto__\' in {} ? \'zepto\' : \'jquery\')
++ \'.min.js><\/script>\');
+        </script>';
+    } 
+  add_action('wp_footer', 'narga_enqueue_zepto');
+endif;
+
+/**
+ * Includes the pro and custom functions if it exists
+ * Since NARGA v1.1
+  **/
 locate_template( array( 'assets/pro-functions.php', 'assets/custom-functions.php' ), true, false);
-/* ---------------------------------------------------------------
-   :: Load custom-actions.php file if it exists in the uploads folder
-   :: Brought from PressWork - http://presswork.me
-   --------------------------------------------------------------- */
+/* Load custom-actions.php file if it exists in the uploads folder */
 $upload_dir = wp_upload_dir();
 if(!defined('ACTION_FILE'))
 define('ACTION_FILE', $upload_dir['basedir'].'/custom-functions.php');
 if(file_exists(ACTION_FILE))
     include(ACTION_FILE);
 
-/* ---------------------------------------------------------------
-:: Load custom.css file if it exists in the uploads folder
-:: Brought from PressWork - http://presswork.me
---------------------------------------------------------------- */
+/* Load custom.css file if it exists in the uploads folder */
     define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
     define('CSS_DISPLAY', $upload_dir['baseurl'].'/custom.css');
 if(file_exists(CSS_FILE))
@@ -128,15 +160,18 @@ if(file_exists(CSS_FILE))
  * @from Twenty Twelve
  */
 function narga_content_width() {
-	if ( is_page_template( 'templates/full-width.php' ) || is_attachment() ) {
-		global $content_width;
-		$content_width = 975;
-	}
+        if ( is_page_template( 'templates/full-width.php' ) || is_attachment() ) {
+                global $content_width;
+                $content_width = 975;
+        }
 }
 add_action( 'template_redirect', 'narga_content_width' );
 
 
-# add ie conditional html5  to header
+/**
+ * Add IE conditional HTML5  to header.
+ * @since NARGA v1.1
+ */
 function narga_ie_conditional_html5 () {
     global $is_IE;
     if ($is_IE) {
@@ -191,26 +226,27 @@ endif;
 /**
  * Function to generate blog name and subheader for custom as users
  * want without copy the header.php file in child theme
- *
  * Since NARGA v1.1
  *
  */
 if (!function_exists('narga_header')) :  
     function narga_header() {
         echo '<div id="site-header" class="row">
-            <header id="header" class="large-12 columns" role="banner">
-            <h1><a id="site-title" href="' . esc_url( home_url( '/' ) ) . '" title="' . get_bloginfo('name') . '" rel="home">' . get_bloginfo('name') . '</a></h1>
-            <h3 id="tagline" class="hide-for-small">' . get_bloginfo('description') . '</h3>
-            </header>
+            <header id="header" class="large-12 columns" role="banner">';
+        if ( ! empty( get_header_image() ) ) :
+            echo '<a href="' . esc_url( home_url( '/' ) ) . '"><img src="' . esc_url( get_header_image() ) . '" class="header-image" width="' . get_custom_header()->width . '" height="' . get_custom_header()->height . '" alt="" /></a>';
+        else:
+            echo '<h1><a id="site-title" href="' . esc_url( home_url( '/' ) ) . '" title="' . get_bloginfo('name') . '" rel="home">' . get_bloginfo('name') . '</a></h1>
+            <h3 id="tagline" class="hide-for-small">' . get_bloginfo('description') . '</h3>';
+        endif;
+        echo '</header>
             </div>';
     }  
 endif;
 
 /**
  * Remove somethings not used or include in others functions
- *
  * Since NARGA v1.1
- *
  */
 if (!function_exists('narga_remove_unused_items')) :  
     function narga_remove_unused_items() {  
@@ -223,7 +259,6 @@ endif;
 
 /**
  * Return entry meta information for posts, used by multiple loops
- *
  * Since NARGA v1.1
  */
 if (!function_exists('narga_entry_meta')) :  
@@ -263,57 +298,58 @@ if (!function_exists('narga_more_link')) :
 add_filter( 'the_content_more_link', 'narga_more_link', 10, 2 );
 endif;
 
-/*  --------------------------------
-    :: WordPress Comments Adjustment
-    --------------------------------- */
+/**
+ * WordPress Comments Adjustment
+ * Since NARGA v1.1
+ */
 if (!function_exists('narga_comments')) :  
     function narga_comments($comment, $args, $depth) {
         $GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) :
-		case 'pingback' :
-		case 'trackback' :
-		// Display trackbacks differently than normal comments.
-	?>
-	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-		<p><?php _e( 'Pingback:', 'narga' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'narga' ), '<span class="edit-link">', '</span>' ); ?></p>
-	<?php
-			break;
-		default :
-		// Proceed with normal comments.
-		global $post;
-        echo '<li ';
-        comment_class();
-        echo '>
-            <article id="comment-' . get_comment_ID() . '" class="comment">
-            <header>
-            <div class="comment-author vcard">';
-        echo get_avatar($comment,64);
-        printf(__('<cite class="fn">%s</cite>', 'narga'), get_comment_author_link(),
-        // If current post author is also comment author, make it known visually.
-            ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author', 'narga' ) . '</span>' : '');
-        echo '<div class="comment-meta">
-            <time datetime="' . get_comment_date('c') . '"  itemprop="commentTime"><a itemprop="url" href="' . htmlspecialchars( get_comment_link( $comment->comment_ID ) ) . '">';
-        printf(__('%1$s', 'narga'), get_comment_date(),  get_comment_time());
-        echo '</a></time>
-            </div>
-            </div>
-            </header>
-            <section itemprop="commentText" class="comment">';
-        if ($comment->comment_approved == '0') : 
-            echo '<div class="comment-awaiting-moderation">';
-        _e('Your comment is awaiting moderation.', 'narga');
-        echo '</div>';
-        endif;
-        comment_text();
-        $id = $comment->comment_ID;
-        edit_comment_link(__('Edit', 'narga'), '<a class="comment-del-link" href="'.admin_url("comment.php?action=cdc&c=$id").'">' . __( 'Del', 'narga' ) . '</a> ', '<a class="comment-spam-link" href="'.admin_url("comment.php?action=cdc&dt=spam&c=$id").'">' . __( 'Spam', 'narga' ) . '</a>');
-        echo '<span class="reply">';
-        comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'narga' ), 'after' => '<span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) );
-        echo '</span>
-            </section>
-            </article>';
-		break;
-	endswitch; // end comment_type check
+        switch ( $comment->comment_type ) :
+                case 'pingback' :
+                case 'trackback' :
+                // Display trackbacks differently than normal comments.
+        ?>
+        <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+                <p><?php _e( 'Pingback:', 'narga' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'narga' ), '<span class="edit-link">', '</span>' ); ?></p>
+<?php
+                    break;
+                default :
+                    // Proceed with normal comments.
+                    global $post;
+                    echo '<li ';
+                    comment_class();
+                    echo '>
+                        <article id="comment-' . get_comment_ID() . '" class="comment">
+                        <header>
+                        <div class="comment-author vcard">';
+                    echo get_avatar($comment,64);
+                    printf(__('<cite class="fn">%s</cite>', 'narga'), get_comment_author_link(),
+                        // If current post author is also comment author, make it known visually.
+                        ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author', 'narga' ) . '</span>' : '');
+                    echo '<div class="comment-meta">
+                        <time datetime="' . get_comment_date('c') . '"  itemprop="commentTime"><a itemprop="url" href="' . htmlspecialchars( get_comment_link( $comment->comment_ID ) ) . '">';
+                    printf(__('%1$s', 'narga'), get_comment_date(),  get_comment_time());
+                    echo '</a></time>
+                        </div>
+                        </div>
+                        </header>
+                        <section itemprop="commentText" class="comment">';
+                    if ($comment->comment_approved == '0') : 
+                        echo '<div class="comment-awaiting-moderation">';
+                    _e('Your comment is awaiting moderation.', 'narga');
+                    echo '</div>';
+endif;
+comment_text();
+$id = $comment->comment_ID;
+edit_comment_link(__('Edit', 'narga'), '<a class="comment-del-link" href="'.admin_url("comment.php?action=cdc&c=$id").'">' . __( 'Del', 'narga' ) . '</a> ', '<a class="comment-spam-link" href="'.admin_url("comment.php?action=cdc&dt=spam&c=$id").'">' . __( 'Spam', 'narga' ) . '</a>');
+echo '<span class="reply">';
+comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'narga' ), 'after' => '<span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) );
+echo '</span>
+    </section>
+    </article>';
+break;
+endswitch; // end comment_type check
     }
 endif;
 
@@ -327,69 +363,69 @@ if (!function_exists('narga_orbit_slider')) :
         echo '<div class="orbit-container">
             <ul data-orbit data-options="bullets:false;">';
         $args = array(
-                'cat' => narga_options('featured_category'),
-                'showposts' => narga_options('number_slide')
-                );
+            'cat' => narga_options('featured_category'),
+            'showposts' => narga_options('number_slide')
+        );
         $narga_slider_query = new WP_Query($args);
         while ($narga_slider_query->have_posts()) : $narga_slider_query->the_post();
         if(has_post_thumbnail()) {
             echo '
                 <li>';
             the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$narga_slider_query->current_post,));
+        } elseif (! has_post_thumbnail()) {
+            echo '
+                <li><img width="640" height="290" src="' . get_template_directory_uri() . '/images/default-slide-images.png" class="attachment-post-thumbnail wp-post-image" alt="' . get_the_title() . '" title="' . get_the_title() . '" data-caption="#htmlCaption-' .$narga_slider_query->current_post . '" />';
         }
         echo '
             <div class="orbit-caption"><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></div></li>' . "\n";
-        endwhile;
-        echo '</ul>';
-        if (narga_options('slide_indicator') == 1) :
-            $i = 1;
-            echo '<ol class="orbit-bullets">';
-            for($i; $i <= narga_options('number_slide'); $i++) {
-                echo '<li data-orbit-slide-number="' . $i . '"></li>';
-            }
-            echo '</ol>';
-        endif;
-        echo '</div>';
+endwhile;
+echo '</ul>';
+if (narga_options('slide_indicator') == 1) :
+    $i = 1;
+echo '<ol class="orbit-bullets">';
+for($i; $i <= narga_options('number_slide'); $i++) {
+    echo '<li data-orbit-slide-number="' . $i . '"></li>';
+}
+echo '</ol>';
+endif;
+echo '</div>';
     }
 endif;
 
 /**
  * Rewrite default wordpress pagination function
- *
  * Since NARGA v1.1
  **/
 if (!function_exists('narga_pagination')) :  
     function narga_pagination() {
         global $wp_query;
         $big = 999999999; # This needs to be an unlikely integer
-            $paginate_links = paginate_links( array(
-                'base' => str_replace( $big, '%#%', get_pagenum_link($big) ),
-                'current' => max( 1, get_query_var('paged') ),
-                'total' => $wp_query->max_num_pages,
-                'mid_size' => 5,
-                'prev_next' => true,
-                'prev_text' => '&laquo;',
-                'next_text' => '&raquo;',
-                'type' => 'list'
-            ) );
+        $paginate_links = paginate_links( array(
+            'base' => str_replace( $big, '%#%', get_pagenum_link($big) ),
+            'current' => max( 1, get_query_var('paged') ),
+            'total' => $wp_query->max_num_pages,
+            'mid_size' => 5,
+            'prev_next' => true,
+            'prev_text' => __('&laquo; Previous', 'narga'),
+            'next_text' => __('Next &raquo;', 'narga'),
+            'type' => 'list'
+        ) );
         $search  = array('ul class=\'page-numbers', '<li><a class="next page-numbers"');
         $replace = array('ul class=\'pagination', '<li class="arrow"><a');
-        echo '<nav id="post-nav" class="large-8 columns">' .str_replace($search, $replace, $paginate_links) . '</nav>';
+        echo '<nav id="post-nav" class="columns">' .str_replace($search, $replace, $paginate_links) . '</nav>';
     }
 endif;
 
 /**
  * Rewrite default wordpress comments pagination function
- *
  * Since NARGA v1.1
- *
  **/
 if (!function_exists('narga_comment_pagination')) :  
     function narga_comment_pagination() {
         //read the page links but do not echo
         $comment_page = paginate_comments_links( array(
-            'prev_text' => '&laquo;',
-            'next_text' => '&raquo;',
+            'prev_text' => __('&laquo; Previous', 'narga'),
+            'next_text' => __('Next &raquo;', 'narga'),
             'echo' => false, 
             'type' => 'list'
         ) );
@@ -401,80 +437,53 @@ endif;
 
 /**
  * Generator breadcrumbs with Foundation
- *
  * Since NARGA v1.3.5
- *
  **/
 if (!function_exists('narga_breadcrumb')) :  
-function narga_breadcrumb() {
-    if (!is_home()) {
-        echo '<ul class="breadcrumbs"><li><a href="';
-        echo home_url();
-        echo '">';
-        bloginfo('name');
-        echo "</a></li>";
-        if (is_category()) {
-            the_category('<li>', '</li>');
-        } elseif (is_page() || is_single()) {
-            echo the_title('<li class="current">', '</li>');
-        } 
-        echo "</ul>";
+    function narga_breadcrumb() {
+        if (!is_home()) {
+            echo '<ul class="breadcrumbs"><li><a href="';
+            echo home_url();
+            echo '">';
+            bloginfo('name');
+            echo "</a></li>";
+            if (is_category()) {
+                the_category('<li>', '</li>');
+            } elseif (is_page() || is_single()) {
+                echo the_title('<li class="current">', '</li>');
+            } 
+            echo "</ul>";
+        }
     }
-}
 endif;
 
 /**
  * Removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption
- *
  * http://writings.orangegnome.com/writes/improved-html5-wordpress-captions/
- *
  * Since NARGA v1.1.0
  **/
 if (!function_exists('narga_img_caption_width_fix')) :
-function narga_img_caption_width_fix ($val, $attr, $content = null) {
-    extract(shortcode_atts(array(
-        'id'	=> '',
-        'align'	=> '',
-        'width'	=> '',
-        'caption' => ''
-    ), $attr));
+    function narga_img_caption_width_fix ($val, $attr, $content = null) {
+        extract(shortcode_atts(array(
+            'id'	=> '',
+            'align'	=> '',
+            'width'	=> '',
+            'caption' => ''
+        ), $attr));
 
-    if ( 1 > (int) $width || empty($caption) )
-        return $val;
+        if ( 1 > (int) $width || empty($caption) )
+            return $val;
 
-    return '<figure id="' . $id . '" class="wp-caption ' . esc_attr($align) . '" style="width: ' . $width . 'px;">'
-        . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
-}
+        return '<figure id="' . $id . '" class="wp-caption ' . esc_attr($align) . '" style="width: ' . $width . 'px;">'
+            . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
+    }
 add_filter('img_caption_shortcode', 'narga_img_caption_width_fix',10,3);
 endif;
 
 /**
- * Enqueue Zepto to footer
- *
- * Idea by ZGani 
- *
- * Since NARGA v1.4.0
- **/
-if (!function_exists('narga_enqueue_zepto')) :
-    function narga_enqueue_zepto(){
-        echo '<!-- Check for Zepto support, load jQuery if necessary -->
-        <script type="text/javascript">
-            document.write(\'<script src=' . get_template_directory_uri() . '/javascripts/vendor/\'
-            + (\'__proto__\' in {} ? \'zepto\' : \'jquery\')
-            + \'.min.js><\/script>\');
-        </script>';
-    } 
-  add_action('wp_footer', 'narga_enqueue_zepto');
-endif;
-
-/**
- * Add Framework Customizer Direct Link
- *
+ * Theme link to NARGA Help page
  * Since NARGA v1.1
- *
+ * (temporaty remove, adding in next version
  **/
-add_action('admin_menu', 'narga_add_theme_menu');
-function narga_add_theme_menu() {
-    add_theme_page('NARGA Customizer', 'NARGA', 'edit_theme_options', '../wp-admin/customize.php', '');
-}
+
 ?>
