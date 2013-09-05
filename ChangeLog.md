@@ -10,6 +10,12 @@ The content of this file will be list all the tasks has done. I will update it a
 * Re-struture theme follow underscores
 * Combine some customize options to one section (site titles, logo, background ...)
 
+### v1.5.1 - September 04th, 2013
+* Fix Edge Case Long Text bug
+* Fix Custom Header feature can't hide header text, user can choose display between header text & header image or both. Add `assets/custom-header.php` file
+* Change default slides image.
+* Minor bugs fixed
+
 ### v1.5 - August 30th, 2013
 * NARGA Framework now named as NARGA WordPress theme, shortname is NARGA. Change new screenshot.png
 * Complete rewrite README file, change description in style.css. Addition information in Customization Panel.

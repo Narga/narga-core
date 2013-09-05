@@ -24,6 +24,9 @@
 require_once locate_template('/assets/customizer.php' );
 require_once locate_template('/assets/topbar.php' );
 require_once locate_template('/assets/jetpack.php' );
+# Support Custom Header
+require_once locate_template('/assets/custom-header.php');
+
 /* NARGA Basic Setup */
 if (!isset( $content_width))
     $content_width = 640;
@@ -31,6 +34,9 @@ if (!isset( $content_width))
 function narga_setup() {
     # Add language supports. By default, this framework not include language files.
     load_theme_textdomain('narga', get_template_directory() . '/languages');
+
+    # to output valid HTML5.
+    add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 
     # Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
     add_theme_support('post-thumbnails');
@@ -43,22 +49,6 @@ function narga_setup() {
         'wp-head-callback' => '_custom_background_cb',
         'admin-head-callback' => '',
         'admin-preview-callback' => ''
-    ));
-
-    # Support Custom Header
-    add_theme_support( 'custom-header', array(
-	'default-image'          => '',
-	'random-default'         => false,
-	'width'                  => 0,
-	'height'                 => 0,
-	'flex-height'            => false,
-	'flex-width'             => false,
-	'default-text-color'     => '',
-	'header-text'            => true,
-	'uploads'                => true,
-	'wp-head-callback'       => '',
-	'admin-head-callback'    => '',
-        'admin-preview-callback' => '',
     ));
 
     # Allows theme developers to add custom stylesheets to WordPress's TinyMCE visual editor. 
@@ -224,36 +214,15 @@ endif;
 
 
 /**
- * Function to generate blog name and subheader for custom as users
- * want without copy the header.php file in child theme
- * Since NARGA v1.1
- *
- */
-if (!function_exists('narga_header')) :  
-    function narga_header() {
-        echo '<div id="site-header" class="row">
-            <header id="header" class="large-12 columns" role="banner">';
-        if ( ! empty( get_header_image() ) ) :
-            echo '<a href="' . esc_url( home_url( '/' ) ) . '"><img src="' . esc_url( get_header_image() ) . '" class="header-image" width="' . get_custom_header()->width . '" height="' . get_custom_header()->height . '" alt="" /></a>';
-        else:
-            echo '<h1><a id="site-title" href="' . esc_url( home_url( '/' ) ) . '" title="' . get_bloginfo('name') . '" rel="home">' . get_bloginfo('name') . '</a></h1>
-            <h3 id="tagline" class="hide-for-small">' . get_bloginfo('description') . '</h3>';
-        endif;
-        echo '</header>
-            </div>';
-    }  
-endif;
-
-/**
  * Remove somethings not used or include in others functions
  * Since NARGA v1.1
  */
 if (!function_exists('narga_remove_unused_items')) :  
     function narga_remove_unused_items() {  
         global $wp_widget_factory;
-# Remove recent comments css
-        remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );  
-    }  
+        # Remove recent comments css
+        remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
+    }
 add_action( 'widgets_init', 'narga_remove_unused_items' ); 
 endif;
 
@@ -374,7 +343,7 @@ if (!function_exists('narga_orbit_slider')) :
             the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$narga_slider_query->current_post,));
         } elseif (! has_post_thumbnail()) {
             echo '
-                <li><img width="640" height="290" src="' . get_template_directory_uri() . '/images/default-slide-images.png" class="attachment-post-thumbnail wp-post-image" alt="' . get_the_title() . '" title="' . get_the_title() . '" data-caption="#htmlCaption-' .$narga_slider_query->current_post . '" />';
+                <li><img width="640" height="290" src="' . get_template_directory_uri() . '/images/default-slide-image.png" class="attachment-post-thumbnail wp-post-image" alt="' . get_the_title() . '" title="' . get_the_title() . '" data-caption="#htmlCaption-' .$narga_slider_query->current_post . '" />';
         }
         echo '
             <div class="orbit-caption"><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></div></li>' . "\n";
