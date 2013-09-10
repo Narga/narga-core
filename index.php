@@ -41,8 +41,7 @@ endif;
         <div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'narga' ) ); ?></div>
     </nav>
     <?php } ?>
-</div>		
-<!-- End Content row -->
+</div><!-- End Content row -->
 
 <?php get_sidebar(); ?>
 

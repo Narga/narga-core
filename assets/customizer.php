@@ -4,7 +4,26 @@
  * Since NARGA v0.1
  *
  **/
+/**
+ * Add postMessage support for site title and description for the Theme Customizer.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function narga_customize_register( $wp_customize ) {
+	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
+	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+}
+add_action( 'customize_register', 'narga_customize_register' );
 
+/**
+ * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ * Since NARGA v1.6
+ */
+function narga_customize_preview_js() {
+	wp_enqueue_script( 'narga_customizer', get_template_directory_uri() . '/javascripts/customizer.js', array( 'customize-preview' ), '20130910', true );
+}
+add_action( 'customize_preview_init', 'narga_customize_preview_js' );
 
 /**
  * Narga's Theme Customization Class
@@ -78,16 +97,120 @@ function narga_options($name, $default = false) {
 
 /**
  * Narga's Theme Customizer Settings
+ *
  * Since NARGA v0.5
+ *
  **/
-
 add_action( 'customize_register', 'narga_customizer' );
 function narga_customizer($wp_customize){
+    
+    /**
+     * Remove default WP Customize sections
+     *
+     * @since 1.6
+     * 
+     */
+    $wp_customize->remove_section('background_image');
+#    $wp_customize->remove_section('static_front_page');
+    $wp_customize->remove_section('header_image');
+
+
+    # General Settings
+    $wp_customize->add_section('narga_general_settings', array(
+        'title' => 'General Settings',
+        'description'    => __('Website General Settings', 'narga'),
+        'priority' => 59,
+        'transport' => 'postMessage',
+    ));
+
+    $wp_customize->add_setting('blogname', array( 
+        'default'    => get_option('blogname'),
+        'type'       => 'option',
+        'capability' => 'manage_options',
+        'transport'  => 'postMessage',
+    ) );
+
+    $wp_customize->add_control('blogname', array( 
+        'label'    => __('Site Title', 'narga'),
+        'section'  => 'narga_general_settings',
+        'priority' => 1,
+    ) );
+    
+    $wp_customize->add_setting('blogdescription', array( 
+        'default'    => get_option('blogdescription'),
+        'type'       => 'option',
+        'capability' => 'manage_options',
+        'transport'  => 'postMessage',
+    ) );
+    
+    $wp_customize->add_control('blogdescription', array( 
+        'label'    => __('Tagline', 'narga'),
+        'section'  => 'narga_general_settings',
+        'priority' => 2,
+    ) );
+
+    $wp_customize->add_setting('display_header_text', array( 
+        'default'    => 1,
+        'type'       => 'option',
+        'capability' => 'manage_options',
+        'transport'  => 'postMessage',
+    ) );	
+
+    $wp_customize->add_setting('narga_options[favicon]', array(
+        'default'    => '',
+        'type'       => 'option',
+        'capability' => 'manage_options',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'narga_favicon', array(
+        'label'    => __('Favicon', 'narga'),
+        'section'  => 'narga_general_settings',
+        'settings' => 'narga_options[favicon]',
+        'priority' => 5,
+    ) ) );
+
+    $wp_customize->add_control( 'display_header_text', array(
+        'settings' => 'header_textcolor',
+        'label'    => __( 'Show Title & Tagline' ),
+        'section'  => 'narga_general_settings',
+        'type'     => 'checkbox',
+        'priority' => 4,
+    ) );
+    
+    $wp_customize->add_section( 'header_image', array(
+        'title'          => __( 'Header Settings' ),
+        'theme_supports' => 'custom-header',
+        'priority'       => 60,
+    ) );
+
+    $wp_customize->add_section( 'background_image', array(
+        'title'          => __( 'Background Settings' ),
+        'theme_supports' => 'custom-background',
+        'priority'       => 80,
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_textcolor', array(
+        'label'   => __( 'Header Text Color' ),
+        'section' => 'header_image',
+    ) ) );
+    
+    $wp_customize->add_setting( 'background_color', array(
+        'default'        => get_theme_support( 'custom-background', 'default-color' ),
+        'theme_supports' => 'custom-background',
+        'sanitize_callback'    => 'sanitize_hex_color_no_hash',
+        'sanitize_js_callback' => 'maybe_hash_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'background_color', array(
+        'label'   => __( 'Background Color' ),
+        'section' => 'background_image',
+    ) ) );
+
 
     # Orbit Slider as Featured Slider
     $wp_customize->add_section('narga_featured_categories', array(
         'title' => 'Featured Posts Slider',
-        'priority' => 80,
+        'priority' => 81,
         'description'    => __('Orbit Slider Configuration', 'narga'),
         'transport' => 'postMessage',
     ));
@@ -99,7 +222,7 @@ function narga_customizer($wp_customize){
     ) );
 
     $wp_customize->add_control( new WP_Customize_Dropdown_Categories_Control( $wp_customize, 'narga_featured_category', array( 
-        'label'    => __('As default, the slides are 640x290 but are responsive. Make sure your image has at least 640x290. <br />Featured Category', 'narga'),
+        'label'    => __('Featured Category<br /><span style="font-weight:normal;font-style:italic;">The slides are responsive but make sure your image has at least 640x290.</span>', 'narga'),
         'section'  => 'narga_featured_categories',
         'type'     => 'dropdown-categories',
         'settings' => 'narga_options[featured_category]',
