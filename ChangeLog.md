@@ -6,9 +6,13 @@ The content of this file will be list all the tasks has done. I will update it a
 * Google Font chooser
 * Icon webfont
 * Integrate Theme Documents
-* Custom Favicon
 * Re-struture theme follow underscores
-* Combine some customize options to one section (site titles, logo, background ...)
+
+### v1.6 - September 10th, 2013
+* Combine & re-order options in Customization. Add Customize Preview reload function.
+* Add custom favicon feature
+* Change Orbit caption text to h3
+
 
 ### v1.5.1 - September 04th, 2013
 * Fix Edge Case Long Text bug
