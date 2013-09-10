@@ -125,6 +125,12 @@ form.search-form input#s:focus {
 }
 
 /* 3.0 Main Content */
+/* Orbit Caption Text color */
+.orbit-caption h3 a {
+    color: rgb(223, 223, 223);
+}
+
+/* Breadcrumbs text break */
 ul.breadcrumbs li {
     word-wrap: break-all !important;
     -ms-word-break:break-all !important;

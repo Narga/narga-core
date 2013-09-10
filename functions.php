@@ -41,7 +41,7 @@ function narga_setup() {
     # Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
     add_theme_support('post-thumbnails');
     set_post_thumbnail_size(640, 290, true);
-
+    
     # Support Custom Background
     add_theme_support( 'custom-background', array(
         'default-image' => '',  // background image default
@@ -330,7 +330,7 @@ endif;
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
         echo '<div class="orbit-container">
-            <ul data-orbit data-options="bullets:false;">';
+            <ul data-orbit data-options="bullets:false;resume_on_mouseout: true.;">';
         $args = array(
             'cat' => narga_options('featured_category'),
             'showposts' => narga_options('number_slide')
@@ -346,7 +346,7 @@ if (!function_exists('narga_orbit_slider')) :
                 <li><img width="640" height="290" src="' . get_template_directory_uri() . '/images/default-slide-image.png" class="attachment-post-thumbnail wp-post-image" alt="' . get_the_title() . '" title="' . get_the_title() . '" data-caption="#htmlCaption-' .$narga_slider_query->current_post . '" />';
         }
         echo '
-            <div class="orbit-caption"><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></div></li>' . "\n";
+            <div class="orbit-caption"><h3><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></h3></div></li>' . "\n";
 endwhile;
 echo '</ul>';
 if (narga_options('slide_indicator') == 1) :
