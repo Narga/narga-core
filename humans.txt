@@ -12,7 +12,8 @@
 
     Standards: HTML5, CSS3
     Components: Normalize.css, jQuery, HTML5 Boilerplate, hNews microformat
-    Software: VIM, Sublime Text, LAMP, Git, Arch Linux
+    Software: VIM, LAMP, Git, Arch Linux
+    Services: GitHub, BitBucket, Dropbox.
 
 # License
 

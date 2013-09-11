@@ -6,12 +6,13 @@ The content of this file will be list all the tasks has done. I will update it a
 * Google Font chooser
 * Icon webfont
 * Integrate Theme Documents
-* Re-struture theme follow underscores
+* Re-struture theme follow underscores (give-up)
 
-### v1.6 - September 10th, 2013
+### v1.6 - September 11th, 2013
 * Combine & re-order options in Customization. Add Customize Preview reload function.
 * Add custom favicon feature
 * Change Orbit caption text to h3
+* Remove unused features of CSS Framework to decrease the size of javascript & stylesheet files. List all Foundation features that supported in current NARGA.
 
 
 ### v1.5.1 - September 04th, 2013
