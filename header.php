@@ -30,7 +30,6 @@
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
     <!-- Mobile viewport optimized: j.mp/bplateviewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<?php if (narga_options('favicon') != '') : echo "\t" . '<link rel="shortcut icon" type="image/png" href="' . narga_options('favicon') . '">' . "\n"; endif; ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

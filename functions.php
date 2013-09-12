@@ -158,11 +158,15 @@ function narga_content_width() {
 add_action( 'template_redirect', 'narga_content_width' );
 
 
-/**
- * Add IE conditional HTML5  to header.
- * @since NARGA v1.1
+/*
+ * Header addition component: Add IE conditional HTML5  to header, favicon
+ *
+ * @since NARGA v1.6
+ *
  */
-function narga_ie_conditional_html5 () {
+if (!function_exists('narga_header_extra')) :  
+function narga_header_extra () {
+    # IE Conditional
     global $is_IE;
     if ($is_IE) {
         echo '<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
@@ -175,8 +179,13 @@ function narga_ie_conditional_html5 () {
         echo '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>';
         echo '<![endif]-->';
     }
+    # Custom favicon
+    if (narga_options('favicon') != '') :
+        echo "\t" . '<link rel="shortcut icon" type="image/png" href="' . narga_options('favicon') . '">' . "\n";
+    endif;
 }
-add_action('wp_head', 'narga_ie_conditional_html5');
+add_action('wp_head', 'narga_header_extra');
+endif;
 
 /**
  * Creates a nicely formatted and more specific title element text
