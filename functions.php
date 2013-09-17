@@ -267,13 +267,17 @@ if (!function_exists('narga_fix_sticky_class')) :
 add_filter('post_class','narga_fix_sticky_class');
 endif;
 
-# Replace more link text
+/**
+ * Replace Read more link text
+ *
+ * Since NARGA v1.6
+ */
 if (!function_exists('narga_more_link')) :  
     function narga_more_link( $more_link, $more_link_text ) {
-        $readmore = __( 'Read More &#187;', 'narga' );
+        $readmore = narga_options(post_readmore);
         return str_replace( $more_link_text, $readmore, $more_link );
     }
-add_filter( 'the_content_more_link', 'narga_more_link', 10, 2 );
+    add_filter( 'the_content_more_link', 'narga_more_link', 10, 2 );
 endif;
 
 /**

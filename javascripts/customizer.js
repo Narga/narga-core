@@ -16,6 +16,7 @@
 			$( '.site-description' ).text( to );
 		} );
 	} );
+
 	// Header text color.
 	wp.customize( 'header_textcolor', function( value ) {
 		value.bind( function( to ) {
@@ -33,4 +34,13 @@
 			}
 		} );
 	} );
+
+  // Read more text
+
+  wp.customize( 'narga_options[post_readmore]', function( value ) {
+		value.bind(function( to ) {
+			$( '.more-link' ).html(to);
+		});
+	});
+
 } )( jQuery );

@@ -10,9 +10,10 @@
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
 function narga_customize_register( $wp_customize ) {
-	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+    $readmore = narga_options ('post_readmore');
+    $wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+    $wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
+    $wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 }
 add_action( 'customize_register', 'narga_customize_register' );
 
@@ -21,9 +22,10 @@ add_action( 'customize_register', 'narga_customize_register' );
  * Since NARGA v1.6
  */
 function narga_customize_preview_js() {
-	wp_enqueue_script( 'narga_customizer', get_template_directory_uri() . '/javascripts/customizer.js', array( 'customize-preview' ), '20130910', true );
+	wp_enqueue_script( 'narga_customizer', get_template_directory_uri() . '/javascripts/customizer.js', array( 'customize-preview' ), '20130916', true );
 }
 add_action( 'customize_preview_init', 'narga_customize_preview_js' );
+
 
 /**
  * Narga's Theme Customization Class
@@ -111,7 +113,6 @@ function narga_customizer($wp_customize){
      * 
      */
     $wp_customize->remove_section('background_image');
-#    $wp_customize->remove_section('static_front_page');
     $wp_customize->remove_section('header_image');
 
 
@@ -353,12 +354,26 @@ function narga_customizer($wp_customize){
 
     $wp_customize->add_control('narga_options[breadcrumb]', array(
         'type' => 'checkbox',
-        'label' => 'Display Breadcrumb',
+        'label' => __('Display Breadcrumb','narga'),
         'section' => 'nav',
         'transport' => 'postMessage',
         'priority' => 6,
     ) );
 
+    # Custom Read More Text
+    $wp_customize->add_setting('narga_options[post_readmore]', array(
+        'default'    => __('Read More &raquo;', 'narga'),
+        'type'       => 'option',
+        'capability' => 'manage_options',
+        'transport' => 'postMessage',
+    ) );
+
+    $wp_customize->add_control('narga_options[post_readmore]', array( 
+        'label'    => __('Read More Text', 'narga'),
+        'section'  => 'static_front_page',
+        'type'     => 'text',
+        'priority' => 6,
+    ) );
 }
 
 /**
