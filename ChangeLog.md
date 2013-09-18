@@ -9,7 +9,7 @@ The content of this file will be list all the tasks has done. I will update it a
 * Re-struture theme follow underscores (give-up)
 
 ### v1.6 - September 11th, 2013
-* Combine & re-order options in Customization. Add Customize Preview reload function.
+* Combine & re-order options in Customization. Add Customize Preview reload function. Add options to custom Read more link text, change sidebar position.
 * Add custom favicon feature. Change HTML5 conditional to Header extra, it's contain addition components
 * Change Orbit caption text to h3
 * Remove unused features of CSS Framework to decrease the size of javascript & stylesheet files. List all Foundation features that supported in current NARGA.

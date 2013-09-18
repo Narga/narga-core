@@ -36,10 +36,16 @@
 	} );
 
   // Read more text
+  wp.customize( 'narga_options[sidebar_position]', function( value ) {
+		value.bind(function( to ) {
+			$( '#main-content' ).addClass( 'right' );
+		});
+	});
 
+  // Read more text
   wp.customize( 'narga_options[post_readmore]', function( value ) {
 		value.bind(function( to ) {
-			$( '.more-link' ).html(to);
+			$( '.more-link' ).html( to );
 		});
 	});
 

@@ -15,7 +15,7 @@
 */
 get_header(); ?>
 <!-- Row for main content area -->
-<div id="main-content" class="large-8 columns" role="content">
+    <div id="main-content" class="large-8 columns <?php if (narga_options('sidebar_position') == 'right') : echo 'right'; endif; ?>" role="content">
 <?php 
 if (is_front_page() && !is_paged() && narga_options('featured_category') != '-1') :
     echo '<div id="orbit-slider">';

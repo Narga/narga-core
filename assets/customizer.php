@@ -114,6 +114,7 @@ function narga_customizer($wp_customize){
      */
     $wp_customize->remove_section('background_image');
     $wp_customize->remove_section('header_image');
+    $wp_customize->remove_section('static_front_page');
 
 
     # General Settings
@@ -360,6 +361,31 @@ function narga_customizer($wp_customize){
         'priority' => 6,
     ) );
 
+    # Front Page Settings
+    $wp_customize->add_section( 'static_front_page', array(
+        'title'          => __( 'Front Page Settings' ),
+        'priority'       => 120,
+        'description'    => __( 'Your theme supports a static front page.', 'narga'),
+    ) );
+
+    $wp_customize->add_setting( 'narga_options[sidebar_position]', array(
+        'default' => 'left',
+        'capability'     => 'edit_theme_options',
+        'type'           => 'option',
+        'transport' => 'postMessage',
+    ) );
+ 
+    $wp_customize->add_control( 'narga_options[sidebar_position]', array(
+        'type' => 'radio',
+        'label' => 'Sidebar Position',
+        'section' => 'static_front_page',
+        'priority' => 1,
+        'choices' => array(
+            'left' => 'Left',
+            'right' => 'Right',
+        ),
+    ) );
+
     # Custom Read More Text
     $wp_customize->add_setting('narga_options[post_readmore]', array(
         'default'    => __('Read More &raquo;', 'narga'),
@@ -373,6 +399,46 @@ function narga_customizer($wp_customize){
         'section'  => 'static_front_page',
         'type'     => 'text',
         'priority' => 6,
+    ) );
+
+    $wp_customize->add_setting( 'show_on_front', array(
+        'default'        => get_option( 'show_on_front' ),
+        'capability'     => 'manage_options',
+        'type'           => 'option',
+        //	'theme_supports' => 'static-front-page',
+    ) );
+
+    $wp_customize->add_control( 'show_on_front', array(
+        'label'   => __( 'Front page displays', 'narga' ),
+        'section' => 'static_front_page',
+        'type'    => 'radio',
+        'choices' => array(
+            'posts' => __( 'Your latest posts', 'narga' ),
+            'page'  => __( 'A static page', 'narga' ),
+        ),
+    ) );
+    
+    $wp_customize->add_setting( 'page_on_front', array(
+        'type'       => 'option',
+        'capability' => 'manage_options',
+    ) );
+
+    $wp_customize->add_control( 'page_on_front', array(
+        'label'      => __( 'Front page', 'narga' ),
+        'section'    => 'static_front_page',
+        'type'       => 'dropdown-pages',
+    ) );
+
+    $wp_customize->add_setting( 'page_for_posts', array(
+        'type'           => 'option',
+        'capability'     => 'manage_options',
+        //	'theme_supports' => 'static-front-page',
+    ) );
+
+    $wp_customize->add_control( 'page_for_posts', array(
+        'label'      => __( 'Posts page', 'narga' ),
+        'section'    => 'static_front_page',
+        'type'       => 'dropdown-pages',
     ) );
 }
 
