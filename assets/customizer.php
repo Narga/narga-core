@@ -173,26 +173,26 @@ function narga_customizer($wp_customize){
 
     $wp_customize->add_control( 'display_header_text', array(
         'settings' => 'header_textcolor',
-        'label'    => __( 'Show Title & Tagline' ),
+        'label'    => __( 'Show Title & Tagline', 'narga' ),
         'section'  => 'narga_general_settings',
         'type'     => 'checkbox',
         'priority' => 4,
     ) );
     
     $wp_customize->add_section( 'header_image', array(
-        'title'          => __( 'Header Settings' ),
+        'title'          => __( 'Header Settings', 'narga' ),
         'theme_supports' => 'custom-header',
         'priority'       => 60,
     ) );
 
     $wp_customize->add_section( 'background_image', array(
-        'title'          => __( 'Background Settings' ),
+        'title'          => __( 'Background Settings', 'narga' ),
         'theme_supports' => 'custom-background',
         'priority'       => 80,
     ) );
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_textcolor', array(
-        'label'   => __( 'Header Text Color' ),
+        'label'   => __( 'Header Text Color', 'narga' ),
         'section' => 'header_image',
     ) ) );
     
@@ -204,7 +204,7 @@ function narga_customizer($wp_customize){
     ) );
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'background_color', array(
-        'label'   => __( 'Background Color' ),
+        'label'   => __( 'Background Color', 'narga' ),
         'section' => 'background_image',
     ) ) );
 
@@ -363,7 +363,7 @@ function narga_customizer($wp_customize){
 
     # Front Page Settings
     $wp_customize->add_section( 'static_front_page', array(
-        'title'          => __( 'Front Page Settings' ),
+        'title'          => __( 'Front Page Settings', 'narga' ),
         'priority'       => 120,
         'description'    => __( 'Your theme supports a static front page.', 'narga'),
     ) );
