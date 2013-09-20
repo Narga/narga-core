@@ -10,7 +10,9 @@
 */
 ?>
 <!-- sidebar -->
-<aside id="sidebar" class="large-4 columns" role="complementary">
+<div class="large-4 column">
+    <aside class="sidebar" role="complementary">
     <?php dynamic_sidebar("Sidebar"); ?>
-</aside>
+    </aside>
+</div>
 <!-- /sidebar -->
