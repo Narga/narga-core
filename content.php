@@ -18,7 +18,7 @@
         <?php narga_entry_meta(); ?>
     </header>
     <section class="entry-content<?php if ( has_post_format( 'video' )) {echo ' flex-video';}?>">
-        <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'narga' ) ); ?>
+        <?php the_content(); ?>
     </section>
     <footer>
         <?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'narga'), 'after' => '</p></nav>' )); ?>

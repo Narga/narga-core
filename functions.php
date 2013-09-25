@@ -465,38 +465,37 @@ endif;
 
 # Function to trim the excerpt
 if (!function_exists('narga_excerpts')) :
-    function narga_excerpts($content = false) {
+    function narga_excerpts($text = false) {
         # If is the home page, an archive, or search results
-        if(is_front_page() || is_archive() || is_search()) :
             global $post;
             $excerpt_length = narga_options('excerpt_length');
-            $content = $post->post_excerpt;
+            $text = $post->post_excerpt;
+
             # If an excerpt is set in the Optional Excerpt box
-            if($content) :
-                $content = apply_filters('the_excerpt', $content);
-                # $content = strip_tags($content); # Strip all HTML codes
-                $content = strip_shortcodes($content);
-                $content_lenght = apply_filters('excerpt_length', $excerpt_length);
-                $content_more = apply_filters('excerpt_more', ' ' . '... <a class="more-link" href="' . get_permalink() . '" title="' . the_title_attribute('echo=0') . '">  ' . __( 'Read more &#187;', 'narga' ) . ' </a>');
-                $content = wp_trim_words( $content, $content_lenght, $content_more );
-             # If no excerpt is set
-            else :
+            if ( empty($post->post_excerpt) ) {
                 $content = $post->post_content;
-                if (false == get_post_format() || count($content) > $excerpt_length){
-                $content = strip_tags($content);
-                $content = strip_shortcodes($content);
-                $content = explode(' ', $content, $excerpt_length + 1);
-                    array_pop($content);
-                    array_push($content, '... <a class="more-link" href="' . get_permalink() . '" title="' . the_title_attribute('echo=0') . '">  ' . __( 'Read more &#187;', 'narga' ) . ' </a>');
-                    $content = implode(' ', $content);
+                if (false == get_post_format() || count($content) > $excerpt_length) {
+                    $content = str_replace('\]\]\>', ']]&gt;', $content);
+                    $content = preg_replace('@<script[^>]*?>.*?</script>@si', '', $content);
+                    $content = strip_shortcodes($content);
+                    $content = strip_tags($content, '<p>');
+                    $words = explode(' ', $content, $excerpt_length + 1);
+                    if (count($words)> $excerpt_length) {
+                        array_pop($words);
+                        array_push($words, '...<br><br><a href="'.get_permalink($post->ID) .'" class="more-link button secondary small">' . __('Continue Reading »', 'narga') . '</a>');
+                        $text = wpautop(implode(' ', $words));
+                    }
                 }
-            endif;
-        endif;
+            } else {
+                $text = apply_filters('the_excerpt', $text);
+            }
             # Make sure to return the content
-            return $content;
+            return $text;
     }
+
 # Replace content with excerpt
 if (narga_options('excerpt_length') != '0') :
+    remove_filter('get_the_excerpt', 'wp_trim_excerpt');
     add_filter('the_content', 'narga_excerpts');
 endif;
 endif;
