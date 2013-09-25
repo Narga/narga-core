@@ -35,7 +35,7 @@
 		} );
 	} );
 
-  // Read more text
+  // Change position of sidebar
   wp.customize( 'narga_options[sidebar_position]', function( value ) {
 		value.bind(function( to ) {
 			$( '#main-content' ).addClass( 'right' );

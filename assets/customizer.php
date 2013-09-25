@@ -19,7 +19,9 @@ add_action( 'customize_register', 'narga_customize_register' );
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ *
  * Since NARGA v1.6
+ *
  */
 function narga_customize_preview_js() {
 	wp_enqueue_script( 'narga_customizer', get_template_directory_uri() . '/javascripts/customizer.js', array( 'customize-preview' ), '20130916', true );
@@ -28,34 +30,37 @@ add_action( 'customize_preview_init', 'narga_customize_preview_js' );
 
 
 /**
- * Narga's Theme Customization Class
+ * NARGA TextArea Control Class
+ *
  * Since NARGA v0.5
  **/
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
     # Adds textarea support to the theme customizer
     class NargaTextAreaControl extends WP_Customize_Control {
-        public $type = 'textarea';
+        public $type = 'textarea'; # can change to 'number' for input[type=number] field
         public function __construct( $manager, $id, $args = array() ) {
             $this->statuses = array( '' => __( 'Default', 'narga' ) );
             parent::__construct( $manager, $id, $args );
         }
 
         public function render_content() {
-            echo '<label>';
-            echo '<span class="customize-control-title">' . esc_html( $this->label ) . '</span>';
-            echo '<textarea rows="5" style="width:100%;" ';
+            echo '<label>
+                <span class="customize-control-title">' . esc_html( $this->label ) . '</span>
+                <textarea rows="5" style="width:100%;" ';
             $this->link();
-            echo '>' . esc_textarea( $this->value() ) . '</textarea>';
-            echo '</label>';
+            echo '>' . esc_textarea( $this->value() ) . '</textarea>
+                </label>';
         }
     }
 
 }
 /**
- * modified dropdown-pages 
- * from wp-includes/class-wp-customize-control.php
- * @since 1.0.0
+ * NARGA Category Drop Down List Class
+ *
+ * modified dropdown-pages from wp-includes/class-wp-customize-control.php
+ *
+ * @since NARGA v1.0
  */
 if ( class_exists( 'WP_Customize_Control' ) ) {
 class WP_Customize_Dropdown_Categories_Control extends WP_Customize_Control {
