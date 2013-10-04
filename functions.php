@@ -467,10 +467,10 @@ endif;
 if (!function_exists('narga_excerpts')) :
     function narga_excerpts($text = false) {
         # If is the home page, an archive, or search results
+        if(!is_singular()) :
             global $post;
             $excerpt_length = narga_options('excerpt_length');
             $text = $post->post_excerpt;
-
             # If an excerpt is set in the Optional Excerpt box
             if ( empty($post->post_excerpt) ) {
                 $content = $post->post_content;
@@ -482,13 +482,14 @@ if (!function_exists('narga_excerpts')) :
                     $words = explode(' ', $content, $excerpt_length + 1);
                     if (count($words)> $excerpt_length) {
                         array_pop($words);
-                        array_push($words, '...<br><br><a href="'.get_permalink($post->ID) .'" class="more-link button secondary small">' . __('Continue Reading »', 'narga') . '</a>');
+                        array_push($words, '...<br><a href="'.get_permalink($post->ID) .'" class="more-link">' . __('Continue Reading »', 'narga') . '</a>');
                         $text = wpautop(implode(' ', $words));
                     }
                 }
             } else {
                 $text = apply_filters('the_excerpt', $text);
             }
+            endif;
             # Make sure to return the content
             return $text;
     }
@@ -499,7 +500,6 @@ if (narga_options('excerpt_length') != '0') :
     add_filter('the_content', 'narga_excerpts');
 endif;
 endif;
-
 
 /**
  * Theme link to NARGA Help page
