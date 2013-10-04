@@ -41,7 +41,6 @@ body {
     font-family: "Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
     background: none repeat scroll 0% 0% transparent;
     word-wrap: break-all !important;
-    -ms-word-break:break-all !important;
     -ms-word-wrap: break-word !important;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -61,7 +60,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', Helvetica, Arial, sans-serif;
-    font-weight: 300;
 }
 
 sup, sub {
@@ -144,11 +142,6 @@ ul.breadcrumbs li {
 
 .entry-content ul li, .entry-content ol li {
     list-style-position: inside;
-}
-
-.entry-title {
-	line-height: 1.2;
-	font-weight: normal;
 }
 
 .entry-content {

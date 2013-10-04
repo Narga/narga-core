@@ -471,8 +471,8 @@ foreach ($sidebars as $sidebar) {
     register_sidebar(array('name'=> $sidebar,
         'before_widget' => '<article id="%1$s" class="widget %2$s">',
         'after_widget' => '</article>',
-        'before_title' => '<h4 class="widget-title">',
-        'after_title' => '</h4>'
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>'
     ));
 }
 $sidebars = array('Footer');
