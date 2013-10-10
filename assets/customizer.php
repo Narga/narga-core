@@ -377,7 +377,6 @@ function narga_customizer($wp_customize){
         'default' => 'left',
         'capability'     => 'edit_theme_options',
         'type'           => 'option',
-        'transport' => 'postMessage',
     ) );
  
     $wp_customize->add_control( 'narga_options[sidebar_position]', array(
