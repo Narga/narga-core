@@ -22,9 +22,9 @@
     </section>
     <footer>
         <?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'narga'), 'after' => '</p></nav>' )); ?>
-        <?php if(is_singular() && (narga_options('display_tags') == 'show') ) { ?>             
+        <?php if(is_singular() && (narga_options('display_tags') == '1') ) { ?>             
         <p class="tags"><?php the_tags('<span class="radius label">','</span> <span class="radius label">','</span>'); ?></p>
-        <?php if ( is_single() ) : ?>
+        <?php if ( is_single() && (narga_options('posts_navigation') == '1') ) : ?>
         <nav class="nav-single">
             <h3 class="assistive-text"><?php _e( 'Post navigation', 'narga' ); ?></h3>
             <span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'narga' ) . '</span> %title' ); ?></span>

@@ -483,20 +483,31 @@ function narga_customizer($wp_customize){
     ) );
 
     $wp_customize->add_setting( 'narga_options[display_tags]', array(
-        'default' => 'show',
+        'default' => '1',
         'capability'     => 'edit_theme_options',
         'type'           => 'option',
     ) );
  
     $wp_customize->add_control( 'narga_options[display_tags]', array(
-        'type' => 'radio',
-        'label' => 'Show or Hide Tags in single posts, pages view.',
+        'settings' => 'narga_options[display_tags]',
+        'label' => 'Display post tags.',
         'section' => 'singular_settings',
         'priority' => 3,
-        'choices' => array(
-            'show' => 'Show',
-            'hide' => 'Hide',
-        ),
+        'type'     => 'checkbox',
+    ) );
+
+    $wp_customize->add_setting( 'narga_options[posts_navigation]', array(
+        'default' => '1',
+        'capability'     => 'edit_theme_options',
+        'type'           => 'option',
+    ) );
+ 
+    $wp_customize->add_control( 'narga_options[posts_navigation]', array(
+        'settings' => 'narga_options[posts_navigation]',
+        'label' => 'Posts navigation.',
+        'section' => 'singular_settings',
+        'priority' => 4,
+        'type'     => 'checkbox',
     ) );
 
 
