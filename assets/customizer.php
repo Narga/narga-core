@@ -265,6 +265,21 @@ function narga_customizer($wp_customize){
         'priority'  => 3,
     ) );
 
+    # Use default image for slides without featured post image
+    $wp_customize->add_setting('narga_options[default_slides_image]', array(
+        'capability' => 'edit_theme_options',
+        'default'    => '1',
+        'type'       => 'option',
+    ) );
+
+    $wp_customize->add_control('narga_options[default_slides_image]', array(
+        'settings'  => 'narga_options[default_slides_image]',
+        'label'     => __('Use built in default image for post without featured image.', 'narga'),
+        'section'   => 'narga_featured_categories',
+        'type'      => 'checkbox',
+        'priority'  => 4,
+    ) );
+
     # Display Top Bar Title
     $wp_customize->add_setting('narga_options[show_topbar_title]', array(
         'capability' => 'edit_theme_options',
