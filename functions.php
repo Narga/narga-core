@@ -345,8 +345,21 @@ if (!function_exists('narga_orbit_slider')) :
         echo '<div class="orbit-container">
             <ul data-orbit data-options="bullets:false;resume_on_mouseout: true.;">';
         $args = array(
-            'cat' => narga_options('featured_category'),
-            'showposts' => narga_options('number_slide')
+            'showposts' => narga_options('number_slide'),
+            'post_type' => 'any',
+            'meta_query'    => array(
+                'relation' => 'OR',
+                array(
+                    'taxonomy' => 'category',
+                    'category_name' => narga_options('featured_category'),
+                )
+            ),
+            'meta_query'    => array(
+                 array(
+                    'key'       => 'slide',
+                    'value'     => 'true',
+                )
+            )
         );
         $narga_slider_query = new WP_Query($args);
         while ($narga_slider_query->have_posts()) : $narga_slider_query->the_post();

@@ -459,6 +459,32 @@ function narga_customizer($wp_customize){
         'section'    => 'static_front_page',
         'type'       => 'dropdown-pages',
     ) );
+
+    # Singular Settings
+    $wp_customize->add_section( 'singular_settings', array(
+        'title'          => __( 'Singular Settings', 'narga' ),
+        'priority'       => 130,
+        'description'    => __( 'Change settings of singular view: single posts, single pages.', 'narga'),
+    ) );
+
+    $wp_customize->add_setting( 'narga_options[display_tags]', array(
+        'default' => 'show',
+        'capability'     => 'edit_theme_options',
+        'type'           => 'option',
+    ) );
+ 
+    $wp_customize->add_control( 'narga_options[display_tags]', array(
+        'type' => 'radio',
+        'label' => 'Show or Hide Tags in single posts, pages view.',
+        'section' => 'singular_settings',
+        'priority' => 3,
+        'choices' => array(
+            'show' => 'Show',
+            'hide' => 'Hide',
+        ),
+    ) );
+
+
 }
 
 /**

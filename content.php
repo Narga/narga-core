@@ -22,7 +22,7 @@
     </section>
     <footer>
         <?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'narga'), 'after' => '</p></nav>' )); ?>
-        <?php if(is_singular()) { ?>                   
+        <?php if(is_singular() && (narga_options('display_tags') == 'show') ) { ?>             
         <p class="tags"><?php the_tags('<span class="radius label">','</span> <span class="radius label">','</span>'); ?></p>
         <?php if ( is_single() ) : ?>
         <nav class="nav-single">
