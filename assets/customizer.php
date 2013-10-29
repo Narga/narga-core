@@ -367,20 +367,6 @@ function narga_customizer($wp_customize){
         'priority' => 5,
     ) );
 
-    # Breadcrumb Control
-    $wp_customize->add_setting('narga_options[breadcrumb]', array(
-        'capability'     => 'manage_options',
-        'type'       => 'option',
-    ) );
-
-    $wp_customize->add_control('narga_options[breadcrumb]', array(
-        'type' => 'checkbox',
-        'label' => __('Display Breadcrumb','narga'),
-        'section' => 'nav',
-        'transport' => 'postMessage',
-        'priority' => 6,
-    ) );
-
     # Front Page Settings
     $wp_customize->add_section( 'static_front_page', array(
         'title'          => __( 'Front Page Settings', 'narga' ),
@@ -477,40 +463,80 @@ function narga_customizer($wp_customize){
 
     # Singular Settings
     $wp_customize->add_section( 'singular_settings', array(
-        'title'          => __( 'Singular Settings', 'narga' ),
+        'title'          => __( 'Post Settings', 'narga' ),
         'priority'       => 130,
-        'description'    => __( 'Change settings of singular view: single posts, single pages.', 'narga'),
+        'description'    => __( 'In this section, you can turn on/off post features like: meta, tags, post navigation, author information...', 'narga'),
+    ) );
+
+    # Breadcrumb Control
+    $wp_customize->add_setting('narga_options[breadcrumb]', array(
+        'capability'     => 'manage_options',
+        'type'       => 'option',
+    ) );
+
+    $wp_customize->add_control('narga_options[breadcrumb]', array(
+        'type'      => 'checkbox',
+        'label'     => __('Display Breadcrumb','narga'),
+        'section'   => 'singular_settings',
+        'transport' => 'postMessage',
+        'priority'  => 1,
+    ) );
+
+    $wp_customize->add_setting( 'narga_options[post_meta]', array(
+        'default'       => '1',
+        'capability'    => 'edit_theme_options',
+        'type'          => 'option',
+    ) );
+ 
+    $wp_customize->add_control( 'narga_options[post_meta]', array(
+        'settings'  => 'narga_options[post_meta]',
+        'label'     => 'Show Post meta.',
+        'section'   => 'singular_settings',
+        'priority'  => 2,
+        'type'      => 'checkbox',
     ) );
 
     $wp_customize->add_setting( 'narga_options[display_tags]', array(
-        'default' => '1',
-        'capability'     => 'edit_theme_options',
-        'type'           => 'option',
+        'default'       => '1',
+        'capability'    => 'edit_theme_options',
+        'type'          => 'option',
     ) );
  
     $wp_customize->add_control( 'narga_options[display_tags]', array(
-        'settings' => 'narga_options[display_tags]',
-        'label' => 'Display post tags.',
-        'section' => 'singular_settings',
-        'priority' => 3,
-        'type'     => 'checkbox',
+        'settings'  => 'narga_options[display_tags]',
+        'label'     => 'Display post tags.',
+        'section'   => 'singular_settings',
+        'priority'  => 3,
+        'type'      => 'checkbox',
     ) );
 
     $wp_customize->add_setting( 'narga_options[posts_navigation]', array(
-        'default' => '1',
-        'capability'     => 'edit_theme_options',
-        'type'           => 'option',
+        'default'       => '1',
+        'capability'    => 'edit_theme_options',
+        'type'          => 'option',
     ) );
  
     $wp_customize->add_control( 'narga_options[posts_navigation]', array(
-        'settings' => 'narga_options[posts_navigation]',
-        'label' => 'Posts navigation.',
-        'section' => 'singular_settings',
-        'priority' => 4,
-        'type'     => 'checkbox',
+        'settings'  => 'narga_options[posts_navigation]',
+        'label'     => 'Post navigation.',
+        'section'   => 'singular_settings',
+        'priority'  => 4,
+        'type'      => 'checkbox',
     ) );
 
-
+    $wp_customize->add_setting( 'narga_options[post_author]', array(
+        'default'       => '1',
+        'capability'    => 'edit_theme_options',
+        'type'          => 'option',
+    ) );
+ 
+    $wp_customize->add_control( 'narga_options[post_author]', array(
+        'settings'  => 'narga_options[post_author]',
+        'label'     => 'Display author bio.',
+        'section'   => 'singular_settings',
+        'priority'  => 5,
+        'type'      => 'checkbox',
+    ) );
 }
 
 /**
