@@ -13,6 +13,9 @@ The content of this file will be list all the tasks has done. I will update it a
 * Add options to force display excerpt instead content on front page. User can define the custom length of excerpt and it counts by words. Set it as 0 mean disable this feature. Optimize Cutomizer custom control class
 * Change HTML structure of sidebar.php for friendly with child theme. Change sidebar widget title to h3 headline
 * Change some function comment. Fix some minor bugs and style. Remove readme.txt
+* Add Posts Settings section to allow user can show or hide post features likes post meta, tags ... Move option to show breadcrumb to Post Settings, add option to show or hide post navigation, author information, post meta
+* Add option to use built in default image for post without featured image. Default on
+* Fix change sidebar position preview.
 
 ### v1.6 - September 18th, 2013
 * Combine & re-order options in Customization. Add Customize Preview reload function. Add options to custom Read more link text, change sidebar position.
