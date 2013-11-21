@@ -22,10 +22,13 @@
  */
 
 /* NARGA Assets */
+// Customizer additions.
 require_once locate_template('/assets/customizer.php' );
+// WordPress Zurb Topbar function.
 require_once locate_template('/assets/topbar.php' );
+// Load Jetpack compatibility file.
 require_once locate_template('/assets/jetpack.php' );
-# Support Custom Header
+// Implement the Custom Header feature.
 require_once locate_template('/assets/custom-header.php');
 
 /* NARGA Basic Setup */
