@@ -1,10 +1,11 @@
 <?php
 /**
-* The template for displaying Search Results pages.
-*
-* @package NARGA Framework
-* @since NARGA Framework 1.0
-*/
+ * The template for displaying Search Results pages.
+ * 
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.0
+ **/
 ?>
 
 <?php get_header(); ?>

@@ -16,7 +16,8 @@
  *
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
- * @package NARGA
+ * @package WordPress
+ * @subpackage NARGA
  * @since NARGA 1.0
  */
 

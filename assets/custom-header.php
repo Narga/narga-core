@@ -13,8 +13,9 @@
 	<?php } // if ( ! empty( $header_image ) ) ?>
 
  *
- * @package NARGA
- * since NARGA v1.5.1
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA v1.5.1
  */
 
 /**

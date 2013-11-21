@@ -1,11 +1,11 @@
 <?php
 /**
-* The Template for displaying all single posts.
-*
-* @package WordPress
-* @subpackage NARGA Framework
-* @since NARGA Framework 1.0
-*/
+ * The Template for displaying all single posts.
+ * 
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.0
+ **/
 ?>
 
 <?php get_header(); ?>

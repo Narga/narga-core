@@ -1,11 +1,10 @@
 <?php
 /**
-* The template used for displaying page content in page.php
-*
-* @package WordPress
-* @subpackage NARGA
-* @since NARGA 1.2
-*/
+ * The template used for displaying page content in page.php
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.2
+ **/
 ?>
 
 <?php while (have_posts()) : the_post(); ?>

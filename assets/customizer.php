@@ -1,9 +1,13 @@
 <?php
 /**
- * Narga Customizer
+ * NARGA Customizer
+ * 
+ * @package WordPress
+ * @subpackage NARGA
  * Since NARGA v0.1
  *
  **/
+
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
  *

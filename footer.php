@@ -1,14 +1,13 @@
 <?php
 /**
-* The template for displaying the footer.
-*
-* Contains footer content and the closing of the
-* #main and #page div elements.
-*
-* @package WordPress
-* @subpackage NARGA
-* @since NARGA 1.0
-*/
+ * The template for displaying the footer.
+ *
+ * Contains footer content and the closing of the #main and #page div elements.
+ * 
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.0
+ **/
 ?>
 
 <!-- End row for main content area -->

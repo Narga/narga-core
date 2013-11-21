@@ -1,7 +1,10 @@
 <?php
 /**
-* The template for displaying search forms in NARGA
-* @package NARGA
+ * The template for displaying search forms in NARGA
+ * 
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.0
 */
 ?>
 <form role="search" method="get" id="searchform" action="<?php echo esc_url(home_url( '/' )); ?>">

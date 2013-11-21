@@ -1,8 +1,10 @@
 <?php
 /**
  * Narga ZURB Topbar for WordPress
- * Since NARGA v0.1
  *
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA v0.1
  **/
 
 // the left top bar

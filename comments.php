@@ -1,12 +1,17 @@
 <?php
 /**
-* The template for displaying Comments.
-* @package WordPress
-* @subpackage NARGA
-* @since NARGA 1.0
+ * The template for displaying Comments.
+ *
+ * The area of the page that contains both current comments
+ * and the comment form. The actual display of comments is
+ * handled by a callback to narga_comment() which is
+ * located in the inc/template-tags.php file.
+ * 
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.0
 */
-?>
-<?php
+
 // Do not delete these lines
 if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 die (__('Please do not load this page directly. Thanks!', 'narga'));

@@ -1,10 +1,10 @@
 <?php
 /**
-* The default template for displaying content. Used for both single and index/archive/search.
-*
-* @package WordPress
-* @subpackage NARGA
-* @since NARGA 1.2
+ * The default template for displaying content. Used for both single and index/archive/search.
+ * 
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.2
 */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">

@@ -1,8 +1,11 @@
-/*
+/**
 Theme Name:     NARGA
 Theme URI:      http://www.narga.net/narga-core/
+
 Description:    <strong>NARGA</strong> is a versatile HTML5 responsive WordPress theme using on <em>ZURB's Foundation CSS</em>, a powerful tool for building prototypes on any kind of devices. NARGA is <strong>starter theme</strong> that supports child-theme so it'll help you do amazing things faster & easier than ever before. It is a magazine theme with minimalistic style. Suitable for any niche, especially for news or magazine sites. Along with the elegant design the theme is easily customizable with numerous theme options through Theme Customization. Crafted by <a href="http://www.narga.net/" title="NARGA - Ideas and Inspiration">NARGA.NET</a>. Twitter  <a href="http://twitter.com/narga" title="Follow Narga on Twitter"">@narga</a> View <a href="http://demo.narga.net/" title="NARGA Demo">NARGA Demo</a>
+
 Version:        1.7
+
 Tags:           two-columns, blue, flexible-width, featured-image-header, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, post-formats, sticky-post
 
 Author:         Nguyễn Đình Quân
@@ -12,9 +15,14 @@ Text Domain:    narga
 
 License:        GNU General Public License v2.0
 License URI:    http://www.gnu.org/licenses/gpl-2.0.html
+
 NARGA WordPress Theme, Copyright 2013 NARGA.NET
 NARGA is distributed under the terms of the GNU GPL
-*/
+
+ * @package WordPress
+ * @subpackage NARGA
+ * 
+**/
 
 /**
  * Table of Contents:

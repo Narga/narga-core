@@ -1,13 +1,12 @@
 <?php
 /**
-* The Header for our theme.
-*
-* Displays all of the head section and everything up till:
-*
-* @package WordPress
-* @subpackage NARGA
-* @since NARGA 1.0
-*/
+ * The Header for our theme.
+ * Displays all of the head section and everything up till.
+ *
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.0
+ **/
 ?>
 <!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->

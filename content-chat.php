@@ -1,12 +1,10 @@
 <?php
 /**
-* The template for displaying posts in the Chat post format
-index/archive/search.
-*
-* @package WordPress
-* @subpackage NARGA
-* @since NARGA 1.2
-*/
+ * The template for displaying posts in the Chat post format index/archive/search.
+ * @package WordPress
+ * @subpackage NARGA
+ * @since NARGA 1.2
+ **/
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
