@@ -30,11 +30,26 @@ require_once locate_template('/assets/topbar.php' );
 require_once locate_template('/assets/jetpack.php' );
 // Implement the Custom Header feature.
 require_once locate_template('/assets/custom-header.php');
+// Custom functions that cleaning unuse element of HTML, CSS, WordPress.
+require_once locate_template('/assets/cleanup.php');
 
-/* NARGA Basic Setup */
 if (!isset( $content_width))
     $content_width = 640;
+/**
+ * Adjusts content_width value for full-width and single image attachment
+ * templates, and when there are no active widgets in the sidebar.
+ * @since NARGA v1.3.3
+ * @from Twenty Twelve
+ */
+function narga_content_width() {
+        if ( is_page_template( 'templates/full-width.php' ) || is_attachment() ) {
+                global $content_width;
+                $content_width = 975;
+        }
+}
+add_action( 'template_redirect', 'narga_content_width' );
 
+/* NARGA Basic Setup */
 function narga_setup() {
     # Add language supports. By default, this framework not include language files.
     load_theme_textdomain('narga', get_template_directory() . '/languages');
@@ -77,9 +92,9 @@ function narga_setup() {
 }
 add_action('after_setup_theme', 'narga_setup');
 
-/* ----------------------------------------
-   :: Enqueue Scripts and Styles for Front-End
----------------------------------------- */
+/**
+ * Enqueue Scripts and Styles for Front-End
+ **/
 function narga_assets() {
     global $wp_styles;
 
@@ -111,7 +126,7 @@ add_action( 'wp_enqueue_scripts', 'narga_assets' );
 /**
  * Enqueue Zepto to footer
  * Idea by ZGani 
- * Since NARGA v1.4.0
+ * @since NARGA v1.4.0
  **/
 if (!function_exists('narga_enqueue_zepto')) :
     function narga_enqueue_zepto(){
@@ -127,8 +142,8 @@ endif;
 
 /**
  * Includes the pro and custom functions if it exists
- * Since NARGA v1.1
-  **/
+ * @since NARGA v1.1
+ **/
 locate_template( array( 'assets/pro-functions.php', 'assets/custom-functions.php' ), true, false);
 /* Load custom-actions.php file if it exists in the uploads folder */
 $upload_dir = wp_upload_dir();
@@ -138,58 +153,14 @@ if(file_exists(ACTION_FILE))
     include(ACTION_FILE);
 
 /* Load custom.css file if it exists in the uploads folder */
-    define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
-    define('CSS_DISPLAY', $upload_dir['baseurl'].'/custom.css');
+define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
+define('CSS_DISPLAY', $upload_dir['baseurl'].'/custom.css');
 if(file_exists(CSS_FILE))
     add_action("wp_print_styles", "add_custom_css_file", 99);
-    function narga_add_custom_css_file() {
-        wp_register_style('narga_custom_css', CSS_DISPLAY);
-        wp_enqueue_style( 'narga_custom_css');
-    }
-
-/**
- * Adjusts content_width value for full-width and single image attachment
- * templates, and when there are no active widgets in the sidebar.
- * @since NARGA v1.3.3
- * @from Twenty Twelve
- */
-function narga_content_width() {
-        if ( is_page_template( 'templates/full-width.php' ) || is_attachment() ) {
-                global $content_width;
-                $content_width = 975;
-        }
+function narga_add_custom_css_file() {
+    wp_register_style('narga_custom_css', CSS_DISPLAY);
+    wp_enqueue_style( 'narga_custom_css');
 }
-add_action( 'template_redirect', 'narga_content_width' );
-
-
-/*
- * Header addition component: Add IE conditional HTML5  to header, favicon
- *
- * @since NARGA v1.6
- *
- */
-if (!function_exists('narga_header_extra')) :  
-function narga_header_extra () {
-    # IE Conditional
-    global $is_IE;
-    if ($is_IE) {
-        echo '<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
-            chromium.org/developers/how-tos/chrome-frame-getting-started -->';
-        echo '<!--[if lt IE 7]>';
-        echo '<script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>';
-        echo '<script defer>window.attachEvent(\'onload\',function(){CFInstall.check({mode:\'overlay\'})})</script>';
-        echo '<![endif]-->';
-        echo '<!--[if lt IE 9]>';
-        echo '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>';
-        echo '<![endif]-->';
-    }
-    # Custom favicon
-    if (narga_options('favicon') != '') :
-        echo "\t" . '<link rel="shortcut icon" type="image/png" href="' . narga_options('favicon') . '">' . "\n";
-    endif;
-}
-add_action('wp_head', 'narga_header_extra');
-endif;
 
 /**
  * Creates a nicely formatted and more specific title element text
@@ -225,23 +196,9 @@ if (!function_exists('narga_wp_title')) :
 add_filter( 'wp_title', 'narga_wp_title', 10, 2 );
 endif;
 
-
-/**
- * Remove somethings not used or include in others functions
- * Since NARGA v1.1
- */
-if (!function_exists('narga_remove_unused_items')) :  
-    function narga_remove_unused_items() {  
-        global $wp_widget_factory;
-        # Remove recent comments css
-        remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
-    }
-add_action( 'widgets_init', 'narga_remove_unused_items' ); 
-endif;
-
 /**
  * Return entry meta information for posts, used by multiple loops
- * Since NARGA v1.1
+ * @since NARGA v1.1
  */
 if (!function_exists('narga_entry_meta')) :  
     function narga_entry_meta() {
@@ -262,19 +219,9 @@ if (!function_exists('narga_entry_meta')) :
     }
 endif;
 
-# Fix post sticky class conflict with topbar 
-if (!function_exists('narga_fix_sticky_class')) :  
-    function narga_fix_sticky_class($classes) {
-        $classes = array_diff($classes, array("sticky"));
-        return $classes;
-    }
-add_filter('post_class','narga_fix_sticky_class');
-endif;
-
 /**
  * Replace Read more link text
- *
- * Since NARGA v1.6
+ * @since NARGA v1.6
  */
 if (!function_exists('narga_more_link')) :  
     function narga_more_link( $more_link, $more_link_text ) {
@@ -286,8 +233,10 @@ endif;
 
 /**
  * WordPress Comments Adjustment
- * Since NARGA v1.1
- */
+ *
+ * @since NARGA v1.1
+ **/
+
 if (!function_exists('narga_comments')) :  
     function narga_comments($comment, $args, $depth) {
         $GLOBALS['comment'] = $comment;
@@ -341,8 +290,8 @@ endif;
 
 /**
  * Orbit Slider as Featured Post
- * function to render orbit slide based on featured category and number of slide in Customize.
- * Since NARGA v1.1
+ * Function to render orbit slide based on featured category and number of slide in Customize.
+ * @since NARGA v1.1
  */
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
@@ -457,29 +406,6 @@ if (!function_exists('narga_breadcrumb')) :
             echo "</ul>";
         }
     }
-endif;
-
-/**
- * Removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption
- * http://writings.orangegnome.com/writes/improved-html5-wordpress-captions/
- * Since NARGA v1.1.0
- **/
-if (!function_exists('narga_img_caption_width_fix')) :
-    function narga_img_caption_width_fix ($val, $attr, $content = null) {
-        extract(shortcode_atts(array(
-            'id'	=> '',
-            'align'	=> '',
-            'width'	=> '',
-            'caption' => ''
-        ), $attr));
-
-        if ( 1 > (int) $width || empty($caption) )
-            return $val;
-
-        return '<figure id="' . $id . '" class="wp-caption ' . esc_attr($align) . '" style="width: ' . $width . 'px;">'
-            . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
-    }
-add_filter('img_caption_shortcode', 'narga_img_caption_width_fix',10,3);
 endif;
 
 

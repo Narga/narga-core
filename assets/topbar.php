@@ -136,4 +136,17 @@ function narga_menu_fallback() {
     echo '</div>';
 }
 
+/**
+ * Fix post sticky class conflict with topbar
+ *
+ * @since NARGA v1.3
+ */
+if (!function_exists('narga_fix_sticky_class')) :  
+    function narga_fix_sticky_class($classes) {
+        $classes = array_diff($classes, array("sticky"));
+        return $classes;
+    }
+add_filter('post_class','narga_fix_sticky_class');
+endif;
+
 ?>

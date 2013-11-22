@@ -9,6 +9,11 @@ The content of this file will be list all the tasks has done. I will update it a
 * SASS
 * Re-struture theme follow underscores (hold)
 
+### v1.8 - November 25th, 2013
+* Update all file information in comment section.
+* Add Right to Left Style file (content add late)
+* Change theme folder name from narga-core to narga
+
 ### v1.7 - October 10th, 2013
 * Add options to force display excerpt instead content on front page. User can define the custom length of excerpt and it counts by words. Set it as 0 mean disable this feature. Optimize Cutomizer custom control class
 * Change HTML structure of sidebar.php for friendly with child theme. Change sidebar widget title to h3 headline
