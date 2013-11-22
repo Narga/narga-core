@@ -7,14 +7,18 @@ The content of this file will be list all the tasks has done. I will update it a
 * Icon webfont
 * Integrate Theme Documents
 * SASS
-* Re-struture theme follow underscores (hold)
 
 ### v1.8 - November 25th, 2013
-* Update all file information in comment section.
-* Add Right to Left Style file (content add late)
+* Now NARGA is using Zurb Foundation 5
+* Remove addition Google Fonts, use Open Sans like default in Foundation 5.
+* Update all file information in comment section. Add Right to Left Style file (content add late)
 * Change theme folder name from narga-core to narga
-* Move all cleanup functions to cleanup.php file, recode all cleanup functions to help maintain in future.
+* Move all cleanup functions to cleanup.php file, recode all cleanup functions to help maintain in future. Rearranged files, functions follow Underscores starter theme.
+* Fix Orbit selector algorithm problem, incorrect value in customization to display post meta information.
 * Fix missing media type of css file that enqueue by WordPress.
+* Enhanced Topbar function, navigation search form.
+* Update scripts, styles version, remove unuse items, minor changed in main stylesheet to compatible with new version.
+
 
 ### v1.7 - October 10th, 2013
 * Add options to force display excerpt instead content on front page. User can define the custom length of excerpt and it counts by words. Set it as 0 mean disable this feature. Optimize Cutomizer custom control class

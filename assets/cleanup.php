@@ -16,31 +16,7 @@
 add_action('after_setup_theme','narga_cleanup');
 function narga_cleanup() {
 
-    // category feeds
-    remove_action( 'wp_head', 'feed_links_extra', 3 );
-    // post and comment feeds
-    remove_action( 'wp_head', 'feed_links', 2 );
-    // EditURI link
-    remove_action( 'wp_head', 'rsd_link' );
-    // windows live writer
-    remove_action( 'wp_head', 'wlwmanifest_link' );
-    // index link
-    remove_action( 'wp_head', 'index_rel_link' );
-    // previous link
-    remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
-    // start link
-    remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
-    // links for adjacent posts
-    remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-    // WP version
-    remove_action( 'wp_head', 'wp_generator' );
-    // remove WP version from css
-    add_filter( 'style_loader_src', 'narga_remove_wp_ver_css_js', 9999 );
-    // remove Wp version from scripts  
-    add_filter( 'script_loader_src', 'narga_remove_wp_ver_css_js', 9999 );
-    // remove WP version from RSS
-    add_filter('the_generator', 'narga_rss_version');
-    // clean up comment styles in the head & remove pesky injected css for recent comments widget
+   // clean up comment styles in the head & remove pesky injected css for recent comments widget
     add_action('wp_head', 'narga_remove_recent_comments_style', 1);
     // clean up gallery output in wp
     add_filter('gallery_style', 'narga_remove_gallery_style');
@@ -102,16 +78,6 @@ function narga_remove_gallery_style($css) {
     return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
 }
 endif;
-
-// remove WP version from RSS
-function narga_rss_version() { return ''; }
-
-// remove WP version from scripts
-function narga_remove_wp_ver_css_js( $src ) {
-    if ( strpos( $src, 'ver=' ) )
-        $src = remove_query_arg( 'ver', $src );
-    return $src;
-}
 
 /*
  * IE conditional HTML5  to header, favicon

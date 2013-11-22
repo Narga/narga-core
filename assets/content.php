@@ -57,7 +57,7 @@ if (!function_exists('narga_excerpts')) :
                     $words = explode(' ', $content, $excerpt_length + 1);
                     if (count($words)> $excerpt_length) {
                         array_pop($words);
-                        array_push($words, '...<br><a href="'.get_permalink($post->ID) .'" class="more-link">' . __('Continue Reading »', 'narga') . '</a>');
+                        array_push($words, '...<br><a href="'.get_permalink($post->ID) .'" class="more-link">' . __('Continue Reading &#187;', 'narga') . '</a>');
                         $text = wpautop(implode(' ', $words));
                     }
                 }

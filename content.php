@@ -15,7 +15,7 @@
         <h2 class="entry-title">
             <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'View %s', 'narga' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
         <?php endif; // is_single() ?>
-        <?php if (narga_options('post_meta')!= '1' ) { narga_entry_meta(); } ?>
+        <?php if (narga_options('post_meta')!= '0' ) { narga_entry_meta(); } ?>
     </header>
     <section class="entry-content<?php if ( has_post_format( 'video' )) {echo ' flex-video';}?>">
         <?php the_content(); ?>

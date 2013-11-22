@@ -106,22 +106,19 @@ function narga_assets() {
     global $wp_styles;
 
     if ( !is_admin() ) {
-
+      
         # Loads Foundation Main stylesheet
-        wp_enqueue_style( 'foundation', get_template_directory_uri() . '/stylesheets/foundation.min.css', array(), '2013-08-12', 'all' );
+        wp_enqueue_style( 'foundation', get_template_directory_uri() . '/stylesheets/foundation.min.css', array(), '2013-11-20', 'all' );
 
-        # Load Google Fonts API
-        wp_enqueue_style( 'google-font',"http://fonts.googleapis.com/css?family=Oswald|Open+Sans:400,400italic,700,700italic", array(), '2013-08-12', 'all' );
-
-        # Loads our main stylesheet.
+         # Loads our main stylesheet.
         wp_enqueue_style( 'narga-style', get_stylesheet_uri(), array(), '2013-08-12', 'all' );
 
         # Load JavaScripts
-        wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/javascripts/vendor/custom.modernizr.js', array( 'jquery' ), '2.6.2', true );
+        wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/javascripts/modernizr.js', array( 'jquery' ), '2.6.2', true );
 
-        wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array( 'jquery' ), '4.3.1', true );
+        wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array( 'jquery' ), '5.0.0', true );
 
-        wp_enqueue_script( 'narga', get_template_directory_uri() . '/javascripts/narga.js', array( 'jquery' ), '1.3.3', true );
+        wp_enqueue_script( 'narga', get_template_directory_uri() . '/javascripts/narga.js', array( 'jquery' ), '1.8', true );
 
         # Enable threaded comments 
         if ( (!is_admin()) && is_singular() && comments_open() && get_option('thread_comments') )
@@ -166,13 +163,7 @@ if (!function_exists('narga_orbit_slider')) :
         $args = array(
             'showposts' => narga_options('number_slide'),
             'post_type' => 'any',
-            'meta_query'    => array(
-                'relation' => 'OR',
-                array(
-                    'taxonomy' => 'category',
-                    'category_name' => narga_options('featured_category'),
-                )
-            ),
+            'cat' => narga_options('featured_category'),
         );
         $narga_slider_query = new WP_Query($args);
         while ($narga_slider_query->have_posts()) : $narga_slider_query->the_post();
