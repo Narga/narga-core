@@ -13,6 +13,8 @@ The content of this file will be list all the tasks has done. I will update it a
 * Update all file information in comment section.
 * Add Right to Left Style file (content add late)
 * Change theme folder name from narga-core to narga
+* Move all cleanup functions to cleanup.php file, recode all cleanup functions to help maintain in future.
+* Fix missing media type of css file that enqueue by WordPress.
 
 ### v1.7 - October 10th, 2013
 * Add options to force display excerpt instead content on front page. User can define the custom length of excerpt and it counts by words. Set it as 0 mean disable this feature. Optimize Cutomizer custom control class
