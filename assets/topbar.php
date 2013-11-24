@@ -86,6 +86,7 @@ if (narga_options('show_topbar_title') == 0) :
 endif;
 echo '">
 <li class="name"><h1><a href="' .  narga_options('topbar_title_url') . '">' .  narga_options('topbar_title') . '</a></h1></li>
+<li class="toggle-topbar menu-icon"><a href="#"><span>' . __('Menu', 'narga') . '</span></a></li>
     </ul>
     <section class="top-bar-section">';
 #Top Bar Search Form
