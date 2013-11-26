@@ -1,0 +1,469 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: NARGA WordPress Starter Theme\n"
+"POT-Creation-Date: 2013-11-26 15:17+0700\n"
+"PO-Revision-Date: 2013-11-26 15:19+0700\n"
+"Last-Translator: \n"
+"Language-Team: NARGA.NET <dinhquan@narga.net>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+
+#: 404.php:16
+msgid "This is somewhat embarrassing, isn&rsquo;t it?"
+msgstr ""
+
+#: 404.php:20
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: archive.php:23
+#, php-format
+msgid "Daily Archives: %s"
+msgstr ""
+
+#: archive.php:25
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr ""
+
+#: archive.php:27
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr ""
+
+#: archive.php:38
+#: index.php:38
+msgid "&larr; Older posts"
+msgstr ""
+
+#: archive.php:39
+#: index.php:39
+msgid "Newer posts &rarr;"
+msgstr ""
+
+#: comments.php:17
+msgid "Please do not load this page directly. Thanks!"
+msgstr ""
+
+#: comments.php:27
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: comments.php:58
+msgid "Comments are closed."
+msgstr ""
+
+#: content-aside.php:13
+#: content-chat.php:12
+#: content-image.php:13
+#: content-link.php:13
+#: content-page.php:13
+#: content-quote.php:13
+#: content-search.php:22
+#: content-status.php:18
+#: content.php:16
+#: image.php:20
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: content-aside.php:15
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: content-aside.php:22
+#: content-chat.php:21
+#: content-image.php:23
+#: content-link.php:23
+#: content-quote.php:22
+#: content-status.php:28
+msgid "Leave a reply"
+msgstr ""
+
+#: content-aside.php:22
+#: content-chat.php:21
+#: content-image.php:23
+#: content-link.php:23
+#: content-quote.php:22
+#: content-status.php:28
+msgid "1 Reply"
+msgstr ""
+
+#: content-aside.php:22
+#: content-chat.php:21
+#: content-image.php:23
+#: content-link.php:23
+#: content-quote.php:22
+#: content-status.php:28
+msgid "% Replies"
+msgstr ""
+
+#: content-image.php:17
+#: content-link.php:17
+#: content-page.php:18
+#: content-status.php:23
+#: content.php:24
+#: image.php:84
+msgid "Pages:"
+msgstr ""
+
+#: content-link.php:13
+msgid "Link"
+msgstr ""
+
+#: content-quote.php:13
+msgid "Quote"
+msgstr ""
+
+#: content-search.php:13
+#: index.php:26
+msgid "Sorry, no results were found."
+msgstr ""
+
+#: content-search.php:29
+msgid "Continue reading &rarr;"
+msgstr ""
+
+#: content-status.php:15
+#, php-format
+msgid "Permalink to %s"
+msgstr ""
+
+#: content-status.php:18
+msgid "Status"
+msgstr ""
+
+#: content.php:34
+msgid "Post navigation"
+msgstr ""
+
+#: content.php:42
+msgid "About the Author &#151; "
+msgstr ""
+
+#: footer.php:23
+#, php-format
+msgid ""
+"<p>Proudly powered by <a href=\"http://wordpress.org/\" title=\"%1$s\" rel="
+"\"generator\">%2$s</a> &middot; <a href=\"http://www.narga.net/\" title="
+"\"%3$s\" rel=\"designer\">%4$s</a>.</p>"
+msgstr ""
+
+#: functions.php:91
+msgid "Top Bar"
+msgstr ""
+
+#: functions.php:92
+msgid "Footer Navigation"
+msgstr ""
+
+#: image.php:25
+#, php-format
+msgid ""
+"<span class=\"meta-prep meta-prep-entry-date\">Uploaded </span> <span class="
+"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
+"span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; "
+"%5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</"
+"a>."
+msgstr ""
+
+#: image.php:36
+#: assets/content.php:29
+#: assets/content.php:138
+msgid "Edit"
+msgstr ""
+
+#: image.php:91
+msgid "&larr; Previous"
+msgstr ""
+
+#: image.php:92
+msgid "Next &rarr;"
+msgstr ""
+
+#: search.php:15
+msgid "Search Results for"
+msgstr ""
+
+#: searchform.php:12
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:14
+msgid "Search..."
+msgstr ""
+
+#: searchform.php:17
+#: assets/topbar.php:111
+msgid "Search"
+msgstr ""
+
+#: assets/content.php:20
+msgid "No comment"
+msgstr ""
+
+#: assets/content.php:20
+msgid "1 comment"
+msgstr ""
+
+#: assets/content.php:20
+#, php-format
+msgid "% comments"
+msgstr ""
+
+#: assets/content.php:20
+msgid "comments-link"
+msgstr ""
+
+#: assets/content.php:20
+msgid "Comments are off for this post"
+msgstr ""
+
+#: assets/content.php:23
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: assets/content.php:25
+msgid " in "
+msgstr ""
+
+#: assets/content.php:25
+msgid " by "
+msgstr ""
+
+#: assets/content.php:60
+msgid "Continue Reading &#187;"
+msgstr ""
+
+#: assets/content.php:107
+msgid "Pingback:"
+msgstr ""
+
+#: assets/content.php:107
+msgid "(Edit)"
+msgstr ""
+
+#: assets/content.php:120
+#, php-format
+msgid "<cite class=\"fn\">%s</cite>"
+msgstr ""
+
+#: assets/content.php:122
+msgid "Post author"
+msgstr ""
+
+#: assets/content.php:125
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+#: assets/content.php:133
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: assets/content.php:138
+msgid "Del"
+msgstr ""
+
+#: assets/content.php:138
+msgid "Spam"
+msgstr ""
+
+#: assets/content.php:140
+msgid "Reply"
+msgstr ""
+
+#: assets/custom-header.php:186
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: assets/customizer.php:47
+msgid "Default"
+msgstr ""
+
+#: assets/customizer.php:79
+msgid "Select"
+msgstr ""
+
+#: assets/customizer.php:132
+msgid "Website General Settings"
+msgstr ""
+
+#: assets/customizer.php:145
+msgid "Site Title"
+msgstr ""
+
+#: assets/customizer.php:158
+msgid "Tagline"
+msgstr ""
+
+#: assets/customizer.php:177
+msgid "Favicon"
+msgstr ""
+
+#: assets/customizer.php:185
+msgid "Show Title & Tagline"
+msgstr ""
+
+#: assets/customizer.php:192
+msgid "Header Settings"
+msgstr ""
+
+#: assets/customizer.php:198
+msgid "Background Settings"
+msgstr ""
+
+#: assets/customizer.php:204
+msgid "Header Text Color"
+msgstr ""
+
+#: assets/customizer.php:216
+msgid "Background Color"
+msgstr ""
+
+#: assets/customizer.php:225
+msgid "Orbit Slider Configuration"
+msgstr ""
+
+#: assets/customizer.php:236
+msgid ""
+"Featured Category<br /><span style=\"font-weight:normal;font-style:italic;"
+"\">The slides are responsive but make sure your image has at least 640x290.</"
+"span>"
+msgstr ""
+
+#: assets/customizer.php:251
+msgid "Number Slide"
+msgstr ""
+
+#: assets/customizer.php:265
+msgid "Slide Indicator"
+msgstr ""
+
+#: assets/customizer.php:281
+msgid "Use built in default image for post without featured image."
+msgstr ""
+
+#: assets/customizer.php:295
+msgid "Display Top Bar Title"
+msgstr ""
+
+#: assets/customizer.php:311
+msgid "Top Bar Title"
+msgstr ""
+
+#: assets/customizer.php:324
+msgid "Top Bar URL"
+msgstr ""
+
+#: assets/customizer.php:338
+msgid "Sticky Top Bar"
+msgstr ""
+
+#: assets/customizer.php:353
+msgid "Contain Top Bar Layout Width"
+msgstr ""
+
+#: assets/customizer.php:369
+msgid "Top Bar Search Form"
+msgstr ""
+
+#: assets/customizer.php:376
+msgid "Front Page Settings"
+msgstr ""
+
+#: assets/customizer.php:378
+msgid "Your theme supports a static front page."
+msgstr ""
+
+#: assets/customizer.php:406
+msgid ""
+"Force excerpt instead content.\n"
+"        Custom length count by words, set 0 mean disable this feature."
+msgstr ""
+
+#: assets/customizer.php:415
+msgid "Read More &raquo;"
+msgstr ""
+
+#: assets/customizer.php:422
+msgid "Read More Text"
+msgstr ""
+
+#: assets/customizer.php:436
+msgid "Front page displays"
+msgstr ""
+
+#: assets/customizer.php:440
+msgid "Your latest posts"
+msgstr ""
+
+#: assets/customizer.php:441
+msgid "A static page"
+msgstr ""
+
+#: assets/customizer.php:451
+msgid "Front page"
+msgstr ""
+
+#: assets/customizer.php:463
+msgid "Posts page"
+msgstr ""
+
+#: assets/customizer.php:470
+msgid "Post Settings"
+msgstr ""
+
+#: assets/customizer.php:472
+msgid ""
+"In this section, you can turn on/off post features like: meta, tags, post "
+"navigation, author information..."
+msgstr ""
+
+#: assets/customizer.php:483
+msgid "Display Breadcrumb"
+msgstr ""
+
+#: assets/customizer.php:582
+msgid "Invalid sidebar ID"
+msgstr ""
+
+#: assets/post-navigation.php:25
+#: assets/post-navigation.php:44
+msgid "&laquo; Previous"
+msgstr ""
+
+#: assets/post-navigation.php:26
+#: assets/post-navigation.php:45
+msgid "Next &raquo;"
+msgstr ""
+
+#: assets/topbar.php:89
+msgid "Menu"
+msgstr ""
+
+#: assets/topbar.php:124
+#, php-format
+msgid ""
+"Please assign a menu to the primary menu location under %1$s or %2$s the "
+"design."
+msgstr ""
+
+#: assets/topbar.php:125
+#, php-format
+msgid "<a href=\"%s\">Menus</a>"
+msgstr ""
+
+#: assets/topbar.php:128
+#, php-format
+msgid "<a href=\"%s\">Customize</a>"
+msgstr ""
