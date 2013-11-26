@@ -108,7 +108,7 @@ if (!function_exists('narga_topbar_search_form')) :
         echo '
             <!-- Right Nav Section -->
             <ul class="right">
-            <li class="has-form"><form method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '"><input type="text" name="s" id="s" placeholder="' . __('Search', 'narga') . '"></form>
+            <li class="has-form hide-for-small"><form method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '"><input type="text" name="s" id="s" placeholder="' . __('Search', 'narga') . '"></form>
             </li>
             </ul>';
     }
