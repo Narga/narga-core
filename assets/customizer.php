@@ -269,6 +269,22 @@ function narga_customizer($wp_customize){
         'priority'  => 3,
     ) );
 
+    # Orbit Slide Indicator
+    $wp_customize->add_setting('narga_options[resume_on_mouseout]', array(
+        'capability' => 'edit_theme_options',
+        'default'    => '1',
+        'type'       => 'option',
+    ) );
+
+    $wp_customize->add_control('narga_options[resume_on_mouseout]', array(
+        'settings'  => 'narga_options[resume_on_mouseout]',
+        'label'     => __('Pauses slider while hovering.', 'narga'),
+        'section'   => 'narga_featured_categories',
+        'type'      => 'checkbox',
+        'transport' => 'postMessage',
+        'priority'  => 3,
+    ) );
+
     # Use default image for slides without featured post image
     $wp_customize->add_setting('narga_options[default_slides_image]', array(
         'capability' => 'edit_theme_options',

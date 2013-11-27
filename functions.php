@@ -37,8 +37,6 @@ require_once locate_template('/assets/content.php');
 // Post Navigation Control: Breadcrumb, Pagination.
 require_once locate_template('/assets/post-navigation.php');
 
-if (!isset( $content_width))
-    $content_width = 640;
 /**
  * Adjusts content_width value for full-width and single image attachment
  * templates, and when there are no active widgets in the sidebar.
@@ -46,11 +44,13 @@ if (!isset( $content_width))
  * @since NARGA v1.3.3
  * @from Twenty Twelve
  */
+if (!isset( $content_width))
+    $content_width = 640;
 function narga_content_width() {
-        if ( is_page_template( 'templates/full-width.php' ) || is_attachment() ) {
-                global $content_width;
-                $content_width = 975;
-        }
+    if ( is_page_template( 'templates/full-width.php' ) || is_attachment() ) {
+        global $content_width;
+        $content_width = 975;
+    }
 }
 add_action( 'template_redirect', 'narga_content_width' );
 
@@ -68,7 +68,7 @@ function narga_setup() {
     
     # Support Custom Background
     add_theme_support( 'custom-background', array(
-        'default-image' => '',  // background image default
+        'default-image' => '',
 	'default-color' => '', // background color default (dont add the #)
         'wp-head-callback' => '_custom_background_cb',
         'admin-head-callback' => '',
@@ -159,7 +159,11 @@ function narga_add_custom_css_file() {
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
         echo '<div class="orbit-container">
-            <ul data-orbit data-options="bullets:false;resume_on_mouseout: true.;">';
+            <ul data-orbit data-options="bullets:false;';
+        if (narga_options('resume_on_mouseout') == 1) :
+            echo 'resume_on_mouseout: true.;';
+        endif;
+        echo '">';
         $args = array(
             'showposts' => narga_options('number_slide'),
             'post_type' => 'any',

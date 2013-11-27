@@ -8,7 +8,13 @@ The content of this file will be list all the tasks has done. I will update it a
 * Integrate Theme Documents
 * SASS
 
-### v1.8 - November 25th, 2013
+## v1.9 - November 30th, 2013
+* Update Zurb Foundation 5.0.2
+* Topbar search form only show on medium screen size and up
+* Add default.po to help translator.
+* Add Pauses Featured Slider while hovering option.
+
+## v1.8 - November 25th, 2013
 * Now NARGA is using Zurb Foundation 5
 * Remove addition Google Fonts, use Open Sans like default in Foundation 5.
 * Update all file information in comment section. Add Right to Left Style file (content add late)
