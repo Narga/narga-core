@@ -188,11 +188,25 @@ function narga_customizer($wp_customize){
         'priority' => 4,
     ) );
     
-    $wp_customize->add_section( 'header_image', array(
-        'title'          => __( 'Header Settings', 'narga' ),
+   $wp_customize->add_section( 'header_image', array(
+        'title'          => __( 'Header and Logo', 'narga' ),
         'theme_supports' => 'custom-header',
         'priority'       => 60,
     ) );
+
+    /* Custom Logo */
+     $wp_customize->add_setting('narga_options[logo]', array(
+        'default'    => '',
+        'type'       => 'option',
+        'capability' => 'manage_options',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'narga_logo', array(
+        'label'    => __('Logo', 'narga'),
+        'section'  => 'header_image',
+        'settings' => 'narga_options[logo]',
+        'priority' => 1,
+    ) ) );
 
     $wp_customize->add_section( 'background_image', array(
         'title'          => __( 'Background Settings', 'narga' ),

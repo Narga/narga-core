@@ -55,15 +55,22 @@ if (!function_exists('narga_header')) :
     function narga_header() {
         $header_image = get_header_image();
         echo '<header id="header" class="row site-header" role="banner">
-            <div class="site-branding large-12 columns">';
+            <div class="large-4 small-12 columns">';
+        # Custom logo
+        if (narga_options('logo') != '') {
+        echo '
+            <h1 id="logo" class="left"><a href=\'http://www.narga.net/\'  title="' . get_bloginfo('description') . '"><img src="' . narga_options('logo') . '" class="logo" alt="' . get_bloginfo('description') . '" /></a></h1>
+            <h2 id="tagline" class="hide">' . get_bloginfo('description') . '</h2>';
+        }  else {
         echo '<h1 class="site-title"><a href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' . get_bloginfo('name') . '</a></h1>
             <h4 id="tagline" class="subheader site-description hide-for-small">' . get_bloginfo('description') . '</h4>';
         if ( ! empty( $header_image ) ) :
             echo '<a href="' . esc_url( home_url( '/' ) ) . '"><img src="' . esc_url( get_header_image() ) . '" class="header-image" width="' . get_custom_header()->width . '" height="' . get_custom_header()->height . '" alt="" /></a>';
         endif;
+        }
         echo '</div>
             </header>';
-    }  
+    }
 endif;
   
 /**
