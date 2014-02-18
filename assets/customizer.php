@@ -411,21 +411,6 @@ function narga_customizer($wp_customize){
         ),
     ) );
 
-    # Force display post excerpt with custom length
-    $wp_customize->add_setting('narga_options[excerpt_length]', array(
-        'default'   => '0',
-        'type'      => 'option',
-        'capability'=> 'manage_options',
-    ) );
-
-    $wp_customize->add_control('narga_options[excerpt_length]', array( 
-        'label'    => __('Force excerpt instead content.
-        Custom length count by words, set 0 mean disable this feature.', 'narga'),
-        'section'  => 'static_front_page',
-        'type'     => 'text',
-        'priority' => 5,
-    ) );
-
     # Custom Read More Text
     $wp_customize->add_setting('narga_options[post_readmore]', array(
         'default'    => __('Read More &raquo;', 'narga'),
