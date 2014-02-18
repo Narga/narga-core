@@ -36,6 +36,8 @@ require_once locate_template('/assets/cleanup.php');
 require_once locate_template('/assets/content.php');
 // Post Navigation Control: Breadcrumb, Pagination.
 require_once locate_template('/assets/post-navigation.php');
+// Orbit Slider
+require_once locate_template('/assets/orbit.php');
 
 /**
  * Adjusts content_width value for full-width and single image attachment
@@ -108,15 +110,15 @@ function narga_assets() {
     if ( !is_admin() ) {
       
         # Loads Foundation Main stylesheet
-        wp_enqueue_style( 'foundation', get_template_directory_uri() . '/stylesheets/foundation.min.css', array(), '2013-11-20', 'all' );
+        wp_enqueue_style( 'foundation', get_template_directory_uri() . '/stylesheets/foundation.min.css', array(), '2014-02-20', 'all' );
 
          # Loads our main stylesheet.
-        wp_enqueue_style( 'narga-style', get_stylesheet_uri(), array(), '2013-08-12', 'all' );
+        wp_enqueue_style( 'narga-style', get_stylesheet_uri(), array(), '2013-02-20', 'all' );
 
         # Load JavaScripts
-        wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/javascripts/modernizr.js', array( 'jquery' ), '2.6.2', true );
+        wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/javascripts/vendor/modernizr.js', array( 'jquery' ), '2.7.1', true );
 
-        wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array( 'jquery' ), '5.0.0', true );
+        wp_enqueue_script( 'foundation', get_template_directory_uri() . '/javascripts/foundation.min.js', array( 'jquery' ), '5.1.1', true );
 
         wp_enqueue_script( 'narga', get_template_directory_uri() . '/javascripts/narga.js', array( 'jquery' ), '1.8', true );
 
@@ -149,60 +151,6 @@ function narga_add_custom_css_file() {
     wp_register_style('narga_custom_css', CSS_DISPLAY);
     wp_enqueue_style( 'narga_custom_css');
 }
-
-/**
- * Orbit Slider as Featured Post
- * Function to render orbit slide based on featured category and number of slide in Customize.
- *
- * @since NARGA v1.1
- */
-if (!function_exists('narga_orbit_slider')) :  
-    function narga_orbit_slider() {
-        echo '<div class="orbit-container">
-            <ul data-orbit data-options="bullets:false;';
-        if (narga_options('resume_on_mouseout') == 1) :
-            echo 'resume_on_mouseout: true.;';
-        endif;
-        echo '">';
-        $args = array(
-            'showposts' => narga_options('number_slide'),
-            'post_type' => 'any',
-            'cat' => narga_options('featured_category'),
-        );
-        $narga_slider_query = new WP_Query($args);
-        while ($narga_slider_query->have_posts()) : $narga_slider_query->the_post();
-        if(has_post_thumbnail()) {
-            $number = 1; $number = $number++;
-            echo '
-                <li>';
-            the_post_thumbnail('post-thumbnail', array( 'alt' => get_the_title(), 'title' => get_the_title(), 'data-caption' => '#htmlCaption-'.$narga_slider_query->current_post,));
-            echo '
-                <div class="orbit-caption"><h3><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></h3></div></li>' . "\n";
-        } elseif (! has_post_thumbnail() && (narga_options('default_slides_image') == '1') ) {
-            echo '
-                <li><img width="640" height="290" src="' . get_template_directory_uri() . '/images/default-slide-image.png" class="attachment-post-thumbnail wp-post-image" alt="' . get_the_title() . '" title="' . get_the_title() . '" data-caption="#htmlCaption-' .$narga_slider_query->current_post . '" />';
-            echo '
-            <div class="orbit-caption"><h3><a href="' . get_permalink(). '" ' . 'title="' . get_the_title() . '">' . get_the_title(). '</a></h3></div></li>' . "\n";
-         } else echo '';
-endwhile;
-echo '</ul>';
-if (narga_options('slide_indicator') == 1) :
-    $i = 1;
-    echo '<ol class="orbit-bullets">';
-    if ( narga_options('default_slides_image') == '1' ) :
-        for($i; $i <= narga_options('number_slide'); $i++) {
-            echo '<li data-orbit-slide-number="' . $i . '"></li>';
-        }
-    elseif ( narga_options('default_slides_image') == '0' ) :
-        for($i; $i <= $number+2; $i++) {
-            echo '<li data-orbit-slide-number="' . $i . '"></li>';
-        }
-    endif;
-    echo '</ol>';
-endif;
-echo '</div>';
-    }
-endif;
 
 /**
  * Theme link to NARGA Help page
