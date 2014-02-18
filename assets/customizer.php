@@ -438,21 +438,6 @@ function narga_customizer($wp_customize){
         ),
     ) );
 
-    # Custom Read More Text
-    $wp_customize->add_setting('narga_options[post_readmore]', array(
-        'default'    => __('Read More &raquo;', 'narga'),
-        'type'       => 'option',
-        'capability' => 'manage_options',
-        'transport' => 'postMessage',
-    ) );
-
-    $wp_customize->add_control('narga_options[post_readmore]', array( 
-        'label'    => __('Read More Text', 'narga'),
-        'section'  => 'static_front_page',
-        'type'     => 'text',
-        'priority' => 6,
-    ) );
-
     $wp_customize->add_setting( 'show_on_front', array(
         'default'        => get_option( 'show_on_front' ),
         'capability'     => 'manage_options',
@@ -568,6 +553,21 @@ function narga_customizer($wp_customize){
         'section'   => 'singular_settings',
         'priority'  => 5,
         'type'      => 'checkbox',
+    ) );
+
+    # Custom Read More Text
+    $wp_customize->add_setting('narga_options[post_readmore]', array(
+        'default'    => __('Read More &raquo;', 'narga'),
+        'type'       => 'option',
+        'capability' => 'manage_options',
+        'transport' => 'postMessage',
+    ) );
+
+    $wp_customize->add_control('narga_options[post_readmore]', array( 
+        'label'    => __('Read More Text', 'narga'),
+        'section'  => 'singular_settings',
+        'type'     => 'text',
+        'priority' => 6,
     ) );
 }
 
