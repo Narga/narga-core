@@ -8,6 +8,13 @@ The content of this file will be list all the tasks has done. I will update it a
 * Integrate Theme Documents
 * SASS
 
+## v2.0 - February 18th, 2014
+* Update Zurb Foundation v5.1.1 and update styles, scripts path and version information
+* Remove Custom Post Excerpt for better performance and useless
+* Move all Orbit functions to assets/orbit.php
+* Allow user can use Custom Logo instead Text Site Title
+* Re-position of Customization Settings: Move Custom Readmore Text to Post Settings
+
 ## v1.9 - November 30th, 2013
 * Update Zurb Foundation 5.0.2
 * Topbar search form only show on medium screen size and up
