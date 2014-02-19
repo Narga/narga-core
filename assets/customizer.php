@@ -208,19 +208,6 @@ function narga_customizer($wp_customize){
         'priority' => 1,
     ) ) );
 
-    /* Custom Header Codes */
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_textcolor', array(
-        'label'   => __( 'Header Text Color', 'narga' ),
-        'section' => 'header_image',
-    ) ) );
-
-    $wp_customize->add_setting( 'narga_options[custom_header_codes]', array(
-        'default'        => '',
-        'type'           => 'option',
-        'capability'     => 'manage_options',
-        'transport'      => 'postMessage',
-    ) );
-
     $wp_customize->add_section( 'background_image', array(
         'title'          => __( 'Background Settings', 'narga' ),
         'theme_supports' => 'custom-background',
