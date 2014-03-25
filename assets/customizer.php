@@ -121,10 +121,6 @@ function narga_customizer($wp_customize){
      * @since 1.6
      * 
      */
-    $wp_customize->remove_section('background_image');
-    $wp_customize->remove_section('header_image');
-    $wp_customize->remove_section('static_front_page');
-
 
     # General Settings
     $wp_customize->add_section('narga_general_settings', array(
@@ -208,6 +204,22 @@ function narga_customizer($wp_customize){
         'priority' => 1,
     ) ) );
 
+    # Custom Header Image as Header Background
+    $wp_customize->add_setting('narga_options[custom_header_image_background]', array(
+        'capability' => 'edit_theme_options',
+        'type'       => 'option',
+        'default'    => '0',
+    ) );
+
+    $wp_customize->add_control('narga_options[custom_header_image_background]', array(
+        'settings'  => 'narga_options[custom_header_image_background]',
+        'label'     => __('Custom Header Image as Header Background', 'narga'),
+        'section'   => 'header_image',
+        'type'      => 'checkbox',
+        'transport' => 'postMessage',
+        'priority'  => 11,
+    ) );
+
     $wp_customize->add_section( 'background_image', array(
         'title'          => __( 'Background Settings', 'narga' ),
         'theme_supports' => 'custom-background',
@@ -230,7 +242,6 @@ function narga_customizer($wp_customize){
         'label'   => __( 'Background Color', 'narga' ),
         'section' => 'background_image',
     ) ) );
-
 
     # Orbit Slider as Featured Slider
     $wp_customize->add_section('narga_featured_categories', array(

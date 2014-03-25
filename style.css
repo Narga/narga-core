@@ -125,6 +125,13 @@ form.search-form input#s:focus {
     width: 150px;
 }
 
+
+.custom-header {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
 /* 3.0 Main Content */
 /* Orbit Caption Text color */
 .orbit-caption h3 a {
