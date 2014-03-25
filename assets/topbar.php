@@ -30,7 +30,7 @@ function narga_topbar_l() {
  *
  * @since NARGA v1.8
  **/
- 
+
 class NARGATopbarWalker extends Walker_Nav_Menu {
 
     function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
@@ -39,7 +39,7 @@ class NARGATopbarWalker extends Walker_Nav_Menu {
         $element->classes[] = ( $element->has_children ) ? 'has-dropdown' : '';
         parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
     }
-    
+
     function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {
         $item_html = '';
         parent::start_el( $item_html, $object, $depth, $args );
@@ -49,14 +49,14 @@ class NARGATopbarWalker extends Walker_Nav_Menu {
             $output .= '<li class="divider"></li>';
             $item_html = preg_replace( '/<a[^>]*>(.*)<\/a>/iU', '<label>$1</label>', $item_html );
         }
-        
+
         if ( in_array('divider', $classes) ) {
             $item_html = preg_replace( '/<a[^>]*>( .* )<\/a>/iU', '', $item_html );
         }
-        
+
         $output .= $item_html;
     }
-    
+
     function start_lvl( &$output, $depth = 0, $args = array() ) {
         $output .= "\n<ul class=\"dropdown\">\n";
     }
@@ -66,39 +66,39 @@ class NARGATopbarWalker extends Walker_Nav_Menu {
 # Function to render Top Bar
 if (!function_exists('narga_topbar')) :  
     function narga_topbar() {
-        echo '<div';
+        echo '<div class="custom-topbar';
+
         #Sticky Top Bar Option
-        if (narga_options('sticky_topbar') == 1) :
-            echo ' class="sticky"';
-endif;
-echo '>
-<div';
-#Contain Top Bar Layout Width        
-if (narga_options('contain2grid') == 1) :
-    echo ' class="contain-to-grid"';
-endif;
-echo '>
-<nav role="navigation" class="top-bar" data-topbar>
-<ul class="title-area';
-#Sticky Top Bar Option
-if (narga_options('show_topbar_title') == 0) :
-    echo ' show-for-small';
-endif;
-echo '">
-<li class="name"><h1><a href="' .  narga_options('topbar_title_url') . '">' .  narga_options('topbar_title') . '</a></h1></li>
-<li class="toggle-topbar menu-icon"><a href="#"><span>' . __('Menu', 'narga') . '</span></a></li>
-    </ul>
-    <section class="top-bar-section">';
-#Top Bar Search Form
-if (narga_options('search_form') == 1) :
-    narga_topbar_search_form();
-endif;    
-echo '<!-- Left Nav Section -->';
-narga_topbar_l();
-echo '</section>
-</nav>
-</div>
-</div>';
+        if (narga_options('sticky_topbar') == 1)
+            echo ' sticky';
+
+        #Contain Top Bar Layout Width        
+        if (narga_options('contain2grid') == 1)
+            echo ' contain-to-grid';
+
+        echo '">
+            <nav role="navigation" class="top-bar" data-topbar>
+            <ul class="title-area';
+        
+        #Sticky Top Bar Option
+        if (narga_options('show_topbar_title') == 0)
+            echo ' show-for-small';
+        echo '">
+            <li class="name"><h1><a href="' .  narga_options('topbar_title_url') . '">' .  narga_options('topbar_title') . '</a></h1></li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>' . __('Menu', 'narga') . '</span></a></li>
+            </ul>
+            <section class="top-bar-section">';
+        
+        #Top Bar Search Form        
+        if (narga_options('search_form') == 1)
+            narga_topbar_search_form();
+
+        echo '<!-- Left Nav Section -->';
+        narga_topbar_l();
+        echo '</section>
+            </nav>
+            </div>
+            </div>';
     }
 endif;
 
