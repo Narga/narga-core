@@ -11,6 +11,39 @@
  * @license GNU General Public License v2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  */
 
+/**
+ * Includes the pro and custom functions if it exists
+ *
+ * @since NARGA v1.1
+ **/
+// Includes the pro folder if it exists
+if(!defined('PRO_FOLDER'))
+    define('PRO_FOLDER', get_template_directory().'/pro/narga-pro.php');
+
+if(file_exists(PRO_FOLDER)) :
+    include(PRO_FOLDER);
+    new NARGAPRO();
+endif;
+    
+/* Load custom-actions.php file if it exists in the uploads folder */
+    $upload_dir = wp_upload_dir();
+    
+if(!defined('ACTION_FILE'))
+    define('ACTION_FILE', $upload_dir['basedir'].'/custom-functions.php');
+if(file_exists(ACTION_FILE))
+    include(ACTION_FILE);
+
+/* Load custom.css file if it exists in the uploads folder */
+define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
+define('CSS_DISPLAY', $upload_dir['baseurl'].'/custom.css');
+
+if(file_exists(CSS_FILE))
+    add_action("wp_print_styles", "add_custom_css_file", 99);
+function narga_add_custom_css_file() {
+    wp_register_style('narga_custom_css', CSS_DISPLAY);
+    wp_enqueue_style( 'narga_custom_css');
+}
+
 class NARGA {
 
     function __construct() {
@@ -66,33 +99,6 @@ class NARGA {
             // Require function if theme support
             // require_if_theme_supports('narga-breadcrumbs', locate_template('/library/inc/functions/breadcrumbs.php'));
         }
-}
-
-/**
- * Includes the pro and custom functions if it exists
- *
- * @since NARGA v1.1
- **/
-    
-    locate_template( array( '/pro/pro-functions.php', 'custom-functions.php' ), true, false);
-
-/* Load custom-actions.php file if it exists in the uploads folder */
-    $upload_dir = wp_upload_dir();
-    
-if(!defined('ACTION_FILE'))
-    define('ACTION_FILE', $upload_dir['basedir'].'/custom-functions.php');
-if(file_exists(ACTION_FILE))
-    include(ACTION_FILE);
-
-/* Load custom.css file if it exists in the uploads folder */
-define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
-define('CSS_DISPLAY', $upload_dir['baseurl'].'/custom.css');
-
-if(file_exists(CSS_FILE))
-    add_action("wp_print_styles", "add_custom_css_file", 99);
-function narga_add_custom_css_file() {
-    wp_register_style('narga_custom_css', CSS_DISPLAY);
-    wp_enqueue_style( 'narga_custom_css');
 }
 
 ?>
