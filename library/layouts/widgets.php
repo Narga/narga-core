@@ -17,25 +17,32 @@
  * Registed widgets of sidebar, footer
  *
  * @since NARGA v1.1
+ * @update NARGA v2.1
  */
-$sidebars = array('Sidebar');
-foreach ($sidebars as $sidebar) {
-    register_sidebar(array('name'=> $sidebar,
+
+if (!function_exists('narga_widgets_init')) :  
+function narga_widgets_init() {
+    register_sidebar( array(
+        'name' => __( 'Sidebar Widgets', 'narga' ),
+        'id' => '1',
         'before_widget' => '<article id="%1$s" class="widget %2$s">',
         'after_widget' => '</article>',
         'before_title' => '<h3 class="widget-title">',
-        'after_title' => '</h3>'
-    ));
-}
-$sidebars = array('Footer');
-foreach ($sidebars as $sidebar) {
-    register_sidebar(array('name'=> $sidebar,
+        'after_title' => '</h3>',
+    ) );
+
+    register_sidebar( array(
+        'name' => __( 'Footer Widgets', 'narga' ),
+        'id' => '2',
         'before_widget' => '<article id="%1$s" class="large-' . narga_widgets_count( 'sidebar-2' ) . ' columns widget %2$s">',
         'after_widget' => '</article>',
-        'before_title' => '<h4>',
-        'after_title' => '</h4>'
-    ));
+        'before_title' => '<h4 class="widget-title">',
+        'after_title' => '</h4>',
+    ) );
 }
+
+add_action( 'widgets_init', 'narga_widgets_init', 10 );
+endif;
 
 /**
  * Get number of active WordPress widgets in a footer widget area
