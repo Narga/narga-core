@@ -249,7 +249,7 @@ function narga_customizer($wp_customize){
         'priority'  => 3,
     ) );
 
-    # Orbit Slide Indicator
+    # Pause slides when the mouse hovering
     $wp_customize->add_setting('narga_options[resume_on_mouseout]', array(
         'capability' => 'edit_theme_options',
         'default'    => '1',
@@ -262,7 +262,23 @@ function narga_customizer($wp_customize){
         'section'   => 'narga_featured_categories',
         'type'      => 'checkbox',
         'transport' => 'postMessage',
-        'priority'  => 3,
+        'priority'  => 4,
+    ) );
+
+     # Only show the slider on medium screen size 1024px and abouve
+    $wp_customize->add_setting('narga_options[medium_screen_up]', array(
+        'capability' => 'edit_theme_options',
+        'default'    => '1',
+        'type'       => 'option',
+    ) );
+
+    $wp_customize->add_control('narga_options[medium_screen_up]', array(
+        'settings'  => 'narga_options[medium_screen_up]',
+        'label'     => __('Show Slider on medium screens and up.', 'narga'),
+        'section'   => 'narga_featured_categories',
+        'type'      => 'checkbox',
+        'transport' => 'postMessage',
+        'priority'  => 5,
     ) );
 
     # Use default image for slides without featured post image
@@ -277,7 +293,7 @@ function narga_customizer($wp_customize){
         'label'     => __('Use built in default image for post without featured image.', 'narga'),
         'section'   => 'narga_featured_categories',
         'type'      => 'checkbox',
-        'priority'  => 4,
+        'priority'  => 6,
     ) );
 
     # Display Top Bar Title

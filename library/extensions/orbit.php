@@ -19,7 +19,11 @@
  */
 if (!function_exists('narga_orbit_slider')) :  
     function narga_orbit_slider() {
-        echo '<div class="orbit-container">
+        echo '<div class="orbit-container';
+        if (narga_options('medium_screen_up') == 1) :
+            echo ' show-for-medium-up';
+        endif;
+        echo '">
             <ul data-orbit data-options="bullets:false;';
         if (narga_options('resume_on_mouseout') == 1) :
             echo 'resume_on_mouseout: true.;';
