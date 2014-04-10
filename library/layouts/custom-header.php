@@ -53,11 +53,11 @@ add_action( 'after_setup_theme', 'narga_custom_header_setup', 14 );
 if (!function_exists('narga_header')) :  
     function narga_header() {
         echo '<header id="header" class="row" role="banner">';
-        if ( !empty( get_header_image() ) && ( narga_options('custom_header_image_background') == 1 ) ) {
+        if ( get_header_image() && ( narga_options('custom_header_image_background') == 1 ) ) {
             echo '<div id="site-header" class="site-header">';
             narga_custom_logo();
             echo '</div>';
-        } elseif ( !empty( get_header_image() ) && ( narga_options('custom_header_image_background') == 0 ) ) {
+        } elseif ( get_header_image() && ( narga_options('custom_header_image_background') == 0 ) ) {
             echo '<div id="site-header">';
             echo '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home"><img src="' . esc_url( get_header_image() ) . '" class="header-image" width="' . get_custom_header()->width . '" height="' . get_custom_header()->height . '" alt=""></a>';
             echo '</div>';
