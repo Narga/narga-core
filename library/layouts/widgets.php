@@ -24,7 +24,7 @@ if (!function_exists('narga_widgets_init')) :
 function narga_widgets_init() {
     register_sidebar( array(
         'name' => __( 'Sidebar Widgets', 'narga' ),
-        'id' => '1',
+        'id' => 'sidebar-1',
         'before_widget' => '<article id="%1$s" class="widget %2$s">',
         'after_widget' => '</article>',
         'before_title' => '<h3 class="widget-title">',
@@ -33,8 +33,8 @@ function narga_widgets_init() {
 
     register_sidebar( array(
         'name' => __( 'Footer Widgets', 'narga' ),
-        'id' => '2',
-        'before_widget' => '<article id="%1$s" class="large-' . narga_widgets_count( 'sidebar-2' ) . ' columns widget %2$s">',
+        'id' => 'footer-1',
+        'before_widget' => '<article id="%1$s" class="large-' . narga_widgets_count( 'footer-1' ) . ' medium-' . narga_widgets_count( 'footer-1' ) . ' small-12 columns widget %2$s">',
         'after_widget' => '</article>',
         'before_title' => '<h4 class="widget-title">',
         'after_title' => '</h4>',
