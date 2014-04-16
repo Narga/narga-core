@@ -20,10 +20,10 @@ function narga_customizer($wp_customize){
 
     # General Settings
     $wp_customize->add_section('narga_general_settings', array(
-        'title' => 'General Settings',
+        'title'      => __('General Settings', 'narga'),
         'description'    => __('Website General Settings', 'narga'),
-        'transport' => 'postMessage',
-        'priority' => 40,
+        'transport'  => 'postMessage',
+        'priority'   => 40,
     ));
 
     $wp_customize->add_setting('blogname', array( 
@@ -296,8 +296,25 @@ function narga_customizer($wp_customize){
         'priority'  => 6,
     ) );
 
+    # Disable Top Bar
+        $wp_customize->add_setting('narga_options[disable_topbar]', array(
+        'default'   => '0',
+        'capability' => 'edit_theme_options',
+        'type'       => 'option',
+    ) );
+
+    $wp_customize->add_control('narga_options[disable_topbar]', array(
+        'settings'  => 'narga_options[disable_topbar]',
+        'label'     => __('Disable Topbar', 'narga'),
+        'section'   => 'nav',
+        'type'      => 'checkbox',
+        'transport' => 'postMessage',
+        'priority'  => 0,
+    ) );
+
     # Display Top Bar Title
     $wp_customize->add_setting('narga_options[show_topbar_title]', array(
+        'default'   => '0',
         'capability' => 'edit_theme_options',
         'type'       => 'option',
     ) );
@@ -308,7 +325,7 @@ function narga_customizer($wp_customize){
         'section'   => 'nav',
         'type'      => 'checkbox',
         'transport' => 'postMessage',
-        'priority'  => 0,
+        'priority'  => 1,
     ) );
 
     # Top Bar Title
@@ -323,7 +340,7 @@ function narga_customizer($wp_customize){
         'label'   => __('Top Bar Title', 'narga'),
         'section' => 'nav',
         'type'     => 'text',
-        'priority' => 1,
+        'priority' => 2,
     ) );
 
     $wp_customize->add_setting( 'narga_options[topbar_title_url]', array(
@@ -336,7 +353,7 @@ function narga_customizer($wp_customize){
         'label'   => __('Top Bar URL', 'narga'),
         'section' => 'nav',
         'type'     => 'text',
-        'priority' => 2,
+        'priority' => 3,
     ) );
 
     # Sticky Top Bar Option
@@ -350,8 +367,7 @@ function narga_customizer($wp_customize){
         'label'     => __('Sticky Top Bar', 'narga'),
         'section'   => 'nav',
         'type'      => 'checkbox',
-        'transport' => 'postMessage',
-        'priority'  => 3,
+        'transport' => 4,
     ) );
 
     # Contain Top Bar Layout Width 
@@ -366,7 +382,7 @@ function narga_customizer($wp_customize){
         'section'  => 'nav',
         'type'     => 'checkbox',
         'transport' => 'postMessage',
-        'priority' => 4,
+        'priority' => 5,
     ) );
 
     # Top Bar Search Form
@@ -380,7 +396,7 @@ function narga_customizer($wp_customize){
         'type' => 'checkbox',
         'label' => __('Top Bar Search Form', 'narga'),
         'section' => 'nav',
-        'priority' => 5,
+        'priority' => 6,
     ) );
 
     # Front Page Settings

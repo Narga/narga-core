@@ -68,7 +68,7 @@ if (!function_exists('narga_topbar')) :
     function narga_topbar() {
         echo '<div class="custom-topbar';
 
-        #Sticky Top Bar Option
+         #Sticky Top Bar Option
         if (narga_options('sticky_topbar') == 1)
             echo ' sticky';
 
