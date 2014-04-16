@@ -35,14 +35,25 @@ endif;
  * Replace Read more link text
  *
  * @since NARGA v1.6
+ * @update NARGA v2.2
  */
 if (!function_exists('narga_more_link')) :  
     function narga_more_link( $more_link, $more_link_text ) {
-        $readmore = narga_options(post_readmore);
-        return str_replace( $more_link_text, $readmore, $more_link );
+        return str_replace( $more_link_text, narga_options('post_readmore'), $more_link );
     }
     add_filter( 'the_content_more_link', 'narga_more_link', 10, 2 );
 endif;
+
+// The same custom read more for excerpt
+if (!function_exists('narga_excerpt_more_link')) :
+    function narga_excerpt_more_link($more){
+        return '<br />
+            <span class="excerpt-readmore"><a class="more-link" href="'. get_permalink( get_the_ID() ) . '">' . narga_options('post_readmore') . '</a></span>';
+    }
+
+add_filter( 'excerpt_more', 'narga_excerpt_more_link' );
+endif;
+
 
 /**
  * WordPress Comments Adjustment
