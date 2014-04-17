@@ -542,7 +542,7 @@ function narga_customizer($wp_customize){
 
     # Custom Read More Text
     $wp_customize->add_setting('narga_options[post_readmore]', array(
-        'default'    => __('Read More &raquo;', 'narga'),
+        'default'    => __('<span class="label radius">Read More &raquo;</span>', 'narga'),
         'type'       => 'option',
         'capability' => 'manage_options',
         'transport' => 'postMessage',
