@@ -102,10 +102,6 @@ function narga_header_extra () {
         echo '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>';
         echo '<![endif]-->';
     }
-    # Custom favicon
-    if (narga_options('favicon') != '') :
-        echo "\t" . '<link rel="shortcut icon" type="image/png" href="' . narga_options('favicon') . '">' . "\n";
-    endif;
 }
 endif;
 
