@@ -26,49 +26,6 @@ if (!function_exists('narga_remove_recent_comments_style')) :
 endif;
 
 /**
- * Removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption
- * http://writings.orangegnome.com/writes/improved-html5-wordpress-captions/
- *
- * @since NARGA v1.1
- **/
-if (!function_exists('narga_img_caption_width_fix')) :
-    function narga_img_caption_width_fix ($val, $attr, $content = null) {
-        extract(shortcode_atts(array(
-            'id'	=> '',
-            'align'	=> '',
-            'width'	=> '',
-            'caption' => ''
-        ), $attr));
-
-        if ( 1 > (int) $width || empty($caption) )
-            return $val;
-        
-        if ( $id )
-            $id = esc_attr( $id );
-
-	// Add itemprop="contentURL" to image - Ugly hack
-        $content = str_replace('<img', '<img itemprop="contentURL"', $content); 
-
-        return '<figure id="' . $id . '" aria-describedby="figcaption_' . $id . '" class="wp-caption ' . esc_attr($align) . '" itemscope itemtype="http://schema.org/ImageObject" style="width: ' . (0 + (int) $width) . 'px">' . do_shortcode( $content ) . '<figcaption id="figcaption_'. $id . '" class="wp-caption-text" itemprop="description">' . $caption . '</figcaption></figure>';
-    }
-    // Removes the extra 10px of width from wp-caption and changes to HTML5 figure/figcaption
-    add_filter('img_caption_shortcode', 'narga_img_caption_width_fix',10,3);
-endif;
-
-/**
- * Remove injected CSS from gallery
- * 
- * @since NARGA v1.8
- **/
-if (!function_exists('narga_remove_gallery_style')) :
-function narga_remove_gallery_style($css) {
-    return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
-}
-    // clean up gallery output in wp
-    add_filter('gallery_style', 'narga_remove_gallery_style');
-endif;
-
-/**
  * Return entry meta information for posts, used by multiple loops
  *
  * @since NARGA v1.1

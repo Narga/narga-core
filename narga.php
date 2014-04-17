@@ -70,9 +70,6 @@ class NARGA {
             // Jetpack compatibility
             require_once locate_template('core/library/extensions/jetpack.php');
 
-            // Clean and remove bloat/unuse hooks/elements
-            require_once locate_template('core/library/extensions/cleanup.php');
-
             // Orbit slider
             require_once locate_template('core/library/extensions/orbit.php');
 
@@ -82,7 +79,7 @@ class NARGA {
 	
         function layouts() {
             // Content hooks/related functions
-            require_once locate_template('core/library/layouts/content.php');
+            require_once locate_template('core/library/layouts/custom-content.php');
 
             // Content navigation: pagination, breadcrumbs
             require_once locate_template('core/library/layouts/content-navigation.php');
