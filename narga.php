@@ -21,7 +21,7 @@ if(!defined('PRO_FOLDER'))
     define('PRO_FOLDER', get_template_directory().'/pro/narga-pro.php');
 
 if(file_exists(PRO_FOLDER)) :
-    include(PRO_FOLDER);
+    require_once (PRO_FOLDER);
     new NARGAPRO();
 endif;
     
@@ -31,7 +31,7 @@ endif;
 if(!defined('ACTION_FILE'))
     define('ACTION_FILE', $upload_dir['basedir'].'/custom-functions.php');
 if(file_exists(ACTION_FILE))
-    include(ACTION_FILE);
+    require_once (ACTION_FILE);
 
 /* Load custom.css file if it exists in the uploads folder */
 define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
