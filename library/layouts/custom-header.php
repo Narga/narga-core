@@ -329,16 +329,12 @@ endif;
  * @since NARGA v2.1
  */
 if (!function_exists('narga_custom_favicon')) :  
-function narga_custom_favicon () {
-    # Custom favicon
-    echo "\t" . '<link rel="shortcut icon" type="image/png" href="';
-    if (narga_options('favicon') != '') :
-        echo narga_options('favicon');
-    else :
-        echo get_stylesheet_directory_uri() . '/core/images/favicon.png';
-    endif;
-    echo '">' . "\n";
-}
+    function narga_custom_favicon () {
+    # Display Custom favicon if it exists
+        if (narga_options('favicon')) :
+            echo "\t" . '<link rel="shortcut icon" type="image/png" href="' . narga_options('favicon') . '">' . "\n";
+        endif;
+    }
 # Attach custom favicon to header
 add_action('wp_head', 'narga_custom_favicon', 7);
 endif;
