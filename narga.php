@@ -35,12 +35,11 @@ if(file_exists(ACTION_FILE))
 
 /* Load custom.css file if it exists in the uploads folder */
 define('CSS_FILE', $upload_dir['basedir'].'/custom.css');
-define('CSS_DISPLAY', $upload_dir['baseurl'].'/custom.css');
 
 if(file_exists(CSS_FILE))
-    add_action("wp_print_styles", "add_custom_css_file", 99);
+    add_action("wp_print_styles", "narga_add_custom_css_file", 99);
 function narga_add_custom_css_file() {
-    wp_register_style('narga_custom_css', CSS_DISPLAY);
+    wp_register_style('narga_custom_css', CSS_FILE);
     wp_enqueue_style( 'narga_custom_css');
 }
 
