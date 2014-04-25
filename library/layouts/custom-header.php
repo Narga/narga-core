@@ -231,27 +231,27 @@ if ( !class_exists( 'NargaGoogleFontControlPro', false ) ) :
                 "'Arvo', serif" => "Arvo",
                 "'Copse', sans-serif" => "Copse",
                 "'Cabin', sans-serif" => "Cabin",
-                "'Droid Sans', sans-serif" => "Droid Sans",
-                "'Droid Serif', serif" => "Droid Serif",
+                "'Droid+Sans', sans-serif" => "Droid Sans",
+                "'Droid+Serif', serif" => "Droid Serif",
                 "'Economica'', sans-serif" => "Economica",
                 "'Helvetica Neue', sans-serif" => "Helvetica Neue",
-                "'Josefin Slab', serif" => "Josefin Slab",
+                "'Josefin+Slab', serif" => "Josefin Slab",
                 "'Lato', sans-serif" => "Lato",
                 "'Lobster', cursive" => "Lobster",
                 "'Nobile', sans-serif" => "Nobile",
-                "'Open Sans', sans-serif" => "Open Sans",
+                "'Open+Sans', sans-serif" => "Open Sans",
                 "'Oswald', sans-serif" => "Oswald",
                 "'Poly', sans-serif" => "Poly",
                 "'Pacifico', cursive" => "Pacifico",
                 "'Roboto', sans-serif" => "Roboto",
                 "'Rokkitt', serif" => "Rokkit",
-                "'PT Sans', sans-serif" => "PT Sans",
+                "'PT+Sans', sans-serif" => "PT Sans",
                 "'Quattrocento', serif" => "Quattrocento",
                 "'Raleway', cursive" => "Raleway",
-                "'Titillium Web', sans-serif" => "Titillium Web",
+                "'Titillium+Web', sans-serif" => "Titillium Web",
                 "'Ubuntu', sans-serif" => "Ubuntu",
                 "'Vollkorn', serif" => "Vollkorn",
-                "'Yanone Kaffeesatz', sans-serif" => "Yanone Kaffeesatz");
+                "'Yanone+Kaffeesatz', sans-serif" => "Yanone Kaffeesatz");
             return $font_faces;
         }
     }
@@ -296,6 +296,7 @@ function narga_enqueue_custom_font( $font ){
     $src = 'http://fonts.googleapis.com/css?family=' . $font .':400italic,700italic,400,700?ver=20140330';
     wp_enqueue_style( $handle, $src, false, null, 'all' );
 }
+endif;
 
 /**
  * Add Customizer generated CSS to header
@@ -303,24 +304,30 @@ function narga_enqueue_custom_font( $font ){
  * @since NARGA v2.1
  */
 function narga_custom_fonts_css() {
-    do_action('narga_custom_fonts_css');
+    if ( narga_options( 'heading_font' ) || narga_options( 'body_font' ) ) {
+        $heading_font = str_replace( '+', ' ', narga_options( 'heading_font' )) ;
 
-    $output = '';
+        $body_font = str_replace( '+', ' ', narga_options( 'body_font' ));
 
-    if ( narga_options('heading_font') != '\'Helvetica Neue\', sans-serif' ) 
-        $output .= "\n" . 'h1, h2, h3, h4, h5, h6, .slider-title, li.menu-item a { font-family: ' . narga_options('heading_font') . ' !important; }';
-    
+        if ( ($heading_font != 'none') || ($heading_font != '\'Helvetica Neue\', sans-serif') )
 
-    if ( narga_options('body_font') != '\'Helvetica Neue\', sans-serif' ) {
-        $output .= "\n" . 'body, p  { font-family: ' . narga_options('body_font') . ' !important; }';
+            $custom_google_font .="h1, h2, h3, h4, h5, h6, .slider-title, li.menu-item a { font-family: $heading_font !important;}";
+
+        if ( $body_font != 'none' || ($body_font != '\'Helvetica Neue\', sans-serif') )
+
+            $custom_google_font .= "body {font-family: $body_font; }";
+
     }
 
-    echo ( $output ) ? '<style>' . apply_filters('narga_custom_fonts_css', $output) . "\n" . '</style>' . "\n" : '';
+    if ( $custom_google_font ):
+        echo '<style type="text/css" media="all">' . $custom_google_font . '</style>';
+    endif;
+
 }
 
 add_action('wp_head', 'narga_custom_fonts_css');
 
-endif;
+
 
 /**
  * Custom Favicon
