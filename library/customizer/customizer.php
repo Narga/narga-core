@@ -83,26 +83,19 @@ function narga_customizer($wp_customize){
     // Typography section
     $wp_customize->add_section( 'typography', array(
         'title' => __( 'Typography', 'narga' ),
-        'description'    => __('Select Google Webfonts', 'narga'),
+        'description'    => __('Select Google Webfonts, the font styles and character sets might not available for all fonts', 'narga'),
         'priority' => 50,
     ) );
 
-   # Heading Fonts
-    $wp_customize->add_setting( 'narga_options[heading_font]', array(
-        'default' => "'Economica'', sans-serif",
-        'type' => 'option',
-        'capability' => 'edit_theme_options'
-    ) );
+    if ( !class_exists( 'NargaGoogleFontControlPro', false ) ) :
+     
+        # Heading Fonts
+        $wp_customize->add_setting( 'narga_options[heading_font]', array(
+            'default' => "'Economica', sans-serif",
+            'type' => 'option',
+            'capability' => 'edit_theme_options'
+        ) );
 
-    if ( class_exists( 'NargaGoogleFontControlPro' ) ) {
-    $wp_customize->add_control( new NargaGoogleFontControlPro( $wp_customize, 'narga_options[heading_font]', array(
-        'label'   => __( 'Heading Fonts', 'narga' ),
-        'section' => 'typography',
-        'settings'   => 'narga_options[heading_font]',
-        'priority' => 1
-    ) ) );
-
-    } else {
         $wp_customize->add_control( 'heading_font', array(
             'settings' => 'narga_options[heading_font]',
             'label'   => __( 'Heading Fonts', 'narga' ),
@@ -110,33 +103,25 @@ function narga_customizer($wp_customize){
             'type'    => 'select',
             'choices'    => narga_fonts_list(),
         ));
-    }
 
-    # Body Fonts
-    $wp_customize->add_setting( 'narga_options[body_font]', array(
-        'default' => "'Open Sans', sans-serif",
-        'type' => 'option',
-        'capability' => 'manage_options'
-    ) );
+        # Body Fonts
+        $wp_customize->add_setting( 'narga_options[body_font]', array(
+            'default' => "'Open Sans', sans-serif",
+            'type' => 'option',
+            'capability' => 'manage_options'
+        ) );
 
-    if ( class_exists( 'NargaGoogleFontControlPro' ) ) {
-        
-        $wp_customize->add_control( new NargaGoogleFontControlPro( $wp_customize, 'narga_options[body_font]', array(
-            'label'   => __( 'Body Fonts', 'narga' ),
-            'section' => 'typography',
-            'settings'   => 'narga_options[body_font]',
-            'priority' => 2
-        ) ) );
 
-    } else {
         $wp_customize->add_control( 'body_font', array(
             'settings' => 'narga_options[body_font]',
             'label'   => __( 'Body Fonts', 'narga' ),
             'section' => 'typography',
             'type'    => 'select',
             'choices'    => narga_fonts_list(),
-        ));
-    }
+        ) );
+
+    endif;
+
 
     // Custom header and logo settings
     $wp_customize->add_section( 'header_image', array(
