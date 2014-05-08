@@ -87,7 +87,7 @@ class NARGA {
             require_once locate_template('core/library/layouts/custom-header.php');
 
             // Footer content
-            require_once locate_template('core/library/layouts/footer.php');
+            require_once locate_template('core/library/layouts/custom-footer.php');
 	    
             // Widgetable for sidebar, footer
             require_once locate_template('core/library/layouts/widgets.php');

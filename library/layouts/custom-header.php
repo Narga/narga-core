@@ -322,12 +322,9 @@ function narga_custom_fonts_css() {
     if ( $custom_google_font ):
         echo '<style type="text/css" media="all">' . $custom_google_font . '</style>';
     endif;
-
 }
 
 add_action('wp_head', 'narga_custom_fonts_css');
-
-
 
 /**
  * Custom Favicon
