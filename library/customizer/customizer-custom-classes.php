@@ -52,6 +52,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  **/
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
+
     # Adds textarea support to the theme customizer
     class NargaTextAreaControl extends WP_Customize_Control {
         public $type = 'textarea'; # can change to 'number' for input[type=number] field
@@ -62,7 +63,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
         public function render_content() {
             echo '<label>
-                <span class="customize-control-title">' . esc_html( $this->label ) . '</span>
+                <span class="customize-control-title">' . $this->label . '</span>
                 <textarea rows="5" style="width:100%;" ';
             $this->link();
             echo '>' . esc_textarea( $this->value() ) . '</textarea>
