@@ -59,6 +59,14 @@ function narga_customizer($wp_customize){
         'transport'  => 'postMessage',
     ) );	
 
+   $wp_customize->add_control( 'display_header_text', array(
+        'settings' => 'header_textcolor',
+        'label'    => __( 'Show Title & Tagline', 'narga' ),
+        'section'  => 'narga_general_settings',
+        'type'     => 'checkbox',
+        'priority' => 4,
+    ) );
+
     $wp_customize->add_setting('narga_options[favicon]', array(
         'default'    => '',
         'type'       => 'option',
@@ -72,13 +80,19 @@ function narga_customizer($wp_customize){
         'priority' => 5,
     ) ) );
 
-    $wp_customize->add_control( 'display_header_text', array(
-        'settings' => 'header_textcolor',
-        'label'    => __( 'Show Title & Tagline', 'narga' ),
-        'section'  => 'narga_general_settings',
-        'type'     => 'checkbox',
-        'priority' => 4,
+    $wp_customize->add_setting( 'narga_options[footer_info]', array(
+        'default'        => '',
+        'type'           => 'option',
+        'capability'     => 'edit_theme_options',
+        'transport'      => 'postMessage',
     ) );
+
+    $wp_customize->add_control( new NargaTextAreaControl( $wp_customize, 'narga_options[footer_info]', array(
+        'label'   => __('Footer Site Info', 'narga'),
+        'section' => 'narga_general_settings',
+        'settings'   => 'narga_options[footer_info]',
+        'priority' => 6,
+    ) ) );
 
     // Typography section
     $wp_customize->add_section( 'typography', array(

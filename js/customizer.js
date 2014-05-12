@@ -42,4 +42,11 @@
 		});
 	});
 
+	// Footer
+	wp.customize( 'narga_options[footer_info]', function(value) {
+		value.bind(function(to) {
+			$('#footer-info').html(to);
+		});
+	});
+
 } )( jQuery );
