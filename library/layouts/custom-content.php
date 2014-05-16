@@ -72,6 +72,33 @@ if (!function_exists('narga_excerpt_more_link')) :
 add_filter( 'excerpt_more', 'narga_excerpt_more_link' );
 endif;
 
+/**
+ * Add Author information below the post content in single page
+ *
+ * @since NARGA v2.3
+ **/
+if (!function_exists('narga_add_author_box')) :  
+function narga_add_author_box($content) {
+    if (is_single()) { // display only on single posts
+        $author_box = '<div class="post-author">';
+        if (function_exists('get_avatar')) {
+            $author_avatar .= get_avatar( get_the_author_email(), '100', '', 'The author avatar' );
+        }
+        $author_name = get_the_author();
+        $author_desc = get_the_author_meta('description');
+        $author_box .= '<h3>' . __('About ', 'narga') . $author_name . '</h3>
+            <div class="post-author-info">' . $author_avatar . '<p>' . $author_desc . '</p>
+</div>
+</div>';
+        return $content = $content.$author_box;
+    }
+    else return $content;
+}
+ 
+if (narga_options('post_author') == '1')
+    add_filter('the_content', 'narga_add_author_box');
+
+endif;
 
 /**
  * WordPress Comments Adjustment
