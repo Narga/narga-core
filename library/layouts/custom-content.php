@@ -86,7 +86,7 @@ function narga_add_author_box($content) {
         }
         $author_name = get_the_author();
         $author_desc = get_the_author_meta('description');
-        $author_box .= '<h3>' . __('About ', 'narga') . $author_name . '</h3>
+        $author_box .= '<h3>' . __('Article written by ', 'narga') . $author_name . '</h3>
             <div class="post-author-info">' . $author_avatar . '<p>' . $author_desc . '</p>
 </div>
 </div>';

@@ -311,7 +311,7 @@ function narga_custom_fonts_css() {
 
         if ( ($heading_font != 'none') || ($heading_font != '\'Helvetica Neue\', sans-serif') )
 
-            $custom_google_font .="h1, h2, h3, h4, h5, h6, .slider-title, li.menu-item, .recent-item-title a { font-family: $heading_font !important;}";
+            $custom_google_font .="h1, h2, h3, h4, h5, h6, .slider-title, .top-bar-section ul li > a, .recent-item-title a { font-family: $heading_font !important;}";
 
         if ( $body_font != 'none' || ($body_font != '\'Helvetica Neue\', sans-serif') )
 
