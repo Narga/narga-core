@@ -79,7 +79,7 @@ endif;
  **/
 if (!function_exists('narga_add_author_box')) :  
 function narga_add_author_box($content) {
-    if (is_single()) { // display only on single posts
+    if (is_single() && !is_sticky() && !has_post_format()) { // display only on standard single posts
         $author_box = '<div class="post-author">';
         if (function_exists('get_avatar')) {
             $author_avatar .= get_avatar( get_the_author_email(), '100', '', 'The author avatar' );
