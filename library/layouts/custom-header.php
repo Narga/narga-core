@@ -64,6 +64,7 @@ if (!function_exists('narga_header')) :
         } else {
             narga_custom_logo();
         }
+        echo '<div class="large-9 medium-6 small-12 columns">' . narga_options('header_ads') . '</div>';
         echo '</header>';
     }
 endif;
@@ -73,7 +74,7 @@ endif;
  */
 if ( ! function_exists( 'narga_custom_logo' ) ) :
     function narga_custom_logo() {
-        echo '<div id="custom-header" class="custom-header column">';
+        echo '<div id="custom-header" class="custom-header large-3 medium-6 small-12 columns">';
         # Custom logo
         if (narga_options('logo') != '') {
             echo '
