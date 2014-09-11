@@ -304,7 +304,8 @@ endif;
  *
  * @since NARGA v2.1
  */
-function narga_custom_fonts_css() {
+function narga_custom_fonts_css($custom_google_font=false) {
+
     if ( narga_options( 'heading_font' ) || narga_options( 'body_font' ) ) {
         $heading_font = str_replace( '+', ' ', narga_options( 'heading_font' )) ;
 
