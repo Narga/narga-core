@@ -52,27 +52,5 @@ if (!function_exists('narga_comment_pagination')) :
     }
 endif;
 
-/**
- * Generator breadcrumbs with Foundation
- *
- * @since NARGA v1.3.5
- **/
-if (!function_exists('narga_breadcrumb')) :  
-    function narga_breadcrumb() {
-        if (!is_home()) {
-            echo '<ul class="breadcrumbs"><li><a href="';
-            echo home_url();
-            echo '">';
-            bloginfo('name');
-            echo "</a></li>";
-            if (is_category()) {
-                the_category('<li>', '</li>');
-            } elseif (is_page() || is_single()) {
-                echo the_title('<li class="current">', '</li>');
-            } 
-            echo "</ul>";
-        }
-    }
-endif;
 
 ?>

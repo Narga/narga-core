@@ -477,7 +477,7 @@ function narga_customizer($wp_customize){
 
     $wp_customize->add_control('narga_options[breadcrumb]', array(
         'type'      => 'checkbox',
-        'label'     => __('Display Breadcrumb','narga'),
+        'label'     => __('Yoast WP-SEO Breadcrumb','narga'),
         'section'   => 'singular_settings',
         'transport' => 'postMessage',
         'priority'  => 1,
