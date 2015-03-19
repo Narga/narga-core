@@ -52,7 +52,7 @@ add_action( 'after_setup_theme', 'narga_custom_header_setup', 14 );
  */
 if (!function_exists('narga_header')) :  
     function narga_header() {
-        echo '<header id="header" class="row" role="banner">';
+        echo '<header id="header" role="banner">';
         if ( get_header_image() && ( narga_options('custom_header_image_background') == 1 ) ) {
             echo '<div id="site-header" class="site-header">';
             narga_custom_logo();
@@ -74,7 +74,7 @@ endif;
  */
 if ( ! function_exists( 'narga_custom_logo' ) ) :
     function narga_custom_logo() {
-        echo '<div id="custom-header" class="custom-header large-3 medium-6 small-12 columns">';
+        echo '<div id="custom-header" class="custom-header row">';
         # Custom logo
         if (narga_options('logo') != '') {
             echo '
