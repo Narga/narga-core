@@ -87,13 +87,21 @@ if (!function_exists('narga_topbar')) :
             <li class="name"><h1><a href="' .  narga_options('topbar_title_url') . '">' .  narga_options('topbar_title') . '</a></h1></li>
             <li class="toggle-topbar menu-icon"><a href="#"><span>' . __('Menu', 'narga') . '</span></a></li>
             </ul>
-            <section class="top-bar-section">';
+            <section class="top-bar-section">
+            <!-- Right Nav Section -->
+            <ul class="right topbar-social-button show-for-medium-up">';
         
+       # Social and Information Icons
+        if ( (narga_options('topbar_social') == 1) && function_exists('narga_topbar_social') ) :
+            narga_topbar_social();
+        endif;
+
         #Top Bar Search Form        
-        if (narga_options('search_form') == 1)
+        if ( (narga_options('search_form') == 1) && function_exists('narga_topbar_search_form') )
             narga_topbar_search_form();
 
-        echo '<!-- Left Nav Section -->';
+        echo '</ul>
+            <!-- Left Nav Section -->';
         narga_topbar_l();
         echo '</section>
             </nav>
@@ -104,12 +112,9 @@ endif;
 # Navigation search form
 if (!function_exists('narga_topbar_search_form')) :  
     function narga_topbar_search_form() {
-        echo '
-            <!-- Right Nav Section -->
-            <ul class="right">
-            <li class="has-form show-for-medium-up"><form method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '"><input type="text" name="s" id="s" placeholder="' . __('Search', 'narga') . '"></form>
-            </li>
-            </ul>';
+         # Top Bar Search Form
+        echo '<li class="has-form show-for-medium-up"><form method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '"><input type="text" name="s" id="s" placeholder="' . __('Search', 'narga') . '"></form>
+            </li>';
     }
 endif;
 
