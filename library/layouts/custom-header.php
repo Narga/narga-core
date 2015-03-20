@@ -52,7 +52,8 @@ add_action( 'after_setup_theme', 'narga_custom_header_setup', 14 );
  */
 if (!function_exists('narga_header')) :  
     function narga_header() {
-        echo '<header id="header" role="banner">';
+        echo '<header id="header" role="banner">
+<div class="row">';
         if ( get_header_image() && ( narga_options('custom_header_image_background') == 1 ) ) {
             echo '<div id="site-header" class="site-header">';
             narga_custom_logo();
@@ -64,7 +65,8 @@ if (!function_exists('narga_header')) :
         } else {
             narga_custom_logo();
         }
-        echo '<div class="large-9 medium-6 small-12 columns">' . narga_options('header_ads') . '</div>';
+        echo '<div class="small-12 medium-10 large-9 columns">' . narga_options('header_ads') . '</div>
+</div>';
         echo '</header>';
     }
 endif;
@@ -74,7 +76,7 @@ endif;
  */
 if ( ! function_exists( 'narga_custom_logo' ) ) :
     function narga_custom_logo() {
-        echo '<div id="custom-header" class="custom-header row">';
+        echo '<div id="custom-header" class="small-12 medium-2 large-3 columns">';
         # Custom logo
         if (narga_options('logo') != '') {
             echo '
