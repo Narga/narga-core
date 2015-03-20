@@ -29,7 +29,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting('blogname', array( 
         'default'    => get_option('blogname'),
         'type'       => 'option',
-        'capability' => 'manage_options',
+        'capability' => 'edit_theme_options',
         'transport'  => 'postMessage',
     ) );
 
@@ -42,7 +42,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting('blogdescription', array( 
         'default'    => get_option('blogdescription'),
         'type'       => 'option',
-        'capability' => 'manage_options',
+        'capability' => 'edit_theme_options',
         'transport'  => 'postMessage',
     ) );
     
@@ -55,7 +55,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting('display_header_text', array( 
         'default'    => 1,
         'type'       => 'option',
-        'capability' => 'manage_options',
+        'capability' => 'edit_theme_options',
         'transport'  => 'postMessage',
     ) );	
 
@@ -70,7 +70,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting('narga_options[favicon]', array(
         'default'    => '',
         'type'       => 'option',
-        'capability' => 'manage_options',
+        'capability' => 'edit_theme_options',
     ) );
 
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'narga_favicon', array(
@@ -122,7 +122,7 @@ function narga_customizer($wp_customize){
         $wp_customize->add_setting( 'narga_options[body_font]', array(
             'default' => "'Open Sans', sans-serif",
             'type' => 'option',
-            'capability' => 'manage_options'
+            'capability' => 'edit_theme_options'
         ) );
 
 
@@ -148,7 +148,7 @@ function narga_customizer($wp_customize){
      $wp_customize->add_setting('narga_options[logo]', array(
         'default'    => '',
         'type'       => 'option',
-        'capability' => 'manage_options',
+        'capability' => 'edit_theme_options',
     ) );
 
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'narga_logo', array(
@@ -208,7 +208,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting('narga_options[featured_category]', array(
         'default'        => '',
         'type'           => 'option',
-        'capability'     => 'manage_options',
+        'capability'     => 'edit_theme_options',
     ) );
 
     $wp_customize->add_control( new WP_Customize_Dropdown_Categories_Control( $wp_customize, 'narga_featured_category', array( 
@@ -222,7 +222,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting( 'narga_options[number_slide]', array(
         'default'        => '5',
         'type'           => 'option',
-        'capability'     => 'manage_options',
+        'capability'     => 'edit_theme_options',
         'transport'      => 'postMessage',
     ) );
 
@@ -331,7 +331,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting( 'narga_options[topbar_title]', array(
         'default'        => get_bloginfo('name'),
         'type'           => 'option',
-        'capability'     => 'manage_options',
+        'capability'     => 'edit_theme_options',
         'transport'      => 'postMessage',
     ) );
 
@@ -345,7 +345,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting( 'narga_options[topbar_title_url]', array(
         'default'        => home_url(),
         'type'           => 'option',
-        'capability'     => 'manage_options',
+        'capability'     => 'edit_theme_options',
     ) );
 
     $wp_customize->add_control( 'narga_options[topbar_title_url]', array(
@@ -371,7 +371,7 @@ function narga_customizer($wp_customize){
 
     # Contain Top Bar Layout Width 
     $wp_customize->add_setting('narga_options[contain2grid]', array(
-        'capability'    => 'manage_options',
+        'capability'    => 'edit_theme_options',
         'type'          => 'option',
     ) );
 
@@ -387,7 +387,7 @@ function narga_customizer($wp_customize){
     # Top Bar Search Form
     $wp_customize->add_setting('narga_options[search_form]', array(
         'default'        => '1',
-        'capability'     => 'manage_options',
+        'capability'     => 'edit_theme_options',
         'type'       => 'option',
     ) );
 
@@ -424,7 +424,7 @@ function narga_customizer($wp_customize){
 
     $wp_customize->add_setting( 'show_on_front', array(
         'default'        => get_option( 'show_on_front' ),
-        'capability'     => 'manage_options',
+        'capability'     => 'edit_theme_options',
         'type'           => 'option',
         //	'theme_supports' => 'static-front-page',
     ) );
@@ -441,7 +441,7 @@ function narga_customizer($wp_customize){
     
     $wp_customize->add_setting( 'page_on_front', array(
         'type'       => 'option',
-        'capability' => 'manage_options',
+        'capability' => 'edit_theme_options',
     ) );
 
     $wp_customize->add_control( 'page_on_front', array(
@@ -452,7 +452,7 @@ function narga_customizer($wp_customize){
 
     $wp_customize->add_setting( 'page_for_posts', array(
         'type'           => 'option',
-        'capability'     => 'manage_options',
+        'capability'     => 'edit_theme_options',
         //	'theme_supports' => 'static-front-page',
     ) );
 
@@ -471,7 +471,7 @@ function narga_customizer($wp_customize){
 
     # Breadcrumb Control
     $wp_customize->add_setting('narga_options[breadcrumb]', array(
-        'capability'     => 'manage_options',
+        'capability'     => 'edit_theme_options',
         'type'       => 'option',
     ) );
 
@@ -543,7 +543,7 @@ function narga_customizer($wp_customize){
     $wp_customize->add_setting('narga_options[post_readmore]', array(
         'default'    => __('Read More &raquo;', 'narga'),
         'type'       => 'option',
-        'capability' => 'manage_options',
+        'capability' => 'edit_theme_options',
         'transport' => 'postMessage',
     ) );
 
